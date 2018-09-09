@@ -1,0 +1,73 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.search-form {
+    height: 40px;
+    width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    background-color: #f2f2f2;
+}
+
+.search-form input, .search-form button{
+    height: 100%;
+    display: inline-block;
+    float: left;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    border: none;
+}
+
+.search-form input{
+    width: calc(100% - 40px);
+    background: none;
+    height: 40px;
+    display: inline-block;
+    font-size: 16px;
+    padding: 0 5px 0 15px;
+    color: transparent;
+}
+
+.search-form label{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background: url("./search-icon.svg") center center no-repeat;
+    background-size: 30px;
+    transform-origin: 40% 50%;
+    transform: rotateY(0deg);
+    transition: transform .3s ease-out;
+}
+
+.search-form button{
+    width: 40px;
+    background: url("./go-button.svg") center center no-repeat;
+    background-size: 30px;
+    cursor: pointer;
+}
+
+.search-form input:focus {
+    color: #222;
+    transition: color 0s ease .3s;
+}
+
+.search-form input:focus + label{
+    transform: rotateY(90deg);
+    transition: transform .3s ease-out;
+}
+
+.search-form input.unBlurred-value{
+    color: #222;
+}
+
+.search-form input.unBlurred-value + label {
+    transform: rotateY(90deg);
+}

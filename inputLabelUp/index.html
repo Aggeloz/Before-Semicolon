@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="style.css">
+	<title>Document</title>
+</head>
+<body>
+
+	<form action="">
+		<div class="form-group">
+			<input type="text" id="first-name">
+			<label for="first-name">First Name</label>
+		</div>
+
+		<div class="form-group">
+			<input type="text" id="last-name">
+			<label for="last-name">Last Name</label>
+		</div>
+	</form>
+
+	<script>
+		const textFields = document.querySelectorAll('input[type="text"]');
+
+        textFields.forEach(field => {
+
+          // handle field on blur
+          field.addEventListener('blur', () => {
+            if (field.value.trim().length) {
+              field.classList.add('blurred');
+            } else {
+              field.classList.remove('blurred');
+            }
+          });
+
+        })
+	</script>
+
+</body>
+</html>

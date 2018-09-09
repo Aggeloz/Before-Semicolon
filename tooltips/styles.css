@@ -1,0 +1,73 @@
+body{
+    padding: 260px 0 0 250px;
+    background: radial-gradient(circle at 50%, #ddd, #474e5d) no-repeat;
+    height: 300px;
+}
+
+/* the style for the button */
+button {
+    padding: 14px 25px;
+    position: relative;
+    border: 0;
+    background-color: #474e5d;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 900;
+    border-radius: 3px;
+    transition:
+            transform .3s ease-in-out,
+            box-shadow .3s ease-in-out,
+            opacity .4s ease-in-out,
+            background-color .2s,
+            color .2s;
+    opacity: .8;
+    /* these prevent browser from adding a blue outline on the button*/
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+}
+
+button:hover{
+    box-shadow: 0 -13px 10px -8px #868a93;
+    opacity: 1;
+    transform: translateY(5px) scale(1.1);
+}
+
+button:active{
+    background-color: #333;
+}
+
+button:hover:after{
+    opacity: 1;
+    /* positions tooltip 10px above the button */
+    bottom: calc(100% + 10px);
+    /* makes it so it takes half second to pop tooltip */
+    transition:
+            opacity .3s ease-in .5s,
+            bottom .3s ease-in-out .5s;
+}
+
+button:after{
+    /* grabs the text from data-tooltip attribute of the button*/
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    border-radius: 50px 50px 0 50px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(0,0,0,.8);
+    color: #fff;
+    text-transform: none;
+    /* prevent multi-line text */
+    white-space: nowrap;
+    opacity: 0;
+    /* makes it so it takes .3 second to hide tooltip */
+    transition:
+            opacity .3s ease-in .3s,
+            bottom .3s ease-in-out .3s;
+}
+
+
+

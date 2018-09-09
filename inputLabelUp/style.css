@@ -1,0 +1,75 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+
+.form-group {
+    height: 40px;
+    width: 300px;
+    position: relative;
+    margin-bottom: 35px;
+}
+
+.form-group input{
+    background: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    padding: 15px 8px 5px;
+    border-bottom: 2px solid #ddd;
+    color: transparent; /* makes the cursor and text invisible */
+    font-size: 16px;
+    outline: none; /* remove browser field outlines on focus */
+    -webkit-appearance: none; /* prevent browser field styling */
+    -moz-appearance: none;
+}
+
+.form-group label{
+    position: absolute;
+    bottom: 4px;
+    left: 8px;
+    font-size: 16px;
+    opacity: .5;
+    height: 20px;
+    font-family: sans-serif;
+    color: #666;
+    cursor: text;
+    /* this makes it so the label moves up and down smoothly */
+    transition:
+            font-size .3s ease,
+            bottom .3s ease,
+            opacity .3s ease,
+            left .3s ease;
+}
+
+
+/* makes field color visible on focus and blur if there is typed text */
+.form-group input:focus, .form-group input.blurred{
+    color: #222;
+    border-color: #206594;
+}
+
+.form-group input:focus {
+    transition:
+            color 0s 0.2s, /* the text color of text and cursor shows up mid label transition */
+            border-color .3s;
+}
+
+/* keeps label up when on focus and blur if there is typed text */
+.form-group input:focus + label, .form-group input.blurred + label{
+    font-size: 12px;
+    bottom: 25px;
+    left: 0;
+    opacity: .3;
+}
+
+
+
+
