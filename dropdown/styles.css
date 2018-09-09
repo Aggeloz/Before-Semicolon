@@ -1,5 +1,9 @@
-body{
-    padding: 200px 0 0 200px;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
 }
 
 .dropDown-wrapper{
