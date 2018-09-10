@@ -1,6 +1,5 @@
-# Before-Semicolon
+# Input label up-down
 
-Welcome to the spot where you can get access to various tip and tricks that will 
-help you in rich your web development skills.
+This is a clever usage of field and label. The label here moves above the field and stays there while the user interacts with the field.
 
-view examples
+[play with it](https://ecorreia45.github.io/Before-Semicolon/inputLabelUp/)

@@ -2,51 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abf8efb5-80e2-4cee-b322-f31a73cdae27" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dropdown/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inputLabelUp/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/searchField/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tooltips/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dropdown/.idea/copyright/e_correia_design.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dropdown/.idea/dictionaries/ecorreia.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dropdown/.idea/dropdown.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dropdown/.idea/eslintPlugin.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dropdown/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dropdown/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dropdown/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dropdown/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inputLabelUp/.idea/copyright/e_correia_design.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inputLabelUp/.idea/dictionaries/ecorreia.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inputLabelUp/.idea/eslintPlugin.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inputLabelUp/.idea/inputLabelUp.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inputLabelUp/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inputLabelUp/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inputLabelUp/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inputLabelUp/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/searchField/.idea/copyright/e_correia_design.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/searchField/.idea/dictionaries/ecorreia.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/searchField/.idea/eslintPlugin.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/searchField/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/searchField/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/searchField/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/searchField/.idea/searchField.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/searchField/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tooltips/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tooltips/.idea/copyright/e_correia_design.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tooltips/.idea/dictionaries/ecorreia.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tooltips/.idea/emacs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tooltips/.idea/eslintPlugin.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tooltips/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tooltips/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tooltips/.idea/jsLinters/jslint.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tooltips/.idea/libraries/Generated_files.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tooltips/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tooltips/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tooltips/.idea/tooltips.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tooltips/.idea/watcherTasks.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tooltips/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dropdown/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/dropdown/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inputLabelUp/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/inputLabelUp/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/searchField/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/searchField/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tooltips/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/tooltips/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,8 +28,8 @@
           <entry key="css" value="5" />
           <entry key="gitattributes" value="2" />
           <entry key="gitignore" value="1" />
-          <entry key="html" value="4" />
-          <entry key="md" value="5" />
+          <entry key="html" value="5" />
+          <entry key="md" value="11" />
           <entry key="png" value="1" />
           <entry key="svg" value="1" />
         </counts>
@@ -78,9 +38,9 @@
         <counts>
           <entry key="CSS" value="5" />
           <entry key="Git file" value="1" />
-          <entry key="HTML" value="4" />
+          <entry key="HTML" value="5" />
           <entry key="Image" value="1" />
-          <entry key="Markdown" value="5" />
+          <entry key="Markdown" value="11" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="SVG" value="1" />
         </counts>
@@ -90,7 +50,7 @@
           <entry key="css" value="474" />
           <entry key="gitignore" value="5" />
           <entry key="html" value="841" />
-          <entry key="md" value="193" />
+          <entry key="md" value="391" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -98,7 +58,7 @@
           <entry key="CSS" value="474" />
           <entry key="Git file" value="5" />
           <entry key="HTML" value="841" />
-          <entry key="Markdown" value="193" />
+          <entry key="Markdown" value="391" />
         </counts>
       </usages-collector>
     </session>
@@ -106,11 +66,11 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/searchField/README.md">
+        <entry file="file://$PROJECT_DIR$/inputLabelUp/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="100">
-                <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <first_editor>
+                <caret column="21" selection-start-column="21" selection-end-column="21" />
               </first_editor>
               <second_editor />
             </state>
@@ -118,10 +78,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/inputLabelUp/README.md">
+        <entry file="file://$PROJECT_DIR$/searchField/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor />
+              <first_editor>
+                <caret column="38" selection-start-column="38" selection-end-column="38" />
+              </first_editor>
               <second_editor />
             </state>
           </provider>
@@ -131,7 +93,9 @@
         <entry file="file://$PROJECT_DIR$/dropdown/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor />
+              <first_editor relative-caret-position="100">
+                <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+              </first_editor>
               <second_editor />
             </state>
           </provider>
@@ -150,8 +114,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LICENSE">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/tooltips/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor>
+                <caret column="19" selection-start-column="19" selection-end-column="19" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -167,8 +138,12 @@
         <option value="$PROJECT_DIR$/dropdown/index.html" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/styles.css" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/dropdown/README.md" />
+        <option value="$PROJECT_DIR$/tooltips/README.md" />
+        <option value="$PROJECT_DIR$/searchField/README.md" />
+        <option value="$PROJECT_DIR$/inputLabelUp/README.md" />
       </list>
     </option>
   </component>
@@ -339,15 +314,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1536528556379</updated>
-      <workItem from="1536528559807" duration="2701000" />
+      <workItem from="1536528559807" duration="3129000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2701000" />
+    <option name="totallyTimeSpent" value="3129000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49004975" visible="true" weight="0.18765281" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24892704" />
@@ -431,13 +407,6 @@
     <entry file="file://$PROJECT_DIR$/before-semicolon-logo.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="15" column="36" lean-forward="true" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="443">
@@ -458,19 +427,21 @@
     <entry file="file://$PROJECT_DIR$/searchField/go-button.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/tooltips/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/LICENSE">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="23" column="37" lean-forward="true" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/searchField/README.md">
+    <entry file="file://$PROJECT_DIR$/tooltips/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="100">
-            <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <first_editor>
+            <caret column="19" selection-start-column="19" selection-end-column="19" />
           </first_editor>
           <second_editor />
         </state>
@@ -479,7 +450,19 @@
     <entry file="file://$PROJECT_DIR$/inputLabelUp/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor />
+          <first_editor>
+            <caret column="21" selection-start-column="21" selection-end-column="21" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/searchField/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor>
+            <caret column="38" selection-start-column="38" selection-end-column="38" />
+          </first_editor>
           <second_editor />
         </state>
       </provider>
@@ -487,13 +470,12 @@
     <entry file="file://$PROJECT_DIR$/dropdown/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor />
+          <first_editor relative-caret-position="100">
+            <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          </first_editor>
           <second_editor />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LICENSE">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">

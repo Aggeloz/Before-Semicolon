@@ -1,6 +1,5 @@
-# Before-Semicolon
+##DropDown CSS Only!
 
-Welcome to the spot where you can get access to various tip and tricks that will 
-help you in rich your web development skills.
+This drop-down is build on css only and registers toggle and selected item in the drop-down.
 
-view examples
+[play with it](https://ecorreia45.github.io/Before-Semicolon/dropdown/)

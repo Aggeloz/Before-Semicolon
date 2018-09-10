@@ -1,6 +1,5 @@
-# Before-Semicolon
+# Tooltip CSS Only!
 
-Welcome to the spot where you can get access to various tip and tricks that will 
-help you in rich your web development skills.
+This is a tooltip example with very minimal html and simple css activated on hover and blur events.
 
-view examples
+[play with it](https://ecorreia45.github.io/Before-Semicolon/tooltips/)

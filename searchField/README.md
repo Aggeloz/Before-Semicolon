@@ -1,6 +1,5 @@
-# Before-Semicolon
+# Search Field - Icon into text cursor
 
-Welcome to the spot where you can get access to various tip and tricks that will 
-help you in rich your web development skills.
+This is a clever usage of the search icon in a search field that transitions into a text cursor on field focus.
 
-view examples
+[play with it](https://ecorreia45.github.io/Before-Semicolon/searchField/)
