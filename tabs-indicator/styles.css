@@ -1,0 +1,78 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.tabs-wrapper{
+    width: 300px;
+}
+
+.tabs{
+    height: 40px;
+    display: flex;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.tabs .tab-indicator{
+    content: "";
+    width: 100px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: #ddd;
+    z-index: 0;
+    transform: perspective(.5em) rotateX(2deg);
+    border-radius: 10px 10px 0 0;
+    transition:
+            transform .3s ease-out,
+            left .3s ease-out;
+    transform-origin: left bottom;
+}
+
+.tab-indicator.center{transform-origin: bottom;}
+.tab-indicator.right{transform-origin: right bottom;}
+
+
+.tabs button{
+    display: inline-block;
+    height: 100%;
+    text-decoration: none;
+    padding: 15px 20px 10px;
+    width: 100px;
+    color: #222;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    background: none;
+    opacity: .5;
+    transition: opacity .3s ease-in-out;
+}
+
+.tabs button.active{
+    opacity: 1;
+}
+
+.tabs-content{
+    height: 100px;
+    padding: 20px;
+}
+
+.tabs-content > div{
+    display: none;
+}
+
+.tabs-content > div.active{
+    display: block;
+}

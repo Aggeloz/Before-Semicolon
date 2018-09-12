@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+	<div class="tabs-wrapper">
+		<div class="tabs">
+			<button type="button" class="tab active">Tab 1</button>
+			<button type="button" class="tab">Tab 2</button>
+			<button type="button" class="tab">Tab 3</button>
+			<span class="tab-indicator"></span>
+		</div>
+		<div class="tabs-content">
+			<div id="tab1-content" class="active">
+				tab 1 content
+			</div>
+			<div id="tab2-content">
+				tab 2 content
+			</div>
+			<div id="tab3-content">
+				tab 3 content
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const tabs = document.querySelectorAll('button.tab');
+		const tabsContent = document.querySelectorAll('[id$="-content"]');
+		const tabIndicator = document.querySelector('.tab-indicator');
+
+		tabs.forEach((tab, idx) => {
+		  tab.addEventListener('click', e => {
+            tabIndicator.style.left = e.target.offsetLeft + 'px';
+
+		    if (idx === 0) {
+              tabIndicator.className = 'tab-indicator';
+		    } else if (idx === 2) {
+              tabIndicator.className = 'tab-indicator right';
+            } else {
+              tabIndicator.className = 'tab-indicator center';
+		    }
+
+            tabsContent.forEach((content, index) => {
+              content.className = index === idx ? 'active' : '';
+            });
+
+            tabs.forEach((tab, index) => {
+              if (index === idx ) {
+                tab.classList.add('active');
+              } else {
+                tab.classList.remove('active');
+              }
+            });
+		  })
+		});
+
+
+	</script>
+
+</body>
+</html>
