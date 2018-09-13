@@ -14,6 +14,32 @@ body {
     width: 300px;
 }
 
+.tabs-wrapper{
+    position: relative;
+    height: 40px;
+}
+
+.tab-indicator{
+    display: inline-block;
+    width: 100px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: #439ce8;
+    z-index: -1;
+    transform: perspective(.5em) rotateX(2deg);
+    border-radius: 10px 10px 0 0;
+    transition:
+            left .3s ease-in-out,
+            transform .3s ease-in-out;
+    transform-origin: left bottom;
+
+}
+
+.tab-indicator.center{transform-origin: bottom;}
+.tab-indicator.last{transform-origin: right bottom;}
+
 .tabs{
     height: 40px;
     display: flex;
@@ -42,38 +68,10 @@ body {
     font-size: 12px;
 }
 
-.tabs li:before{
-    content: '';
-    width: 100px;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background-color: #439ce8;
-    z-index: -1;
-    transform: perspective(.5em) rotateX(90deg);
-    border-radius: 100% 100% 0 0;
-    transition:
-            border-radius .2s ease-out,
-            transform .2s ease-out;
-    /* middle tab */
-    transform-origin: bottom;
-}
-
-/* first tab */
-.tabs li:first-of-type:before{transform-origin: left bottom;}
-/* last tab */
-.tabs li:last-of-type:before{transform-origin: right bottom;}
-
 .tabs li.active{
     opacity: 1;
     color: #fff;
     font-weight: 700;
-}
-
-.tabs li.active:before{
-    transform: perspective(.5em) rotateX(2deg);
-    border-radius: 10px 10px 0 0;
 }
 
 .tabs-content-container{
