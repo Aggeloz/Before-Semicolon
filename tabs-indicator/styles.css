@@ -3,76 +3,94 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    font-size: 16px;
 }
 
 *{
     box-sizing: border-box;
 }
 
-.tabs-wrapper{
+.tabs-container{
     width: 300px;
 }
 
 .tabs{
+    position: relative;
     height: 40px;
     display: flex;
-    border-bottom: 1px solid #eee;
-    position: relative;
+    border-bottom: 1px solid #439ce8;
+    margin: 0;
+    padding: 0;
 }
 
-.tabs .tab-indicator{
-    content: "";
+.tabs li{
+    display: inline-block;
+    height: 100%;
+    width: 100px;
+    position: relative;
+    z-index: 2;
+    padding: 16px 20px 10px;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-weight: 500;
+    color: #3f4d61;
+    opacity: .5;
+    text-align: center;
+    transition:
+            font-weight .3s ease-in-out,
+            opacity .1s ease-in-out .1s,
+            color .3s ease-in-out;
+    font-size: 12px;
+}
+
+.tabs li:before{
+    content: '';
     width: 100px;
     height: 100%;
     position: absolute;
     left: 0;
     bottom: 0;
-    background-color: #ddd;
-    z-index: 0;
+    background-color: #439ce8;
+    z-index: -1;
+    transform: perspective(.5em) rotateX(90deg);
+    border-radius: 100% 100% 0 0;
+    transition:
+            border-radius .2s ease-out,
+            transform .2s ease-out;
+    /* middle tab */
+    transform-origin: bottom;
+}
+
+/* first tab */
+.tabs li:first-of-type:before{transform-origin: left bottom;}
+/* last tab */
+.tabs li:last-of-type:before{transform-origin: right bottom;}
+
+.tabs li.active{
+    opacity: 1;
+    color: #fff;
+    font-weight: 700;
+}
+
+.tabs li.active:before{
     transform: perspective(.5em) rotateX(2deg);
     border-radius: 10px 10px 0 0;
-    transition:
-            transform .3s ease-out,
-            left .3s ease-out;
-    transform-origin: left bottom;
 }
 
-.tab-indicator.center{transform-origin: bottom;}
-.tab-indicator.right{transform-origin: right bottom;}
-
-
-.tabs button{
-    display: inline-block;
-    height: 100%;
-    text-decoration: none;
-    padding: 15px 20px 10px;
-    width: 100px;
-    color: #222;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    z-index: 1;
-    background: none;
-    opacity: .5;
-    transition: opacity .3s ease-in-out;
-}
-
-.tabs button.active{
-    opacity: 1;
-}
-
-.tabs-content{
-    height: 100px;
+.tabs-content-container{
+    height: 300px;
     padding: 20px;
+    background-color: #f9f9f9;
+    color: #3f4d61;
+    font-family: sans-serif;
+    font-size: .9em;
 }
 
-.tabs-content > div{
+.tabs-content-container .tab-content{
     display: none;
 }
 
-.tabs-content > div.active{
+.tabs-content-container .tab-content.active{
     display: block;
 }
+

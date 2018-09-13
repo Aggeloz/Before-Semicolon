@@ -1,5 +1,5 @@
 # Tabs indicator
 
-This is a tooltip example with very minimal html and simple css activated on hover and blur events.
+These tabs have a simple and nice shape and transition that makes tabs move smooth
 
-[play with it](https://ecorreia45.github.io/Before-Semicolon/tooltips/)
+[play with it](https://ecorreia45.github.io/Before-Semicolon/tabs-indicator/)

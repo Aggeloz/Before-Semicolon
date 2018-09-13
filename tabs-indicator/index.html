@@ -7,54 +7,46 @@
 </head>
 <body>
 
-	<div class="tabs-wrapper">
-		<div class="tabs">
-			<button type="button" class="tab active">Tab 1</button>
-			<button type="button" class="tab">Tab 2</button>
-			<button type="button" class="tab">Tab 3</button>
-			<span class="tab-indicator"></span>
-		</div>
-		<div class="tabs-content">
-			<div id="tab1-content" class="active">
+	<div class="tabs-container">
+		<ul class="tabs">
+			<li class="tab active">Tab 1</li>
+			<li class="tab">Tab 2</li>
+			<li class="tab">Tab 3</li>
+		</ul>
+		<div class="tabs-content-container">
+			<div class="tab-content active">
 				tab 1 content
 			</div>
-			<div id="tab2-content">
+			<div class="tab-content">
 				tab 2 content
 			</div>
-			<div id="tab3-content">
+			<div class="tab-content">
 				tab 3 content
 			</div>
 		</div>
 	</div>
 
 	<script>
-		const tabs = document.querySelectorAll('button.tab');
-		const tabsContent = document.querySelectorAll('[id$="-content"]');
-		const tabIndicator = document.querySelector('.tab-indicator');
+		const tabs = document.querySelectorAll('li.tab');
+		const tabsContent = document.querySelectorAll('.tab-content');
 
-		tabs.forEach((tab, idx) => {
-		  tab.addEventListener('click', e => {
-            tabIndicator.style.left = e.target.offsetLeft + 'px';
-
-		    if (idx === 0) {
-              tabIndicator.className = 'tab-indicator';
-		    } else if (idx === 2) {
-              tabIndicator.className = 'tab-indicator right';
-            } else {
-              tabIndicator.className = 'tab-indicator center';
-		    }
-
-            tabsContent.forEach((content, index) => {
-              content.className = index === idx ? 'active' : '';
-            });
-
+		tabs.forEach((tab, tabIndex) => {
+		  tab.addEventListener('click', () => {
             tabs.forEach((tab, index) => {
-              if (index === idx ) {
+              if (index === tabIndex ) {
                 tab.classList.add('active');
               } else {
                 tab.classList.remove('active');
               }
             });
+
+            tabsContent.forEach((tabContent, tabContentIndex) => {
+              if (tabContentIndex === tabIndex) {
+                tabContent.classList.add('active');
+              } else {
+                tabContent.classList.remove('active');
+              }
+            })
 		  })
 		});
 
