@@ -1,0 +1,154 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #130c1b;
+}
+
+.twitch-loading{
+    width: 70px;
+    height: 70px;
+    position: relative;
+    transform: rotate(45deg);
+    /* declaring these values here makes it easy to manipulate things */
+    --center-square-delay: .08s;
+    --center-square-ease: cubic-bezier(0, 0, 0.24, 1.31);
+    --duration: 2s;
+    --first-quarter-delay: .5s;
+    --second-quarter-delay: 1s;
+    --third-quarter-delay: 1.5s;
+    --corner-square-ease: ease-out;
+}
+
+span{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    position: absolute;
+    opacity: 0;
+}
+
+.top-left-square{
+    top: 0;
+    left: 0;
+    animation:
+            topLeftKick
+            var(--duration)
+            var(--center-square-ease) infinite forwards;
+}
+
+@keyframes topLeftKick{
+    from, 15%{
+        left: -50px;
+        opacity: 1;
+    }
+    15%, 100%{
+        left: 0;
+    }
+    to{
+        opacity: 0;
+    }
+}
+
+.top-right-square{
+    top: 0;
+    left: calc(100% - 25px);
+    animation:
+            topRightKick
+            var(--duration)
+            var(--center-square-ease)
+            var(--first-quarter-delay) infinite forwards;
+}
+
+@keyframes topRightKick{
+    from, 15%{
+        top: -50px;
+        opacity: 1;
+    }
+    15%, 100%{
+        top: 0;
+    }
+    to{
+        opacity: 0;
+    }
+}
+
+.bottom-right-square{
+    top: calc(100% - 25px);
+    left: 100%;
+    animation:
+            bottomRightKick
+            var(--duration)
+            var(--center-square-ease)
+            var(--second-quarter-delay) infinite forwards;
+}
+
+@keyframes bottomRightKick{
+    from, 15%{
+        left: calc(100% + 25px);
+        opacity: 1;
+    }
+    15%, 100%{
+        left: calc(100% - 25px);
+    }
+    to{
+        opacity: 0;
+    }
+}
+
+.bottom-left-square{
+    top: calc(100% - 25px);
+    left: 0;
+    animation:
+            bottomLeftKick
+            var(--duration)
+            var(--center-square-ease)
+            var(--third-quarter-delay) infinite forwards;
+}
+
+@keyframes bottomLeftKick{
+    from, 15%{
+        top: calc(100% + 25px);
+        opacity: 1;
+    }
+    15%, 100%{
+        top: calc(100% - 25px);
+    }
+    to{
+        opacity: 0;
+    }
+}
+
+.center-square{
+    background-color: #82288c;
+    top: 0;
+    left: 0;
+    animation:
+            goAround
+            var(--duration)
+            var(--center-square-ease)
+            var(--center-square-delay) infinite;
+}
+
+@keyframes goAround {
+    from, to{
+        opacity: 1;
+        top: 0;
+        left: 0;
+    }
+    25%{
+        top: 0;
+        left: calc(100% - 25px);
+    }
+    50%{
+        top: calc(100% - 25px);
+        left: calc(100% - 25px);
+    }
+    75%{
+        top: calc(100% - 25px);
+        left: 0;
+    }
+}
+
