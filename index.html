@@ -6,59 +6,67 @@
 	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Before Semicolon - Tips & Tricks</title>
+	<link rel="stylesheet" href="normalize.css">
 	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-	<h1>
-		<img src="before-semicolon-logo.png" alt="before semicolon logo">
-		<span>
-			<b>Before Semicolon </b>
-			<i>Tips & Tricks</i>
-		</span>
-	</h1>
+	<header>
+		<h1>Before Semicolon</h1>
+	</header>
 
-	<dl>
-		<dt>Twitch loading animation mock</dt>
-		<dd>
-			This is a simple Twitch loading animation mock done in pure css
-			<a href="twitch-loading">view</a>
-		</dd>
-		<dt>Drop Down CSS Only!</dt>
-		<dd>
-			This drop-down is build on css only and registers toggle and selected item in the drop-down.
-			<a href="dropdown">view</a>
-		</dd>
-		<dt>Tooltip CSS Only!</dt>
-		<dd>
-			This is a tooltip example with very minimal html and simple css activated on hover and blur events.
-			<a href="tooltips">view</a>
-		</dd>
-		<dt>Search Field - search icon transition into a text cursor</dt>
-		<dd>
-			This is a clever usage of the search icon in a search field that transitions into a text cursor on
-			field focus.
-			<a href="searchField">view</a>
-		</dd>
-		<dt>Input label up and down transition</dt>
-		<dd>
-			This is a clever usage of field and label. The label here moves above the field and stays there
-			while the user interacts with the field.
-			<a href="inputLabelUp">view</a>
-		</dd>
-		<dt>Tabs indicator (example 1)</dt>
-		<dd>
-			These tabs take advantage of linear-gradient and play on rotation to give them the nice tab look and
-			appear as if they were shrinking or growing when active and inactive
-			<a href="tabs-indicator">view</a>
-		</dd>
-		<dt>Tabs indicator (example 2)</dt>
-		<dd>
-			These tabs example uses same style of the example 1 but the tab indicator moves in the x-axis when
-			tab is active while changing shape.
-			<a href="tabs-indicator2">view</a>
-		</dd>
-	</dl>
+	<main>
+		<section class="youtube-videos">
+			<div class="videos-slides">
+				<div class="youtube-video active"></div>
+			</div>
+			<div class="info-navigator">
+				<h2>Video title</h2>
+				<button type="button" class="prev-slide">&lt;</button>
+				<button type="button" class="next-slide">&gt;</button>
+			</div>
+		</section>
+
+		<div class="search-block">
+			<div class="search-field">
+				<input type="search" placeholder="Search..." name="search">
+				<button type="button" class="search-clear-icon">x</button>
+			</div>
+		</div>
+
+		<div class="content">
+			<section id="posts">
+				<div class="github-post"></div>
+				<div class="github-post"></div>
+				<div class="github-post"></div>
+				<div class="github-post"></div>
+				<div class="github-post"></div>
+				<div class="github-post"></div>
+			</section>
+			<section id="search-results">
+				<div class="search-result-post youtube">
+					<div class="post-image">
+						<img src="" alt="">
+					</div>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium deleniti eligendi similique!</p>
+				</div>
+				<div class="search-result-post github">
+					<div class="post-image">
+						<img src="" alt="">
+					</div>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium deleniti eligendi similique!</p>
+				</div>
+			</section>
+		</div>
+	</main>
+
+	<footer>
+		<ul>
+			<li><a href="">youtube</a></li>
+			<li><a href="">github</a></li>
+			<li><a href="">instagram</a></li>
+		</ul>
+	</footer>
 
 </body>
 </html>
