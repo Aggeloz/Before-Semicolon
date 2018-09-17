@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Before Semicolon - Tips & Tricks</title>
 	<link rel="stylesheet" href="normalize.css">
-	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="sass/index.css">
 </head>
 <body>
 
@@ -16,14 +16,20 @@
 	</header>
 
 	<main>
-		<section class="youtube-videos">
-			<div class="videos-slides">
-				<div class="youtube-video active"></div>
-			</div>
-			<div class="info-navigator">
-				<h2>Video title</h2>
-				<button type="button" class="prev-slide">&lt;</button>
-				<button type="button" class="next-slide">&gt;</button>
+		<section class="youtube-video-slider">
+			<div class="video-slides">
+				<div class="youtube-video active">
+					<iframe src="https://www.youtube.com/embed/XnndhSaszuY?rel=0"
+					        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+				</div>
+				<div class="info-navigator">
+					<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad aliquam aliquid
+					    animi doloribus est excepturi explicabo facere</h2>
+					<div class="nav-buttons">
+						<button type="button" class="prev-slide">&lt;</button>
+						<button type="button" class="next-slide">&gt;</button>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -58,15 +64,17 @@
 				</div>
 			</section>
 		</div>
+
+		<footer>
+			<ul>
+				<li><a href="">youtube</a></li>
+				<li><a href="">github</a></li>
+				<li><a href="">instagram</a></li>
+			</ul>
+		</footer>
 	</main>
 
-	<footer>
-		<ul>
-			<li><a href="">youtube</a></li>
-			<li><a href="">github</a></li>
-			<li><a href="">instagram</a></li>
-		</ul>
-	</footer>
+	<script src="src/index.js"></script>
 
 </body>
 </html>
