@@ -55,12 +55,12 @@ main {
     padding-top: 6vw;
     max-height: 400px;
     background-color: #E23B3B;
-    margin-bottom: 250px;
+    margin-bottom: 18vw;
     border-radius: 0 0 50% 50%/0 0 100% 100%; }
     main .youtube-video-slider .video-slides {
       margin: 0 auto;
-      max-width: 700px;
-      width: 45vw; }
+      max-width: 840px;
+      width: 50vw; }
       main .youtube-video-slider .video-slides .youtube-video {
         background-color: #EAEAEA;
         border-radius: 4px;
