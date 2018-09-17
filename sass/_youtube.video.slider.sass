@@ -1,0 +1,55 @@
+@import "response.ratio"
+@import "colors"
+
+.youtube-video-slider
+  position: relative
+  height: 25vw
+  padding-top: 6vw
+  max-height: 400px
+  background-color: $red
+  margin-bottom: 250px
+  border-radius: 0 0 50% 50% / 0 0 100% 100%
+
+  .video-slides
+    margin: 0 auto
+    max-width: 700px
+    width: 45vw
+
+    .youtube-video
+      background-color: $whitish
+      border-radius: 4px
+      border: 5px solid $pure-white
+      box-shadow: 0 5px 15px rgba($pure-black,.1)
+      position: relative
+      @include responsive-ratio(16, 9)
+
+      iframe
+        width: 100% !important
+        height: 100% !important
+        position: absolute
+        left: 0
+        top: 0
+
+
+    .slides-navigator
+      position: relative
+      padding-top: 10px
+
+      .nav-buttons
+        width: 125px
+        margin: 25px auto 0
+        display: flex
+        justify-content: space-between
+
+        button
+          width: 25px
+          height: 25px
+          overflow: hidden
+
+          &.prev-slide
+            background: url("./../media/next-icon.svg") center center no-repeat
+            background-size: auto 100%
+
+          &.next-slide
+            background: url("./../media/prev-icon.svg") center center no-repeat
+            background-size: auto 100%
