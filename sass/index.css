@@ -69,9 +69,9 @@ main {
         height: 40vw;
         max-height: none;
         margin-bottom: 250px; } }
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 480px) {
       main .youtube-video-slider {
-        margin-bottom: 150px; } }
+        margin-bottom: 200px; } }
     main .youtube-video-slider .video-slides {
       margin: 0 auto;
       max-width: 960px;
@@ -126,6 +126,15 @@ main {
     display: flex;
     align-items: center;
     justify-content: center; }
+    @media only screen and (min-width: 1024px) {
+      main .search-block {
+        height: 100px;
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2; } }
     main .search-block .search-field {
       display: inline-block;
       height: 45px;
@@ -134,6 +143,9 @@ main {
       border-radius: 30px;
       position: relative;
       overflow: hidden; }
+      @media only screen and (min-width: 1024px) {
+        main .search-block .search-field {
+          background-color: #FFFFFF; } }
       main .search-block .search-field input {
         width: 100%;
         height: 100%;
@@ -182,9 +194,12 @@ main {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto; }
+      @media only screen and (max-width: 1440px) {
+        main .content #posts {
+          max-width: 1000px; } }
       @media only screen and (max-width: 1024px) {
         main .content #posts {
-          width: calc(100% - 60px); } }
+          width: 80%; } }
       main .content #posts:after {
         content: "";
         clear: both;
@@ -202,10 +217,12 @@ main {
           margin-right: 0; }
         @media only screen and (max-width: 600px) {
           main .content #posts .github-post {
+            margin-right: 20px;
+            margin-bottom: 20px;
             padding-top: 55.5555555556%;
-            width: calc(50% - 30px + 30px / 2); }
+            width: calc(50% - 20px + 20px / 2); }
             main .content #posts .github-post:nth-of-type(3n) {
-              margin-right: 30px; }
+              margin-right: 20px; }
             main .content #posts .github-post:nth-of-type(2n) {
               margin-right: 0; } }
   main footer {

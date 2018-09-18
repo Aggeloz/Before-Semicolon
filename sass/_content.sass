@@ -10,8 +10,11 @@
     max-width: 1200px
     margin: 0 auto
 
+    @include media-query(1440px)
+      max-width: 1000px
+
     @include media-query(1024px)
-      width: calc(100% - 60px)
+      width: 80%
 
     &:after
       content: ''
@@ -32,10 +35,12 @@
         margin-right: 0
 
       @include media-query(600px)
+        margin-right: 20px
+        margin-bottom: 20px
         @include responsive-ratio(9, 5)
-        width: calc(50% - 30px + 30px / 2)
+        width: calc(50% - 20px + 20px / 2)
         &:nth-of-type(3n)
-          margin-right: 30px
+          margin-right: 20px
         &:nth-of-type(2n)
           margin-right: 0
 

@@ -1,4 +1,5 @@
 @import "colors"
+@import "mixins/media.query"
 
 .search-block
   height: 90px
@@ -6,6 +7,15 @@
   display: flex
   align-items: center
   justify-content: center
+
+  @include media-query(1024px, min)
+    height: 100px
+    display: flex
+    position: fixed
+    top: 0
+    left: 50%
+    transform: translateX(-50%)
+    z-index: 2
 
   .search-field
     display: inline-block
@@ -15,6 +25,9 @@
     border-radius: 30px
     position: relative
     overflow: hidden
+
+    @include media-query(1024px, min)
+      background-color: $pure-white
 
     input
       width: 100%
