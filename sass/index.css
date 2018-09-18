@@ -52,15 +52,40 @@ main {
   main .youtube-video-slider {
     position: relative;
     height: 25vw;
-    padding-top: 6vw;
+    padding-top: 100px;
     max-height: 400px;
     background-color: #E23B3B;
-    margin-bottom: 18vw;
+    margin-bottom: 450px;
     border-radius: 0 0 50% 50%/0 0 100% 100%; }
+    @media only screen and (max-width: 2000px) {
+      main .youtube-video-slider {
+        padding-top: 6vw;
+        margin-bottom: calc(200px + 10vw); } }
+    @media only screen and (max-width: 1024px) {
+      main .youtube-video-slider {
+        border-radius: 0; } }
+    @media only screen and (max-width: 768px) {
+      main .youtube-video-slider {
+        height: 40vw;
+        max-height: none;
+        margin-bottom: 250px; } }
+    @media only screen and (max-width: 600px) {
+      main .youtube-video-slider {
+        margin-bottom: 150px; } }
     main .youtube-video-slider .video-slides {
       margin: 0 auto;
-      max-width: 840px;
-      width: 50vw; }
+      max-width: 960px;
+      width: 58vw; }
+      @media only screen and (max-width: 1024px) {
+        main .youtube-video-slider .video-slides {
+          width: auto;
+          max-width: 60%; } }
+      @media only screen and (max-width: 768px) {
+        main .youtube-video-slider .video-slides {
+          max-width: 80%; } }
+      @media only screen and (max-width: 600px) {
+        main .youtube-video-slider .video-slides {
+          max-width: calc(100% - 60px); } }
       main .youtube-video-slider .video-slides .youtube-video {
         background-color: #EAEAEA;
         border-radius: 4px;
@@ -76,7 +101,10 @@ main {
           top: 0; }
       main .youtube-video-slider .video-slides .slides-navigator {
         position: relative;
-        padding-top: 10px; }
+        padding-top: 30px; }
+        @media only screen and (max-width: 600px) {
+          main .youtube-video-slider .video-slides .slides-navigator {
+            padding-top: 10px; } }
         main .youtube-video-slider .video-slides .slides-navigator .nav-buttons {
           width: 125px;
           margin: 25px auto 0;
@@ -148,6 +176,38 @@ main {
         main .search-block .search-field button.clear {
           background: url(./../media/clear-icon.svg) 40% center no-repeat;
           background-size: 15px; }
+  main .content {
+    margin-top: 50px; }
+    main .content #posts {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto; }
+      @media only screen and (max-width: 1024px) {
+        main .content #posts {
+          width: calc(100% - 60px); } }
+      main .content #posts:after {
+        content: "";
+        clear: both;
+        display: block; }
+      main .content #posts .github-post {
+        background-color: #EAEAEA;
+        width: calc(33.3333% - 30px + 30px / 3);
+        float: left;
+        height: 190px;
+        margin-right: 30px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+        padding-top: 38.8888888889%; }
+        main .content #posts .github-post:nth-of-type(3n) {
+          margin-right: 0; }
+        @media only screen and (max-width: 600px) {
+          main .content #posts .github-post {
+            padding-top: 55.5555555556%;
+            width: calc(50% - 30px + 30px / 2); }
+            main .content #posts .github-post:nth-of-type(3n) {
+              margin-right: 30px; }
+            main .content #posts .github-post:nth-of-type(2n) {
+              margin-right: 0; } }
   main footer {
     height: 50px; }
 
