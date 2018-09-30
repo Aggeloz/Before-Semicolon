@@ -1,0 +1,91 @@
+@import "colors"
+@import "mixins/response.ratio"
+
+#video-slider
+  position: relative
+  margin: 50px auto
+  overflow: hidden // so scrollbar will not show
+
+  .slides-container
+    // no wrap will make sure slides-container will extend as far as all slides total width
+    white-space: nowrap
+    overflow: scroll
+    // padding top 40px since translating 10px
+    // padding left and right is equal to 100 viewport width - with of the active slide divided by 2
+    // this will make sure the left-most and right-most can still be centered when nothing comes after
+    padding: 40px calc((100vw - 1100px) / 2) 150px
+    // translate down 10px will hide scrollbars
+    transform: translateY(10px)
+
+    .slide
+      display: inline-block
+      margin: 0 25px
+      background-color: $other-background
+      opacity: .5
+      width: 960px
+      border-radius: 10px
+
+      &.active
+        opacity: 1
+        transform: scale(1.1)
+        margin: 0 4vw
+
+        h2
+          display: block
+
+      &:first-of-type
+        margin-left: 0
+      &:last-of-type
+        margin-right: 0
+
+      h2
+        display: none
+        position: absolute
+        top: calc(100% + 25px)
+        left: 50%
+        transform: translateX(-50%)
+        width: 60%
+        white-space: normal
+        text-align: center
+        font-size: 1.2em
+        font-weight: 300
+        color: $text-border-grey
+
+      .video-iFrame-container
+        border-radius: 10px
+        overflow: hidden
+        @include responsive-ratio(16, 9)
+
+        iframe
+          width: 100%
+          height: 100%
+          border: 0
+
+  .slider-nav-buttons
+
+    button
+      position: absolute
+      width: 100px
+      height: 90%
+      top: 0
+      @extend .no-text
+
+      &:after
+        content: ''
+        display: inline-block
+        width: 50px
+        height: 50px
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+
+      &.prev-slide
+        left: 0
+        &:after
+          background: url("./../media/icons-sprite.svg") 0 100% / 1000% 200% no-repeat
+
+      &.next-slide
+        right: 0
+        &:after
+          background: url("./../media/icons-sprite.svg") 10% 100% / 1000% 200% no-repeat

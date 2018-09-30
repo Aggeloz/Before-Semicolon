@@ -1,21 +1,46 @@
 @import "colors"
+@import "mixins/media.query"
 
 header
-  z-index: 1
   position: fixed
-  top: 0
   left: 0
+  top: 0
   width: 100vw
-  height: 90px
-  display: flex
-  align-items: center
-  justify-content: space-between
-  padding: 0 30px
-  background: $red url("../media/before-semicolon-logo.svg") right center no-repeat
-  background-origin: content-box
+  background-color: $site-background
+  z-index: 2
+
+  > div
+    height: 95px
+    padding: 30px 0
+    display: flex
+    justify-content: space-between
+
+  @include media-query(1200px)
+    padding: 30px 25px
 
   h1
-    font-size: 1.25em
-    color: #fff
+    height: 35px
+    width: 240px
+    display: inline-block
     margin: 0
-    line-height: 100%
+    background: url("./../media/logo-text@2x.png") 0 center no-repeat, url("./../media/logo-icon.svg") 100% center no-repeat
+    background-size: auto 25px
+
+    a
+      display: inline-block
+      width: 100%
+      height: 100%
+      @extend .no-text
+
+  form
+    width: 365px
+    height: 35px
+    border-radius: 18px
+    background-color: $other-background
+    overflow: hidden
+    position: relative
+
+    input
+      width: 100%
+      height: 100%
+      padding: 0 15px

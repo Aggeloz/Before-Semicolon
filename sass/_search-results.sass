@@ -1,0 +1,54 @@
+@import "colors"
+@import "mixins/calc"
+
+#search-results
+  display: none
+  max-width: 600px
+  width: 100%
+  padding: 0 25px
+  margin: 50px auto 0
+
+  h2
+    border-bottom: 1px solid rgba($text-border-grey, .2)
+    font-size: calc-em(16px)
+    line-height: 180%
+    padding-bottom: 5px
+    margin-bottom: 25px
+
+    span
+      display: block
+      font-size: calc-em(14px)
+
+
+  > div
+
+    .search-result
+      border-radius: 10px
+      padding: 10px 10px 10px 80px
+      margin-bottom: 25px
+      position: relative
+      background-color: $other-background
+
+      &:after
+        content: ''
+        display: inline-block
+        width: 50px
+        height: 50px
+        position: absolute
+        left: 10px
+        top: 10px
+
+      &.github:after
+        background: url("./../media/icons-sprite.svg") 66% 9%/1000% 200% no-repeat
+      &.youtube:after
+        background: url("./../media/icons-sprite.svg") 88% 9%/1000% 200% no-repeat
+
+      h3
+        margin: 0
+
+        a
+          display: block
+          height: 100%
+          text-decoration: none
+          color: rgba($white, .8)
+          font-size: calc-em(14px)

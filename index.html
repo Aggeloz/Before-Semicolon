@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport"
-	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="viewport" content="width=device-width">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Before Semicolon - Tips & Tricks</title>
 	<link rel="stylesheet" href="normalize.css">
@@ -11,66 +10,197 @@
 </head>
 <body>
 
-	<header>
-		<h1>Before Semicolon</h1>
-	</header>
-
-	<main>
-		<section class="youtube-video-slider">
-			<div class="video-slides">
-				<div class="youtube-video active">
-					<iframe src="https://www.youtube.com/embed/XnndhSaszuY?rel=0"
-					        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-				</div>
-				<div class="slides-navigator">
-					<div class="nav-buttons">
-						<button type="button" class="next-slide">&gt;</button>
-						<button type="button" class="prev-slide">&lt;</button>
+	<div class="page-wrapper">
+		<header>
+			<div class="desktop-limited">
+				<h1><a href="/" tabindex="0">Before Semicolon</a></h1>
+				<button type="button" class="mobile-only">menu</button>
+				<nav class="mobile-only">
+					<h2>also at:</h2>
+					<ul role="menu">
+						<li role="menuitem"><a href="">Instagram</a></li>
+						<li role="menuitem"><a href="">Youtube</a></li>
+						<li role="menuitem"><a href="">Github</a></li>
+					</ul>
+				</nav>
+				<form action="/" role="search">
+					<input type="search" placeholder="Search..." id="search" name="search" tabindex="1">
+					<button type="button">clear search</button>
+				</form>
+			</div>
+			<!-- /.desktop-limited -->
+		</header>
+		<!-- header -->
+		<div id="video-slider">
+			<div class="slides-container">
+				<section class="slide">
+					<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque incidunt provident sapiente sequi veritatis voluptates.</h2>
+					<div class="video-iFrame-container">
+						<iframe class="content" src="https://www.youtube-nocookie.com/embed/XnndhSaszuY" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 					</div>
-				</div>
+					<!-- /.video-iFrame-container -->
+				</section>
+				<section class="slide active">
+					<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque incidunt provident sapiente sequi veritatis voluptates.</h2>
+					<div class="video-iFrame-container">
+						<iframe class="content" src="https://www.youtube-nocookie.com/embed/XnndhSaszuY" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					</div>
+					<!-- /.video-iFrame-container -->
+				</section>
+				<section class="slide">
+					<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque incidunt provident sapiente sequi veritatis voluptates.</h2>
+					<div class="video-iFrame-container">
+						<iframe class="content" src="https://www.youtube-nocookie.com/embed/XnndhSaszuY" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					</div>
+					<!-- /.video-iFrame-container -->
+				</section>
+				<section class="slide">
+					<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque incidunt provident sapiente sequi veritatis voluptates.</h2>
+					<div class="video-iFrame-container">
+						<iframe class="content" src="https://www.youtube-nocookie.com/embed/XnndhSaszuY" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					</div>
+					<!-- /.video-iFrame-container -->
+				</section>
+				<section class="slide">
+					<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque incidunt provident sapiente sequi veritatis voluptates.</h2>
+					<div class="video-iFrame-container">
+						<iframe class="content" src="https://www.youtube-nocookie.com/embed/XnndhSaszuY" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+					</div>
+					<!-- /.video-iFrame-container -->
+				</section>
+				<!-- /.slide -->
 			</div>
-		</section>
-
-		<div class="search-block">
-			<div class="search-field">
-				<input type="search" placeholder="Search..." name="search">
-				<button type="button" class="search-clear-icon">x</button>
+			<!-- /.slides-container -->
+			<div class="slider-nav-buttons">
+				<button type="button" class="next-slide">next</button>
+				<button type="button" class="prev-slide">prev</button>
 			</div>
+			<!-- /.slider-nav-buttons -->
 		</div>
-
-		<div class="content">
-			<section id="posts">
-				<div class="github-post"></div>
-				<div class="github-post"></div>
-				<div class="github-post"></div>
-				<div class="github-post"></div>
-				<div class="github-post"></div>
-				<div class="github-post"></div>
+		<!-- /#video-slider -->
+		<main class="desktop-limited">
+			<section id="ui-examples">
+				<h2>UI Examples</h2>
+				<div>
+					<section class="post">
+						<div class="thumbnail">
+							<img src="/" alt="Lorem ipsum " class="content">
+						</div>
+						<!-- /.thumbnail -->
+						<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, numquam!</h3>
+					</section>
+					<section class="post">
+						<div class="thumbnail">
+							<img src="/" alt="Lorem ipsum " class="content">
+						</div>
+						<!-- /.thumbnail -->
+						<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, numquam!</h3>
+					</section>
+					<section class="post">
+						<div class="thumbnail">
+							<img src="/" alt="Lorem ipsum " class="content">
+						</div>
+						<!-- /.thumbnail -->
+						<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, numquam!</h3>
+					</section>
+					<section class="post">
+						<div class="thumbnail">
+							<img src="/" alt="Lorem ipsum " class="content">
+						</div>
+						<!-- /.thumbnail -->
+						<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, numquam!</h3>
+					</section>
+					<section class="post">
+						<div class="thumbnail">
+							<img src="/" alt="Lorem ipsum " class="content">
+						</div>
+						<!-- /.thumbnail -->
+						<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, numquam!</h3>
+					</section>
+					<section class="post">
+						<div class="thumbnail">
+							<img src="/" alt="Lorem ipsum " class="content">
+						</div>
+						<!-- /.thumbnail -->
+						<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, numquam!</h3>
+					</section>
+					<section class="post">
+						<div class="thumbnail">
+							<img src="/" alt="Lorem ipsum " class="content">
+						</div>
+						<!-- /.thumbnail -->
+						<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, numquam!</h3>
+					</section>
+					<section class="post">
+						<div class="thumbnail">
+							<img src="/" alt="Lorem ipsum " class="content">
+						</div>
+						<!-- /.thumbnail -->
+						<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, numquam!</h3>
+					</section>
+					<!-- /.post -->
+				</div>
+				<!-- /.posts-container -->
 			</section>
+			<!-- /.ui-examples -->
 			<section id="search-results">
-				<div class="search-result-post youtube">
-					<div class="post-image">
-						<img src="" alt="">
+				<h2>
+					<b>x</b> results found for:
+					<span>""</span>
+				</h2>
+				<div>
+					<div class="search-result github">
+						<h3><a href="/">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolore est natus perspiciatis quasi quod. Consectetur corporis ipsum odio!</a></h3>
 					</div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium deleniti eligendi similique!</p>
-				</div>
-				<div class="search-result-post github">
-					<div class="post-image">
-						<img src="" alt="">
+					<div class="search-result youtube">
+						<h3><a href="/">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolore est natus perspiciatis quasi quod. Consectetur corporis ipsum odio!</a></h3>
 					</div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium deleniti eligendi similique!</p>
+					<div class="search-result youtube">
+						<h3><a href="/">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolore est natus perspiciatis quasi quod. Consectetur corporis ipsum odio!</a></h3>
+					</div>
+					<div class="search-result github">
+						<h3><a href="/">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolore est natus perspiciatis quasi quod. Consectetur corporis ipsum odio!</a></h3>
+					</div>
+					<div class="search-result github">
+						<h3><a href="/">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolore est natus perspiciatis quasi quod. Consectetur corporis ipsum odio!</a></h3>
+					</div>
+					<div class="search-result youtube">
+						<h3><a href="/">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolore est natus perspiciatis quasi quod. Consectetur corporis ipsum odio!</a></h3>
+					</div>
+					<div class="search-result github">
+						<h3><a href="/">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolore est natus perspiciatis quasi quod. Consectetur corporis ipsum odio!</a></h3>
+					</div>
+					<div class="search-result youtube">
+						<h3><a href="/">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolore est natus perspiciatis quasi quod. Consectetur corporis ipsum odio!</a></h3>
+					</div>
+					<div class="search-result github">
+						<h3><a href="/">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolore est natus perspiciatis quasi quod. Consectetur corporis ipsum odio!</a></h3>
+					</div>
+					<div class="search-result github">
+						<h3><a href="/">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores dolore est natus perspiciatis quasi quod. Consectetur corporis ipsum odio!</a></h3>
+					</div>
+					<!-- /.search-result -->
 				</div>
+				<!-- /.search-results -->
 			</section>
-		</div>
-
-		<footer>
-			<ul>
-				<li><a href="">youtube</a></li>
-				<li><a href="">github</a></li>
-				<li><a href="">instagram</a></li>
-			</ul>
+			<!-- /.search-results -->
+		</main>
+		<!-- main -->
+		<footer class="desktop-limited">
+			<hr>
+			<div class="social-links">
+				<a href="" class="instagram">Instagram</a>
+				<a href="" class="youtube">Youtube</a>
+				<a href="" class="github">Github</a>
+			</div>
+			<!-- /.social-links -->
+			<p>copyright &copy; before semicolon 2018. <span>all rights reserved</span></p>
+			<p class="by">by:</p>
+			<a href="mailto:design@elsoncorreia.com" class="email-link">email</a>
 		</footer>
-	</main>
+		<!-- footer -->
+	</div>
+	<!-- /.page-wrapper -->
 
 	<script src="src/index.js"></script>
 

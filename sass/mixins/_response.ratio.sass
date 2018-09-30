@@ -4,13 +4,21 @@
   position: $pos
 
 
-@mixin responsive-ratio($x,$y, $pseudo: false)
-  $padding: unquote( ( $y / $x ) * 100 + '%' )
+@mixin responsive-ratio($width, $height, $pseudo: false)
+  position: relative
+  $paddingTop: ($height / $width) * 100%
+
   @if $pseudo
     &:before
       @include pseudo($pos: relative)
       width: 100%
-      padding-top: $padding
-
+      padding-top: $paddingTop
   @else
-    padding-top: $padding
+    padding-top: $paddingTop
+
+  .content
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%

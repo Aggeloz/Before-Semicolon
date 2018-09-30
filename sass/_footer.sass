@@ -1,2 +1,44 @@
+@import "colors"
+@import "mixins/calc"
+
 footer
-  height: 50px
+  padding: 50px 0 150px
+  text-align: center
+  font-size: calc-em(14px)
+
+  hr
+    border-color: rgba($text-border-grey, .2)
+    width: 50%
+    margin: 100px auto
+
+  .social-links
+    margin-bottom: 20px
+
+    a
+      margin: 0 15px
+
+      &.instagram
+        background: url("./../media/icons-sprite.svg") 11% 0 / 1000% 200% no-repeat
+      &.youtube
+        background: url("./../media/icons-sprite.svg") 22% 0 / 1000% 200% no-repeat
+      &.github
+        background: url("./../media/icons-sprite.svg") 0 0 / 1000% 200% no-repeat
+
+
+  p
+    margin: 0
+
+    &.by
+      opacity: .5
+      margin-top: 5px
+      margin-bottom: 25px
+
+
+  a
+    width: 45px
+    height: 45px
+    display: inline-block
+    @extend .no-text
+
+    &.email-link
+      background: url("./../media/icons-sprite.svg") 55.5% 0 / 1000% 200% no-repeat

@@ -1,10 +1,10 @@
 @mixin media-query($width, $type: max, $view:portrait) {
   @if ($type == max-device or $type == min-device) {
-    @media only screen and (#{$type}-width: $width) and (orientation: $view) {
+    @media screen and (#{$type}-width: $width) and (orientation: $view) {
       @content
     }
   } @else {
-    @media only screen and (#{$type}-width: $width) {
+    @media screen and (#{$type}-width: $width) {
       @content
     }
   }

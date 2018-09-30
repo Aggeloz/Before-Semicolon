@@ -1,13 +1,18 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600')
-@import "mixins/response.ratio"
+@import url('https://fonts.googleapis.com/css?family=Exo+2:300,400,500i|PT+Sans')
 @import "colors"
+@import "mixins/media.query"
+
+//font-family: 'Exo 2', sans-serif
+//font-family: 'PT Sans', sans-serif
 
 body
   font-size: 16px
-  font-family: 'Open Sans', sans-serif
+  font-family: 'Exo 2', sans-serif
   font-weight: 400
   height: 100vh
   width: 100vw
+  background-color: $site-background
+  color: $text-border-grey
 
   > *
     width: 100%
@@ -16,8 +21,10 @@ body
 *
   box-sizing: border-box
 
-h1, h2, h3
+h1, h2, h3, h4
   margin-top: 0
+  line-height: 120%
+  font-weight: normal
 
 button, input
   border: none
@@ -33,22 +40,90 @@ button, input[type="button"]
   &:active
     transform: scale(.96)
 
-// Page header
-@import "header"
 
-// Main area of the site
-main
-  height: 100%
-  margin-top: 90px
+button
+  &:active
+    transform: scale(.9)
+
+input
+  color: $white
+  font-family: 'PT Sans', sans-serif
+
+  &[type="search"]
+    &::-webkit-search-cancel-button
+      display: none
+    &::-ms-clear
+      display: none
+
+  &:-ms-input-placeholder
+    color: rgba($white, .2)
+    transition: color .3s
+  &::-ms-input-placeholder
+    color: rgba($white, .2)
+    transition: color .3s
+  &:-moz-placeholder
+    color: rgba($white, .2)
+    transition: color .3s
+  &::-moz-placeholder
+    color: rgba($white, .2)
+    transition: color .3s
+  &::-webkit-input-placeholder
+    color: rgba($white, .2)
+    transition: color .3s
+
+  &:focus
+    &:-ms-input-placeholder
+      color: rgba($white, 0)
+    &::-ms-input-placeholder
+      color: rgba($white, 0)
+    &:-moz-placeholder
+      color: rgba($white, 0)
+    &::-moz-placeholder
+      color: rgba($white, 0)
+    &::-webkit-input-placeholder
+      color: rgba($white, 0)
+
+.mobile-only
+  display: none
+
+  @include media-query(450px)
+    display: block
+
+.desktop-limited
+  margin: 0 auto
+  max-width: 1200px
+
+.no-text
+  overflow: hidden
+  text-overflow: ellipsis
+  text-indent: 999999px
+
+
+// Page layout
+
+.page-wrapper
+  background-color: $site-background
+  position: absolute
+  left: 0
+  top: 0
+  width: 100vw
+  height: 100vh
+  overflow: auto
+  padding-top: 100px
+
+  // header
+  @import "header"
 
   // video slider
-  @import "youtube.video.slider"
+  @import "video-slider"
 
-  // search block
-  @import "search.block"
+  // main content
+  main
+    // ui example post-['?
+    @import "ui-examples"
 
-  // content
-  @import "content"
+    // search results
+    @import "search-results"
 
-  // site footer
+  // footer
   @import "footer"
