@@ -3,7 +3,7 @@
 
 #video-slider
   position: relative
-  margin: 50px auto
+  margin: 30px auto 80px
   overflow: hidden // so scrollbar will not show
 
   .slides-container
@@ -19,19 +19,11 @@
 
     .slide
       display: inline-block
-      margin: 0 25px
       background-color: $other-background
-      opacity: .5
       width: 960px
       border-radius: 10px
-
-      &.active
-        opacity: 1
-        transform: scale(1.1)
-        margin: 0 4vw
-
-        h2
-          display: block
+      box-shadow: 0 0 20px rgba($black, 0.3)
+      position: relative
 
       &:first-of-type
         margin-left: 0
@@ -39,7 +31,6 @@
         margin-right: 0
 
       h2
-        display: none
         position: absolute
         top: calc(100% + 25px)
         left: 50%
@@ -49,7 +40,7 @@
         text-align: center
         font-size: 1.2em
         font-weight: 300
-        color: $text-border-grey
+        color: lighten($text-border-grey, 30%)
 
       .video-iFrame-container
         border-radius: 10px
