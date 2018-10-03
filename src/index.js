@@ -24,11 +24,14 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 	}, false);
 }
 
+// setupSliders
+// will be called when youtube api is ready
+// since that check is done in the index.html, it is set as global function for easy access
 window.setupSliders = function () {
 
 	var videoSliderContainer = document.getElementById('video-slider');
 	var youtubePosts = posts.filter(function (post) {
-		return post.type === 'youtube';
+		return post.type === POST_TYPES.YOUTUBE;
 	});
 	var _window$YT$PlayerStat = window.YT.PlayerState,
 	    PLAYING = _window$YT$PlayerStat.PLAYING,
@@ -41,6 +44,8 @@ window.setupSliders = function () {
 
 	var allSlides = [];
 	var slideSideMargins = 80;
+	var nextButton = null;
+	var prevButton = null;
 	var slidesContainer = null;
 	var slidesContainerWidth = null;
 	var currentPlayerPlaying = null;
@@ -85,10 +90,19 @@ window.setupSliders = function () {
 		animateScroll();
 	};
 
+	var toggleNavButtonsAccordingToSlide = function toggleNavButtonsAccordingToSlide(slide) {
+		var upComingSlideIndex = allSlides.indexOf(slide);
+		var isLastSlide = upComingSlideIndex === allSlides.length - 1;
+		var isFirstSlide = upComingSlideIndex === 0;
+
+		nextButton.style.display = isLastSlide ? 'none' : '';
+		prevButton.style.display = isFirstSlide ? 'none' : '';
+	};
+
 	var centerSlide = function centerSlide(slide) {
 		var onDone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
-		console.log('-- center slide');
+		toggleNavButtonsAccordingToSlide(slide);
 
 		var _slide$getBoundingCli = slide.getBoundingClientRect(),
 		    slideWidth = _slide$getBoundingCli.width;
@@ -100,7 +114,7 @@ window.setupSliders = function () {
 
 
 		var scrollLeftTo = slide.offsetLeft - (containerWidth - slideWidth) / 2 - 40;
-		scrollSlidesContainer(scrollLeftTo, 800, function () {
+		scrollSlidesContainer(scrollLeftTo, 400, function () {
 			centeredSlide = slide;
 			if (onDone) {
 				onDone();
@@ -252,19 +266,6 @@ window.setupSliders = function () {
 		var upComingSlide = isNextButton ? currentSlide.nextElementSibling : currentSlide.previousElementSibling;
 
 		if (upComingSlide) {
-			var upComingSlideIndex = allSlides.indexOf(upComingSlide);
-			var isLastSlide = upComingSlideIndex === allSlides.length - 1;
-			var isFirstSlide = upComingSlideIndex === 0;
-
-			if (isLastSlide || isFirstSlide) {
-				button.style.display = 'none';
-			} else {
-				var sibButton = button.nextElementSibling || button.previousElementSibling;
-				if (sibButton.style.display === 'none') {
-					sibButton.style.display = '';
-				}
-			}
-
 			centerSlide(upComingSlide, function () {
 				button.removeAttribute('disabled');
 			});
@@ -274,10 +275,14 @@ window.setupSliders = function () {
 	// essential functions
 	var setYoutubeIFrame = function setYoutubeIFrame(data) {
 		var autoPlay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+		var _window$location = window.location,
+		    protocol = _window$location.protocol,
+		    host = _window$location.host;
+
 
 		var player = new YT.Player(data.videoId, {
 			videoId: data.videoId,
-			host: 'https://www.youtube.com',
+			host: 'http://www.youtube.com',
 			playerVars: {
 				fs: 1,
 				autoplay: autoPlay ? 1 : 0,
@@ -285,7 +290,7 @@ window.setupSliders = function () {
 				modestbranding: 1,
 				rel: 0,
 				showinfo: 0,
-				origin: window.location.href
+				origin: protocol + '//' + host
 			},
 			events: {
 				'onReady': function onReady() {
@@ -352,20 +357,21 @@ window.setupSliders = function () {
 		var slidesNavButtons = document.createElement('DIV');
 		slidesNavButtons.className = 'slider-nav-buttons';
 
-		var prevButton = document.createElement('BUTTON');
+		prevButton = document.createElement('BUTTON');
 		prevButton.setAttribute('type', 'button');
 		prevButton.className = 'prev-slide';
+		prevButton.style.display = 'none';
 		prevButton.textContent = 'prev';
 		prevButton.addEventListener('click', navigateSlidesWithButton);
 
-		var nextButton = document.createElement('BUTTON');
+		nextButton = document.createElement('BUTTON');
 		nextButton.setAttribute('type', 'button');
 		nextButton.className = 'next-slide';
 		nextButton.textContent = 'next';
 		nextButton.addEventListener('click', navigateSlidesWithButton);
 
-		slidesNavButtons.appendChild(nextButton);
 		slidesNavButtons.appendChild(prevButton);
+		slidesNavButtons.appendChild(nextButton);
 
 		docFragment.appendChild(slidesContainer);
 		docFragment.appendChild(slidesNavButtons);
@@ -382,4 +388,135 @@ window.setupSliders = function () {
 		videoSliderContainer.remove();
 	}
 };
+
+var previewMedia = function previewMedia(element, data) {
+	console.log('-- previewMedia', element, data);
+};
+
+// posts setup
+{
+	var uiExamplesContainer = document.getElementById('ui-examples');
+	var githubPosts = posts.filter(function (post) {
+		return post.type === POST_TYPES.GITHUB;
+	});
+
+	var populatePosts = function populatePosts(dataList) {
+		var postsContainer = document.createElement('DIV');
+
+		dataList.forEach(function (data) {
+			var post = document.createElement('ARTICLE');
+			post.className = 'post';
+			post.addEventListener('click', function () {
+				previewMedia(post, data);
+			});
+
+			var thumbnail = document.createElement('DIV');
+			thumbnail.className = 'thumbnail';
+
+			var img = document.createElement('IMG');
+			img.src = data.thumbnailPath;
+			img.alt = data.title;
+			img.className = 'content';
+
+			thumbnail.appendChild(img);
+
+			var title = document.createElement('H3');
+			title.textContent = data.title;
+
+			post.appendChild(thumbnail);
+			post.appendChild(title);
+
+			postsContainer.appendChild(post);
+		});
+
+		uiExamplesContainer.appendChild(postsContainer);
+	};
+
+	if (githubPosts.length) {
+		populatePosts(githubPosts);
+	} else {
+		uiExamplesContainer.remove();
+	}
+}
+
+// search setup
+{
+	var searchResultsContainer = document.createElement('SECTION');
+	searchResultsContainer.id = 'search-results';
+	var searchResultsContainerTitle = document.createElement('H2');
+	var searchForm = document.getElementById('search-form');
+	var searchField = searchForm[0];
+
+	var searchTerm = '';
+	var resultsCount = 0;
+	var searchTimer = null;
+
+	var toggleResults = function toggleResults() {
+		var visible = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+	};
+
+	var displayResults = function displayResults(results) {
+		toggleResults();
+
+		if (!document.getElementById('search-results')) {
+			searchResultsContainerTitle.insertAdjacentHTML('afterbegin', '<b>' + resultsCount + '</b> results found for:<span>"' + searchTerm + '"</span>');
+			searchResultsContainer.appendChild(searchResultsContainerTitle);
+			searchResultsContainer.appendChild(document.createElement('DIV'));
+			document.querySelector('main').appendChild(searchResultsContainer);
+		} else {
+			searchResultsContainerTitle.children[0].textContent = '' + resultsCount;
+			searchResultsContainerTitle.children[1].textContent = '"' + searchTerm + '"';
+		}
+
+		searchResultsContainer.lastElementChild.innerHTML = '';
+		searchResultsContainer.lastElementChild.appendChild(results);
+	};
+
+	var getSearchResultPostElement = function getSearchResultPostElement(post) {
+
+		var resultPost = document.createElement('DIV');
+		resultPost.className = 'search-result ' + post.type;
+		resultPost.addEventListener('click', function () {
+			previewMedia(resultPost, post);
+		});
+
+		var title = document.createElement('H3');
+		title.textContent = post.title;
+
+		resultPost.appendChild(title);
+
+		return resultPost;
+	};
+
+	searchField.addEventListener('input', function (e) {
+		searchTerm = e.target.value.trim();
+		resultsCount = 0;
+
+		window.clearTimeout(searchTimer); // adds delay over typing
+
+		if (searchTerm.length >= 3) {
+			searchTimer = setTimeout(function () {
+				var termRegex = new RegExp(searchTerm, 'gmi');
+				var results = document.createDocumentFragment();
+
+				posts.forEach(function (post) {
+					if (termRegex.test(post.title) || termRegex.test(post.description)) {
+						results.appendChild(getSearchResultPostElement(post));
+						++resultsCount;
+					}
+				});
+
+				if (resultsCount === 0) {
+					var noResultMessage = document.createElement('P');
+					noResultMessage.textContent = 'Nothing matched "' + searchTerm + '". If you think it doesn\'t exist yet, send a suggestion!';
+					results.appendChild(noResultMessage);
+				}
+
+				displayResults(results);
+			}, 500);
+		} else {
+			toggleResults(false);
+		}
+	});
+}
 //# sourceMappingURL=index.js.map

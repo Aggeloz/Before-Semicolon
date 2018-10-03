@@ -21,6 +21,10 @@
       flex: 0 0 calc(100% / 3 - 30px)
       // 15px left and 15px right is equal 30px which will form the gap in between cards
       margin: 15px
+      cursor: pointer
+
+      &:hover h3
+        color: $white
 
       .thumbnail
         background-color: $other-background
@@ -29,9 +33,13 @@
         border: solid 1px $logo-blue
         @include responsive-ratio(1, 1)
 
+        &:active
+          transform: rotateY(0deg)
+
       h3
         margin: 0
         font-size: calc-em(15px)
         font-weight: 300
         color: $text-border-grey
         padding: 10px 10px 0
+        transition: color .3s ease
