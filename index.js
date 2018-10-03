@@ -25,15 +25,20 @@
 	}, false);
 }
 
+// setupSliders
+// will be called when youtube api is ready
+// since that check is done in the index.html, it is set as global function for easy access
 window.setupSliders = () => {
 	
 	const videoSliderContainer = document.getElementById('video-slider');
-	const youtubePosts = posts.filter(post => post.type === 'youtube');
+	const youtubePosts = posts.filter(post => post.type === POST_TYPES.YOUTUBE);
 	const {PLAYING, BUFFERING, CUED, PAUSED, UNSTARTED} = window.YT.PlayerState;
 	const players = [];
 	
 	let allSlides = [];
 	let slideSideMargins = 80;
+	let nextButton = null;
+	let prevButton = null;
 	let slidesContainer = null;
 	let slidesContainerWidth = null;
 	let currentPlayerPlaying = null;
@@ -74,14 +79,23 @@ window.setupSliders = () => {
 		animateScroll();
 	}
 	
+	const toggleNavButtonsAccordingToSlide = slide => {
+		const upComingSlideIndex = allSlides.indexOf(slide);
+		const isLastSlide = upComingSlideIndex === allSlides.length - 1;
+		const isFirstSlide = upComingSlideIndex === 0;
+		
+		nextButton.style.display = isLastSlide ? 'none' : '';
+		prevButton.style.display = isFirstSlide ? 'none' :  '';
+	}
+	
 	const centerSlide = (slide, onDone = null) => {
-		console.log('-- center slide');
+		toggleNavButtonsAccordingToSlide(slide);
 		const {width: slideWidth} = slide.getBoundingClientRect();
 		const {width: containerWidth} = slidesContainer.getBoundingClientRect();
 		
 		// center slide has 80px left and right we just want half of it
 		const scrollLeftTo = slide.offsetLeft - ((containerWidth - slideWidth) / 2) - 40;
-		scrollSlidesContainer(scrollLeftTo, 800, () => {
+		scrollSlidesContainer(scrollLeftTo, 400, () => {
 			centeredSlide = slide;
 			if (onDone) {
 				onDone();
@@ -222,19 +236,6 @@ window.setupSliders = () => {
 		const upComingSlide = isNextButton ? currentSlide.nextElementSibling : currentSlide.previousElementSibling;
 		
 		if (upComingSlide) {
-			const upComingSlideIndex = allSlides.indexOf(upComingSlide);
-			const isLastSlide = upComingSlideIndex === allSlides.length - 1;
-			const isFirstSlide = upComingSlideIndex === 0;
-			
-			if (isLastSlide || isFirstSlide) {
-				button.style.display = 'none';
-			} else {
-				const sibButton = (button.nextElementSibling || button.previousElementSibling);
-				if (sibButton.style.display === 'none') {
-					sibButton.style.display = '';
-				}
-			}
-			
 			centerSlide(upComingSlide, () => {
 				button.removeAttribute('disabled');
 			});
@@ -244,9 +245,11 @@ window.setupSliders = () => {
 	
 	// essential functions
 	const setYoutubeIFrame = (data, autoPlay = false) => {
+		const {protocol, host} = window.location;
+		
 		const player = new YT.Player(data.videoId, {
 			videoId: data.videoId,
-			host: 'https://www.youtube.com',
+			host: 'http://www.youtube.com',
 			playerVars: {
 				fs: 1,
 				autoplay: autoPlay ? 1 : 0,
@@ -254,7 +257,7 @@ window.setupSliders = () => {
 				modestbranding: 1,
 				rel: 0,
 				showinfo: 0,
-				origin:  window.location.href
+				origin: `${protocol}//${host}`
 			},
 			events: {
 				'onReady': () => {
@@ -321,20 +324,21 @@ window.setupSliders = () => {
 		const slidesNavButtons = document.createElement('DIV');
 		slidesNavButtons.className = 'slider-nav-buttons';
 		
-		const prevButton = document.createElement('BUTTON');
+		prevButton = document.createElement('BUTTON');
 		prevButton.setAttribute('type', 'button');
 		prevButton.className = 'prev-slide';
+		prevButton.style.display = 'none';
 		prevButton.textContent = 'prev';
 		prevButton.addEventListener('click', navigateSlidesWithButton);
 		
-		const nextButton = document.createElement('BUTTON');
+		nextButton = document.createElement('BUTTON');
 		nextButton.setAttribute('type', 'button');
 		nextButton.className = 'next-slide';
 		nextButton.textContent = 'next';
 		nextButton.addEventListener('click', navigateSlidesWithButton);
 		
-		slidesNavButtons.appendChild(nextButton);
 		slidesNavButtons.appendChild(prevButton);
+		slidesNavButtons.appendChild(nextButton);
 		
 		docFragment.appendChild(slidesContainer);
 		docFragment.appendChild(slidesNavButtons);
@@ -352,3 +356,134 @@ window.setupSliders = () => {
 	}
 }
 
+const previewMedia = (element, data) => {
+	console.log('-- previewMedia', element, data);
+}
+
+// posts setup
+{
+	const uiExamplesContainer = document.getElementById('ui-examples');
+	const githubPosts = posts.filter(post => post.type === POST_TYPES.GITHUB);
+	
+	const populatePosts = dataList => {
+		const postsContainer = document.createElement('DIV');
+		
+		dataList.forEach(data => {
+			const post = document.createElement('ARTICLE');
+			post.className = 'post';
+			post.addEventListener('click', () => {
+				previewMedia(post, data);
+			});
+			
+			const thumbnail = document.createElement('DIV');
+			thumbnail.className = 'thumbnail';
+			
+			const img = document.createElement('IMG');
+			img.src = data.thumbnailPath;
+			img.alt = data.title;
+			img.className = 'content';
+			
+			thumbnail.appendChild(img);
+			
+			const title = document.createElement('H3');
+			title.textContent = data.title;
+			
+			post.appendChild(thumbnail);
+			post.appendChild(title);
+			
+			postsContainer.appendChild(post);
+		});
+		
+		uiExamplesContainer.appendChild(postsContainer);
+		
+	}
+	
+	if (githubPosts.length) {
+		populatePosts(githubPosts);
+	} else {
+		uiExamplesContainer.remove();
+	}
+}
+
+// search setup
+{
+	const searchResultsContainer = document.createElement('SECTION');
+	searchResultsContainer.id = 'search-results';
+	const searchResultsContainerTitle = document.createElement('H2');
+	const searchForm = document.getElementById('search-form');
+	const searchField = searchForm[0];
+	
+	let searchTerm = '';
+	let resultsCount = 0;
+	let searchTimer = null;
+	
+	const toggleResults = (visible = true) =>{}
+	
+	const displayResults = results => {
+		toggleResults();
+		
+		if (!document.getElementById('search-results')) {
+			searchResultsContainerTitle.insertAdjacentHTML('afterbegin',
+				'<b>' + resultsCount + '</b> results found for:<span>"' + searchTerm + '"</span>');
+			searchResultsContainer.appendChild(searchResultsContainerTitle);
+			searchResultsContainer.appendChild(document.createElement('DIV'));
+			document.querySelector('main').appendChild(searchResultsContainer);
+		} else {
+			searchResultsContainerTitle.children[0].textContent = `${resultsCount}`;
+			searchResultsContainerTitle.children[1].textContent = `"${searchTerm}"`
+		}
+		
+		searchResultsContainer.lastElementChild.innerHTML = '';
+		searchResultsContainer.lastElementChild.appendChild(results);
+		
+	}
+	
+	const getSearchResultPostElement = post => {
+		
+		const resultPost = document.createElement('DIV');
+		resultPost.className = `search-result ${post.type}`;
+		resultPost.addEventListener('click', () => {
+			previewMedia(resultPost, post);
+		});
+		
+		const title = document.createElement('H3');
+		title.textContent = post.title;
+		
+		resultPost.appendChild(title);
+
+		return resultPost;
+	}
+	
+	searchField.addEventListener('input', e => {
+		searchTerm = e.target.value.trim();
+		resultsCount = 0;
+		
+		window.clearTimeout(searchTimer); // adds delay over typing
+		
+		if (searchTerm.length >= 3) {
+			searchTimer = setTimeout(() => {
+				const termRegex = new RegExp(searchTerm, 'gmi');
+				const results = document.createDocumentFragment();
+				
+				posts.forEach(post => {
+					if (termRegex.test(post.title) || termRegex.test(post.description)) {
+						results.appendChild(getSearchResultPostElement(post));
+						++resultsCount;
+					}
+				});
+				
+				if (resultsCount === 0) {
+					const noResultMessage = document.createElement('P');
+					noResultMessage.textContent = `Nothing matched "${searchTerm}". If you think it doesn't exist yet, send a suggestion!`;
+					results.appendChild(noResultMessage);
+				}
+				
+				displayResults(results);
+				
+			}, 500);
+		} else {
+			toggleResults(false);
+		}
+	});
+	
+}
