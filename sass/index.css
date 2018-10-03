@@ -375,15 +375,15 @@ input {
       background-color: #10B5DC;
       opacity: 0.2;
       transition: 0.3s ease; }
-      #waiting-view .loading span:first-of-type {
-        animation: load 1s ease forwards; }
+      #waiting-view .loading span:nth-of-type(1) {
+        animation: load 1s ease 0s forwards; }
       #waiting-view .loading span:nth-of-type(2) {
         animation: load 1s ease 1s forwards; }
       #waiting-view .loading span:nth-of-type(3) {
         animation: load 1s ease 2s forwards; }
       #waiting-view .loading span:nth-of-type(4) {
         animation: load 1s ease 3s forwards; }
-      #waiting-view .loading span:last-of-type {
+      #waiting-view .loading span:nth-of-type(5) {
         animation: load 1s ease 4s forwards;
         margin-right: 0; }
 @keyframes load {
