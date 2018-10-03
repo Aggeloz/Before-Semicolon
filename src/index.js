@@ -446,6 +446,10 @@ var previewMedia = function previewMedia(element, data) {
 	var searchResultsContainerTitle = document.createElement('H2');
 	var searchForm = document.getElementById('search-form');
 	var searchField = searchForm[0];
+	var clearSearchButton = searchForm[1];
+	var main = document.querySelector('main');
+	var videoSlider = document.getElementById('video-slider');
+	var uiExamples = document.getElementById('ui-examples');
 
 	var searchTerm = '';
 	var resultsCount = 0;
@@ -453,6 +457,26 @@ var previewMedia = function previewMedia(element, data) {
 
 	var toggleResults = function toggleResults() {
 		var visible = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+		if (visible) {
+			searchResultsContainer.style.display = '';
+			videoSlider.classList.add('fade-out');
+			uiExamples.classList.add('fade-out');
+			setTimeout(function () {
+				videoSlider.style.display = 'none';
+				uiExamples.style.display = 'none';
+			}, 300);
+		} else {
+			console.log('-- hide');
+			searchResultsContainer.classList.add('fade-out');
+			setTimeout(function () {
+				videoSlider.style.display = '';
+				uiExamples.style.display = '';
+				searchResultsContainer.style.display = 'none';
+				videoSlider.classList.remove('fade-out');
+				uiExamples.classList.remove('fade-out');
+			}, 300);
+		}
 	};
 
 	var displayResults = function displayResults(results) {
@@ -462,7 +486,7 @@ var previewMedia = function previewMedia(element, data) {
 			searchResultsContainerTitle.insertAdjacentHTML('afterbegin', '<b>' + resultsCount + '</b> results found for:<span>"' + searchTerm + '"</span>');
 			searchResultsContainer.appendChild(searchResultsContainerTitle);
 			searchResultsContainer.appendChild(document.createElement('DIV'));
-			document.querySelector('main').appendChild(searchResultsContainer);
+			main.appendChild(searchResultsContainer);
 		} else {
 			searchResultsContainerTitle.children[0].textContent = '' + resultsCount;
 			searchResultsContainerTitle.children[1].textContent = '"' + searchTerm + '"';
@@ -488,33 +512,80 @@ var previewMedia = function previewMedia(element, data) {
 		return resultPost;
 	};
 
+	var searchInPostsAndGetResults = function searchInPostsAndGetResults() {
+		var terms = searchTerm.split(' ');
+		var termsRegex = terms.map(function (term) {
+			return new RegExp(term, 'gmi');
+		});
+		var results = [];
+
+		posts.forEach(function (post) {
+			termsRegex.forEach(function (term) {
+				if (results.indexOf(post) < 0) {
+					if (term.test(post.title)) {
+						// things matching title are more relevant so should appear first
+						results.unshift(post);
+						++resultsCount;
+					} else if (term.test(post.description)) {
+						results.push(post);
+						++resultsCount;
+					}
+				}
+			});
+		});
+
+		return results;
+	};
+
+	searchForm.addEventListener('submit', function (e) {
+		e.preventDefault();
+	});
+
 	searchField.addEventListener('input', function (e) {
 		searchTerm = e.target.value.trim();
 		resultsCount = 0;
 
 		window.clearTimeout(searchTimer); // adds delay over typing
 
-		if (searchTerm.length >= 3) {
-			searchTimer = setTimeout(function () {
-				var termRegex = new RegExp(searchTerm, 'gmi');
-				var results = document.createDocumentFragment();
+		if (searchTerm.length) {
+			clearSearchButton.classList.add('clear');
 
-				posts.forEach(function (post) {
-					if (termRegex.test(post.title) || termRegex.test(post.description)) {
-						results.appendChild(getSearchResultPostElement(post));
-						++resultsCount;
+			if (searchTerm.length >= 3) {
+				searchTimer = setTimeout(function () {
+					var resultsFragment = document.createDocumentFragment();
+					var results = searchInPostsAndGetResults();
+
+					results.forEach(function (res) {
+						return resultsFragment.appendChild(getSearchResultPostElement(res));
+					});
+
+					if (resultsCount === 0) {
+						var noResultMessage = document.createElement('P');
+						noResultMessage.textContent = 'Nothing matched "' + searchTerm + '". If you think it doesn\'t exist yet, send a suggestion!';
+						resultsFragment.appendChild(noResultMessage);
 					}
-				});
 
-				if (resultsCount === 0) {
-					var noResultMessage = document.createElement('P');
-					noResultMessage.textContent = 'Nothing matched "' + searchTerm + '". If you think it doesn\'t exist yet, send a suggestion!';
-					results.appendChild(noResultMessage);
-				}
-
-				displayResults(results);
-			}, 500);
+					displayResults(resultsFragment);
+				}, 500);
+			}
 		} else {
+			clearSearchButton.classList.remove('clear');
+		}
+	});
+
+	searchField.addEventListener('blur', function () {
+		window.clearTimeout(searchTimer); // adds delay over typing
+
+		if (!searchTerm) {
+			searchTimer = setTimeout(function () {
+				toggleResults(false);
+			}, 300);
+		}
+	});
+
+	clearSearchButton.addEventListener('click', function () {
+		if (searchTerm) {
+			searchField.value = '';
 			toggleResults(false);
 		}
 	});

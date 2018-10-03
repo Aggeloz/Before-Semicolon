@@ -412,12 +412,36 @@ const previewMedia = (element, data) => {
 	const searchResultsContainerTitle = document.createElement('H2');
 	const searchForm = document.getElementById('search-form');
 	const searchField = searchForm[0];
+	const clearSearchButton = searchForm[1];
+	const main = document.querySelector('main');
+	const videoSlider = document.getElementById('video-slider');
+	const uiExamples = document.getElementById('ui-examples');
 	
 	let searchTerm = '';
 	let resultsCount = 0;
 	let searchTimer = null;
 	
-	const toggleResults = (visible = true) =>{}
+	const toggleResults = (visible = true) => {
+		if (visible) {
+			searchResultsContainer.style.display = '';
+			videoSlider.classList.add('fade-out');
+			uiExamples.classList.add('fade-out');
+			setTimeout(() => {
+				videoSlider.style.display = 'none';
+				uiExamples.style.display = 'none';
+			}, 300);
+		} else {
+			console.log('-- hide');
+			searchResultsContainer.classList.add('fade-out');
+			setTimeout(() => {
+				videoSlider.style.display = '';
+				uiExamples.style.display = '';
+				searchResultsContainer.style.display = 'none';
+				videoSlider.classList.remove('fade-out');
+				uiExamples.classList.remove('fade-out');
+			}, 300);
+		}
+	}
 	
 	const displayResults = results => {
 		toggleResults();
@@ -427,7 +451,7 @@ const previewMedia = (element, data) => {
 				'<b>' + resultsCount + '</b> results found for:<span>"' + searchTerm + '"</span>');
 			searchResultsContainer.appendChild(searchResultsContainerTitle);
 			searchResultsContainer.appendChild(document.createElement('DIV'));
-			document.querySelector('main').appendChild(searchResultsContainer);
+			main.appendChild(searchResultsContainer);
 		} else {
 			searchResultsContainerTitle.children[0].textContent = `${resultsCount}`;
 			searchResultsContainerTitle.children[1].textContent = `"${searchTerm}"`
@@ -454,36 +478,78 @@ const previewMedia = (element, data) => {
 		return resultPost;
 	}
 	
+	const searchInPostsAndGetResults = () => {
+		const terms = searchTerm.split(' ');
+		const termsRegex = terms.map(term => new RegExp(term, 'gmi'));
+		const results = [];
+		
+		posts.forEach(post => {
+			termsRegex.forEach(term => {
+				if (results.indexOf(post) < 0) {
+					if (term.test(post.title)) { // things matching title are more relevant so should appear first
+						results.unshift(post);
+						++resultsCount;
+					} else if(term.test(post.description)) {
+						results.push(post);
+						++resultsCount;
+					}
+				}
+			})
+		});
+		
+		return results
+	}
+	
+	searchForm.addEventListener('submit', e => {
+		e.preventDefault();
+	})
+	
 	searchField.addEventListener('input', e => {
 		searchTerm = e.target.value.trim();
 		resultsCount = 0;
 		
 		window.clearTimeout(searchTimer); // adds delay over typing
 		
-		if (searchTerm.length >= 3) {
-			searchTimer = setTimeout(() => {
-				const termRegex = new RegExp(searchTerm, 'gmi');
-				const results = document.createDocumentFragment();
-				
-				posts.forEach(post => {
-					if (termRegex.test(post.title) || termRegex.test(post.description)) {
-						results.appendChild(getSearchResultPostElement(post));
-						++resultsCount;
+		if (searchTerm.length ) {
+			clearSearchButton.classList.add('clear');
+			
+			if (searchTerm.length >= 3) {
+				searchTimer = setTimeout(() => {
+					const resultsFragment = document.createDocumentFragment();
+					const results = searchInPostsAndGetResults();
+					
+					results.forEach(res => resultsFragment.appendChild(getSearchResultPostElement(res)))
+					
+					if (resultsCount === 0) {
+						const noResultMessage = document.createElement('P');
+						noResultMessage.textContent = `Nothing matched "${searchTerm}". If you think it doesn't exist yet, send a suggestion!`;
+						resultsFragment.appendChild(noResultMessage);
 					}
-				});
-				
-				if (resultsCount === 0) {
-					const noResultMessage = document.createElement('P');
-					noResultMessage.textContent = `Nothing matched "${searchTerm}". If you think it doesn't exist yet, send a suggestion!`;
-					results.appendChild(noResultMessage);
-				}
-				
-				displayResults(results);
-				
-			}, 500);
+					
+					displayResults(resultsFragment);
+					
+				}, 500);
+			}
 		} else {
-			toggleResults(false);
+			clearSearchButton.classList.remove('clear');
 		}
 	});
+	
+	searchField.addEventListener('blur', () => {
+		window.clearTimeout(searchTimer); // adds delay over typing
+		
+		if (!searchTerm) {
+			searchTimer = setTimeout(() => {
+				toggleResults(false)
+			}, 300);
+		}
+	});
+	
+	clearSearchButton.addEventListener('click', () => {
+		if (searchTerm) {
+			searchField.value = '';
+			toggleResults(false);
+		}
+	})
 	
 }
