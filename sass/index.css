@@ -325,4 +325,70 @@ input {
       .page-wrapper footer a:not(.github-link).email-link {
         background: url("./../media/icons-sprite.svg") 55.5% 0/1000% 200% no-repeat; }
 
+#waiting-view {
+  background-color: #28364A;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  #waiting-view .loading {
+    position: relative;
+    width: 120px;
+    height: 30px;
+    display: flex; }
+    #waiting-view .loading:after {
+      content: "setting up content...";
+      animation: blink 1s ease infinite, finalize 1000s ease 4s forwards;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: #FFFFFF;
+      font-size: 0.75em;
+      white-space: nowrap; }
+@keyframes blink {
+  0%, 100% {
+    opacity: 0.5; }
+  50% {
+    opacity: 1; } }
+@keyframes finalize {
+  0% {
+    content: "finalizing..."; } }
+    #waiting-view .loading .completed:after {
+      content: "finalizing...";
+      animation: blink 1s ease infinite; }
+    #waiting-view .loading .completed span {
+      animation: none;
+      opacity: 1;
+      box-shadow: 0 0 7px #10B5DC; }
+    #waiting-view .loading span {
+      display: inline-block;
+      width: 25px;
+      margin-right: 5px;
+      border-radius: 5px;
+      background-color: #10B5DC;
+      opacity: 0.2;
+      transition: 0.3s ease; }
+      #waiting-view .loading span:first-of-type {
+        animation: load 1s ease forwards; }
+      #waiting-view .loading span:nth-of-type(2) {
+        animation: load 1s ease 1s forwards; }
+      #waiting-view .loading span:nth-of-type(3) {
+        animation: load 1s ease 2s forwards; }
+      #waiting-view .loading span:nth-of-type(4) {
+        animation: load 1s ease 3s forwards; }
+      #waiting-view .loading span:last-of-type {
+        animation: load 1s ease 4s forwards;
+        margin-right: 0; }
+@keyframes load {
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 7px #10B5DC; } }
+
 /*# sourceMappingURL=index.css.map */

@@ -21,6 +21,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 	window.addEventListener("load", function () {
 		console.log('--- ready', document.readyState);
+		var waitingView = document.getElementById('waiting-view');
+		waitingView.classList.add('fade-out');
+		waitingView.classList.add('completed');
+		setTimeout(function () {
+			waitingView.remove();
+		}, 350);
 	}, false);
 }
 

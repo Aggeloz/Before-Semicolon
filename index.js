@@ -22,6 +22,12 @@
 	
 	window.addEventListener("load", () => {
 		console.log('--- ready', document.readyState);
+		const waitingView = document.getElementById('waiting-view');
+		waitingView.classList.add('fade-out');
+		waitingView.classList.add('completed');
+		setTimeout(() => {
+			waitingView.remove();
+		}, 350)
 	}, false);
 }
 
