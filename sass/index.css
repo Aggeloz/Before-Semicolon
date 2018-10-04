@@ -342,6 +342,9 @@ input {
   display: flex;
   justify-content: center;
   align-items: center; }
+  #waiting-view.hide {
+    opacity: 1;
+    animation: fadeOut 1s ease-out forwards; }
   #waiting-view .loading {
     position: relative;
     width: 120px;
