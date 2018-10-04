@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Exo+2:300,400,500i|PT+Sans')
 @import "colors"
+@import "mixins/response.ratio"
 @import "mixins/media.query"
 @import "mixins/calc"
 
@@ -103,20 +104,36 @@ input
   opacity: 1
   animation: fadeOut .3s ease-out forwards
 
-  @keyframes fadeOut
-    100%
-      opacity: 0
+@keyframes fadeOut
+  100%
+    opacity: 0
 
 .fade-in
   opacity: 0
   animation: fadeIn .3s ease-out forwards
 
-  @keyframes fadeIn
-    100%
-      opacity: 1
+@keyframes fadeIn
+  100%
+    opacity: 1
+
+.center-position
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+.video-iFrame-container
+  border-radius: 10px
+  overflow: hidden
+  background-color: $other-background
+  @include responsive-ratio(16, 9)
+
+  iframe
+    width: 100%
+    height: 100%
+    border: 0
 
 // Page layout
-
 .page-wrapper
   background-color: $site-background
   position: absolute
@@ -147,3 +164,6 @@ input
 
 // waiting view
 @import "waiting-view"
+
+// modal
+@import "modal"

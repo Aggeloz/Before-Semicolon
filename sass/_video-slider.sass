@@ -42,16 +42,6 @@
         font-weight: 300
         color: lighten($text-border-grey, 30%)
 
-      .video-iFrame-container
-        border-radius: 10px
-        overflow: hidden
-        @include responsive-ratio(16, 9)
-
-        iframe
-          width: 100%
-          height: 100%
-          border: 0
-
   .slider-nav-buttons
 
     button
@@ -66,10 +56,7 @@
         display: inline-block
         width: 50px
         height: 50px
-        position: absolute
-        left: 50%
-        top: 50%
-        transform: translate(-50%, -50%)
+        @extend .center-position
 
       &.prev-slide
         left: 0

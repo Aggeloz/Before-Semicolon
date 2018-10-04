@@ -4,6 +4,15 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 // on document ready
 {
+	window.addEventListener('load', function () {
+		var waitingView = document.getElementById('waiting-view');
+		waitingView.classList.add('fade-out');
+		waitingView.classList.add('completed');
+		setTimeout(function () {
+			waitingView.remove();
+		}, 350);
+	}, false);
+
 	window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (f) {
 		setTimeout(f, 1000 / 60);
 	};
@@ -18,17 +27,31 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 		t--;
 		return -c / 2 * (t * (t - 2) - 1) + b;
 	};
-
-	window.addEventListener("load", function () {
-		console.log('--- ready', document.readyState);
-		var waitingView = document.getElementById('waiting-view');
-		waitingView.classList.add('fade-out');
-		waitingView.classList.add('completed');
-		setTimeout(function () {
-			waitingView.remove();
-		}, 350);
-	}, false);
 }
+
+var setYoutubePlayer = function setYoutubePlayer(iFrameId, videoId) {
+	var autoPlay = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+	var events = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+	var _window$location = window.location,
+	    protocol = _window$location.protocol,
+	    host = _window$location.host;
+
+
+	return new YT.Player(iFrameId, {
+		videoId: videoId,
+		host: 'http://www.youtube.com',
+		playerVars: {
+			fs: 1,
+			autoplay: autoPlay ? 1 : 0,
+			enablejsapi: 1,
+			modestbranding: 1,
+			rel: 0,
+			showinfo: 0,
+			origin: protocol + '//' + host
+		},
+		events: events
+	});
+};
 
 // setupSliders
 // will be called when youtube api is ready
@@ -280,39 +303,18 @@ window.setupSliders = function () {
 
 	// essential functions
 	var setYoutubeIFrame = function setYoutubeIFrame(data) {
-		var autoPlay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-		var _window$location = window.location,
-		    protocol = _window$location.protocol,
-		    host = _window$location.host;
 
-
-		var player = new YT.Player(data.videoId, {
-			videoId: data.videoId,
-			host: 'http://www.youtube.com',
-			playerVars: {
-				fs: 1,
-				autoplay: autoPlay ? 1 : 0,
-				enablejsapi: 1,
-				modestbranding: 1,
-				rel: 0,
-				showinfo: 0,
-				origin: protocol + '//' + host
-			},
-			events: {
-				'onReady': function onReady() {
-					console.log('onReady');
-				},
-				'onStateChange': function onStateChange(e) {
-					var slide = player.a.parentNode.parentNode;
-					if (e.data === BUFFERING || e.data === PLAYING) {
-						pauseAllPlayers(player);
-						currentPlayerPlaying = player;
-						if (!centeredSlide || centeredSlide !== slide) {
-							centerSlide(slide);
-						}
-					} else if (e.data === PAUSED) {
-						currentPlayerPlaying = null;
+		var player = setYoutubePlayer(data.videoId, data.videoId, false, {
+			onStateChange: function onStateChange(e) {
+				var slide = player.a.parentNode.parentNode;
+				if (e.data === BUFFERING || e.data === PLAYING) {
+					pauseAllPlayers(player);
+					currentPlayerPlaying = player;
+					if (!centeredSlide || centeredSlide !== slide) {
+						centerSlide(slide);
 					}
+				} else if (e.data === PAUSED) {
+					currentPlayerPlaying = null;
 				}
 			}
 		});
@@ -395,8 +397,138 @@ window.setupSliders = function () {
 	}
 };
 
+// modal setup
+var closeModal = function closeModal(e) {
+	var closeButton = e.target;
+	var element = document.getElementById('modal-base');
+
+	var _element$getBoundingC = element.getBoundingClientRect(),
+	    left = _element$getBoundingC.left,
+	    top = _element$getBoundingC.top,
+	    width = _element$getBoundingC.width,
+	    height = _element$getBoundingC.height;
+
+	var modal = document.getElementById('modal');
+	var modalContent = document.querySelector('.modal-content');
+
+	[closeButton, modalContent].forEach(function (el) {
+		el.classList.add('go-away');
+		setTimeout(function () {
+			el.remove();
+		}, 300);
+	});
+
+	modal.style.width = width + 'px';
+	modal.style.height = height + 'px';
+	modal.style.top = top + 'px';
+	modal.style.left = left + 'px';
+
+	setTimeout(function () {
+		modal.remove();
+		element.removeAttribute('id');
+		element.removeAttribute('style');
+	}, 600);
+};
+
+var getModalContent = function getModalContent(data) {
+	var docFragment = document.createDocumentFragment();
+	var closeModalButton = document.createElement('BUTTON');
+	closeModalButton.setAttribute('type', 'button');
+	closeModalButton.className = 'close-modal';
+	closeModalButton.addEventListener('click', function (e) {
+		window.requestAnimationFrame(function () {
+			closeModal(e);
+		});
+	});
+
+	var modalContent = document.createElement('DIV');
+	modalContent.className = 'modal-content';
+
+	var videoIFrameContainer = document.createElement('DIV');
+	videoIFrameContainer.className = 'video-iFrame-container ' + (data.type === POST_TYPES.GITHUB ? 'github-preview' : '');
+
+	if (data.type === POST_TYPES.YOUTUBE) {
+		var modalYoutubeIFrame = document.createElement('DIV');
+		modalYoutubeIFrame.className = 'content';
+		modalYoutubeIFrame.id = 'modal-' + data.videoId;
+		videoIFrameContainer.appendChild(modalYoutubeIFrame);
+	}
+
+	if (data.type === POST_TYPES.GITHUB) {
+		var modalGithubIFrame = document.createElement('IFRAME');
+		modalGithubIFrame.className = 'content';
+		modalGithubIFrame.src = data.url;
+		videoIFrameContainer.appendChild(modalGithubIFrame);
+	}
+
+	modalContent.appendChild(videoIFrameContainer);
+
+	if (data.githubCodeURL) {
+		var githubLink = document.createElement('A');
+		githubLink.className = 'github-link';
+		githubLink.href = data.githubCodeURL;
+		githubLink.target = '_blank';
+		githubLink.textContent = 'View Code';
+		modalContent.appendChild(githubLink);
+	}
+
+	if (data.youtubeVideoURL) {
+		var youtubeLink = document.createElement('A');
+		youtubeLink.className = 'youtube-link';
+		youtubeLink.href = data.youtubeVideoURL;
+		youtubeLink.target = '_blank';
+		youtubeLink.textContent = 'Watch Video';
+		modalContent.appendChild(youtubeLink);
+	}
+
+	docFragment.appendChild(closeModalButton);
+	docFragment.appendChild(modalContent);
+
+	return docFragment;
+};
+
 var previewMedia = function previewMedia(element, data) {
-	console.log('-- previewMedia', element, data);
+	var _element$getBoundingC2 = element.getBoundingClientRect(),
+	    left = _element$getBoundingC2.left,
+	    top = _element$getBoundingC2.top,
+	    width = _element$getBoundingC2.width,
+	    height = _element$getBoundingC2.height;
+
+	var elementClone = element.cloneNode(true);
+	element.id = 'modal-base';
+	element.style.opacity = '.2';
+
+	elementClone.id = 'modal';
+	elementClone.style.background = 'rgba(40, 54, 74, 0.95)';
+	elementClone.style.display = 'block';
+	elementClone.style.position = 'fixed';
+	elementClone.style.margin = '0px';
+	elementClone.style.overflow = 'hidden';
+	elementClone.style.borderRadius = '0px';
+	elementClone.style.width = width + 'px';
+	elementClone.style.height = height + 'px';
+	elementClone.style.top = top + 'px';
+	elementClone.style.left = left + 'px';
+	elementClone.style.zIndex = '10';
+	elementClone.style.transition = "top .5s ease-in-out, " + "left .5s ease-in-out, " + "height .5s ease-in-out, " + "width .5s ease-in-out";
+	document.querySelector('body').appendChild(elementClone);
+
+	[].concat(_toConsumableArray(elementClone.children)).forEach(function (child) {
+		child.classList.add('fade-out');
+		setTimeout(function () {
+			child.style.display = 'none';
+		}, 300);
+	});
+
+	setTimeout(function () {
+		elementClone.style.top = '0px';
+		elementClone.style.left = '0px';
+		elementClone.style.width = '100vw';
+		elementClone.style.height = '100vh';
+	}, 0);
+
+	elementClone.appendChild(getModalContent(data));
+	setYoutubePlayer('modal-' + data.videoId, data.videoId, true);
 };
 
 // posts setup
@@ -413,7 +545,9 @@ var previewMedia = function previewMedia(element, data) {
 			var post = document.createElement('ARTICLE');
 			post.className = 'post';
 			post.addEventListener('click', function () {
-				previewMedia(post, data);
+				window.requestAnimationFrame(function () {
+					previewMedia(post, data);
+				});
 			});
 
 			var thumbnail = document.createElement('DIV');
@@ -507,7 +641,9 @@ var previewMedia = function previewMedia(element, data) {
 		var resultPost = document.createElement('DIV');
 		resultPost.className = 'search-result ' + post.type;
 		resultPost.addEventListener('click', function () {
-			previewMedia(resultPost, post);
+			window.requestAnimationFrame(function () {
+				previewMedia(resultPost, post);
+			});
 		});
 
 		var title = document.createElement('H3');

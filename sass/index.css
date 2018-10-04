@@ -82,18 +82,43 @@ input {
   text-overflow: ellipsis;
   text-indent: -999999px; }
 
-.fade-out {
+.fade-out, #modal .close-modal.go-away, #modal .modal-content.go-away {
   opacity: 1;
   animation: fadeOut 0.3s ease-out forwards; }
+
 @keyframes fadeOut {
   100% {
     opacity: 0; } }
 .fade-in, .page-wrapper main #search-results {
   opacity: 0;
   animation: fadeIn 0.3s ease-out forwards; }
+
 @keyframes fadeIn {
   100% {
     opacity: 1; } }
+.center-position, .page-wrapper #video-slider .slider-nav-buttons button:after, #modal .modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.video-iFrame-container {
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #28364A;
+  position: relative;
+  padding-top: 56.25%; }
+  .video-iFrame-container .content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; }
+  .video-iFrame-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0; }
+
 .page-wrapper {
   background-color: #34445A;
   position: absolute;
@@ -176,21 +201,6 @@ input {
           font-size: 1.2em;
           font-weight: 300;
           color: #ced6e2; }
-        .page-wrapper #video-slider .slides-container .slide .video-iFrame-container {
-          border-radius: 10px;
-          overflow: hidden;
-          position: relative;
-          padding-top: 56.25%; }
-          .page-wrapper #video-slider .slides-container .slide .video-iFrame-container .content {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%; }
-          .page-wrapper #video-slider .slides-container .slide .video-iFrame-container iframe {
-            width: 100%;
-            height: 100%;
-            border: 0; }
     .page-wrapper #video-slider .slider-nav-buttons button {
       position: absolute;
       width: 100px;
@@ -200,11 +210,7 @@ input {
         content: "";
         display: inline-block;
         width: 50px;
-        height: 50px;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%); }
+        height: 50px; }
       .page-wrapper #video-slider .slider-nav-buttons button.prev-slide {
         left: 0; }
         .page-wrapper #video-slider .slider-nav-buttons button.prev-slide:after {
@@ -390,5 +396,64 @@ input {
   100% {
     opacity: 1;
     box-shadow: 0 0 7px #10B5DC; } }
+#modal {
+  z-index: 10;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(40, 54, 74, 0.95); }
+  #modal:after, #modal:before {
+    display: none; }
+  #modal .close-modal {
+    position: absolute;
+    top: 50px;
+    right: 60px;
+    width: 45px;
+    height: 45px;
+    background: url("./../media/icons-sprite.svg") 44.5% 2%/1000% 200% no-repeat;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-out 0.5s forwards; }
+  #modal .modal-content {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out 0.5s forwards; }
+    #modal .modal-content .video-iFrame-container {
+      background: rgba(2, 2, 2, 0.5);
+      max-width: 960px;
+      width: calc(100vw - 50px);
+      margin-bottom: 25px;
+      box-shadow: 0 0 35px rgba(2, 2, 2, 0.3); }
+      #modal .modal-content .video-iFrame-container.github-preview {
+        height: 60vh; }
+    #modal .modal-content a {
+      display: inline-block;
+      height: 45px;
+      border-radius: 5px;
+      text-decoration: none;
+      padding: 14px 20px 14px 45px;
+      color: #FFFFFF;
+      margin-left: 25px;
+      font-style: italic;
+      position: relative;
+      line-height: 100%;
+      cursor: pointer; }
+      #modal .modal-content a:after {
+        content: "";
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        transform: translateY(-50%); }
+      #modal .modal-content a.github-link {
+        background-color: #6D86AA; }
+        #modal .modal-content a.github-link:after {
+          background: url("./../media/icons-sprite.svg") 67% 2%/1000% 200% no-repeat; }
+      #modal .modal-content a.youtube-link {
+        background-color: #DD0000; }
+        #modal .modal-content a.youtube-link:after {
+          background: url("./../media/icons-sprite.svg") 77.8% 2%/1000% 200% no-repeat; }
 
 /*# sourceMappingURL=index.css.map */
