@@ -5,12 +5,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 // on document ready
 {
 	window.addEventListener('load', function () {
-		var waitingView = document.getElementById('waiting-view');
-		waitingView.classList.add('hide');
-		waitingView.classList.add('completed');
-		setTimeout(function () {
-			waitingView.remove();
-		}, 1050);
+		// const waitingView = document.getElementById('waiting-view')
+		// waitingView.classList.add('hide');
+		// waitingView.classList.add('completed');
+		// setTimeout(() => {
+		// 	waitingView.remove()
+		// }, 1050)
 	}, false);
 
 	window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (f) {

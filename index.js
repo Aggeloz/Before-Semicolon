@@ -1,12 +1,12 @@
 // on document ready
 {
 	window.addEventListener('load', () => {
-		const waitingView = document.getElementById('waiting-view')
-		waitingView.classList.add('hide');
-		waitingView.classList.add('completed');
-		setTimeout(() => {
-			waitingView.remove()
-		}, 1050)
+		// const waitingView = document.getElementById('waiting-view')
+		// waitingView.classList.add('hide');
+		// waitingView.classList.add('completed');
+		// setTimeout(() => {
+		// 	waitingView.remove()
+		// }, 1050)
 	}, false);
 	
 	window.requestAnimationFrame =
