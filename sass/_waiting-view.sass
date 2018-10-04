@@ -1,0 +1,69 @@
+#waiting-view
+  background-color: $other-background
+  position: fixed
+  left: 0
+  top: 0
+  width: 100vw
+  height: 100vh
+  z-index: 100
+  display: flex
+  justify-content: center
+  align-items: center
+
+  .loading
+    position: relative
+    width: 120px
+    height: 30px
+    display: flex
+
+    &:after
+      content: 'setting up content...'
+      animation: blink 1s ease infinite, finalize 1000s ease 4s forwards
+      position: absolute
+      top: calc(100% + 10px)
+      left: 50%
+      transform: translateX(-50%)
+      text-align: center
+      color: $white
+      font-size: calc-em(12px)
+      white-space: nowrap
+
+      @keyframes blink
+        0%, 100%
+          opacity: .5
+        50%
+          opacity: 1
+
+      @keyframes finalize
+        0%
+          content: 'finalizing...'
+
+    .completed
+      &:after
+        content: 'finalizing...'
+        animation: blink 1s ease infinite
+      span
+        animation: none
+        opacity: 1
+        box-shadow: 0 0 7px $logo-blue
+
+    span
+      display: inline-block
+      width: 25px
+      margin-right: 5px
+      border-radius: 5px
+      background-color: $logo-blue
+      opacity: .2
+      transition: .3s ease
+
+      @for $i from 1 through 5
+        &:nth-of-type(#{$i})
+          animation: load 1s ease ($i - 1s) forwards
+
+          @if $i == 5
+            margin-right: 0
+
+      @keyframes load
+        100%
+          opacity: 1
+          box-shadow: 0 0 7px $logo-blue

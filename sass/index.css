@@ -1,0 +1,459 @@
+@import url("https://fonts.googleapis.com/css?family=Exo+2:300,400,500i|PT+Sans");
+body {
+  font-size: 16px;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 400;
+  height: 100vh;
+  width: 100vw;
+  background-color: #34445A;
+  color: #6D86AA; }
+  body > * {
+    width: 100%; }
+
+* {
+  box-sizing: border-box; }
+
+h1, h2, h3, h4 {
+  margin-top: 0;
+  line-height: 120%;
+  font-weight: normal; }
+
+button, input {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  display: inline-block; }
+
+button:active, input[type="button"]:active {
+  transform: scale(0.96); }
+
+button:active {
+  transform: scale(0.9); }
+
+input {
+  color: #FFFFFF;
+  font-family: "PT Sans", sans-serif; }
+  input[type="search"]::-webkit-search-cancel-button {
+    display: none; }
+  input[type="search"]::-ms-clear {
+    display: none; }
+  input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    transition: color 0.3s; }
+  input::-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    transition: color 0.3s; }
+  input:-moz-placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    transition: color 0.3s; }
+  input::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    transition: color 0.3s; }
+  input::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    transition: color 0.3s; }
+  input:focus:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0); }
+  input:focus::-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0); }
+  input:focus:-moz-placeholder {
+    color: rgba(255, 255, 255, 0); }
+  input:focus::-moz-placeholder {
+    color: rgba(255, 255, 255, 0); }
+  input:focus::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0); }
+
+.mobile-only {
+  display: none; }
+  @media screen and (max-width: 450px) {
+    .mobile-only {
+      display: block; } }
+
+.desktop-limited {
+  margin: 0 auto;
+  max-width: 1200px; }
+
+.no-text, .page-wrapper header h1, .page-wrapper header form button, .page-wrapper #video-slider .slider-nav-buttons button, .page-wrapper footer a:not(.github-link) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-indent: -999999px; }
+
+.fade-out, #modal .close-modal.go-away, #modal .modal-content.go-away {
+  opacity: 1;
+  animation: fadeOut 0.3s ease-out forwards; }
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0; } }
+.fade-in, .page-wrapper main #search-results {
+  opacity: 0;
+  animation: fadeIn 0.3s ease-out forwards; }
+
+@keyframes fadeIn {
+  100% {
+    opacity: 1; } }
+.center-position, .page-wrapper #video-slider .slider-nav-buttons button:after, #modal .modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.video-iFrame-container {
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #28364A;
+  position: relative;
+  padding-top: 56.25%; }
+  .video-iFrame-container .content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; }
+  .video-iFrame-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0; }
+
+.page-wrapper {
+  background-color: #34445A;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  padding-top: 100px; }
+  .page-wrapper header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    background-color: #34445A;
+    z-index: 2; }
+    .page-wrapper header > div {
+      height: 95px;
+      padding: 30px 0;
+      display: flex;
+      justify-content: space-between; }
+    @media screen and (max-width: 1200px) {
+      .page-wrapper header {
+        padding: 30px 25px; } }
+    .page-wrapper header h1 {
+      height: 35px;
+      width: 240px;
+      display: inline-block;
+      margin: 0;
+      background: url("./../media/logo-text@2x.png") 0 center no-repeat, url("./../media/logo-icon.svg") 100% center no-repeat;
+      background-size: auto 25px; }
+    .page-wrapper header form {
+      width: 365px;
+      height: 35px;
+      border-radius: 18px;
+      background-color: #28364A;
+      overflow: hidden;
+      position: relative; }
+      .page-wrapper header form input {
+        width: 100%;
+        height: 100%;
+        padding: 0 45px 0 15px; }
+      .page-wrapper header form button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 35px;
+        background: url("./../media/icons-sprite.svg") 23% 100%/1000% 200% no-repeat; }
+        .page-wrapper header form button.clear {
+          background: url("./../media/icons-sprite.svg") 34% 100%/1000% 200% no-repeat; }
+  .page-wrapper #video-slider {
+    position: relative;
+    margin: 30px auto 80px;
+    overflow: hidden; }
+    .page-wrapper #video-slider .slides-container {
+      white-space: nowrap;
+      overflow: scroll;
+      padding: 40px calc((100vw - 1100px) / 2) 150px;
+      transform: translateY(10px); }
+      .page-wrapper #video-slider .slides-container .slide {
+        display: inline-block;
+        background-color: #28364A;
+        width: 960px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(2, 2, 2, 0.3);
+        position: relative; }
+        .page-wrapper #video-slider .slides-container .slide:first-of-type {
+          margin-left: 0; }
+        .page-wrapper #video-slider .slides-container .slide:last-of-type {
+          margin-right: 0; }
+        .page-wrapper #video-slider .slides-container .slide h2 {
+          position: absolute;
+          top: calc(100% + 25px);
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60%;
+          white-space: normal;
+          text-align: center;
+          font-size: 1.2em;
+          font-weight: 300;
+          color: #ced6e2; }
+    .page-wrapper #video-slider .slider-nav-buttons button {
+      position: absolute;
+      width: 100px;
+      height: 90%;
+      top: 0; }
+      .page-wrapper #video-slider .slider-nav-buttons button:after {
+        content: "";
+        display: inline-block;
+        width: 50px;
+        height: 50px; }
+      .page-wrapper #video-slider .slider-nav-buttons button.prev-slide {
+        left: 0; }
+        .page-wrapper #video-slider .slider-nav-buttons button.prev-slide:after {
+          background: url("./../media/icons-sprite.svg") 0 100%/1000% 200% no-repeat; }
+      .page-wrapper #video-slider .slider-nav-buttons button.next-slide {
+        right: 0; }
+        .page-wrapper #video-slider .slider-nav-buttons button.next-slide:after {
+          background: url("./../media/icons-sprite.svg") 10% 100%/1000% 200% no-repeat; }
+  .page-wrapper main #ui-examples h2 {
+    font-size: 1em;
+    color: #6D86AA;
+    padding-bottom: 5px;
+    border-bottom: solid 1px rgba(109, 134, 170, 0.2);
+    margin-bottom: 20px; }
+  .page-wrapper main #ui-examples > div {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px; }
+    .page-wrapper main #ui-examples > div .post {
+      flex: 0 0 calc(100% / 3 - 30px);
+      margin: 15px;
+      cursor: pointer; }
+      .page-wrapper main #ui-examples > div .post:hover h3 {
+        color: #FFFFFF; }
+      .page-wrapper main #ui-examples > div .post .thumbnail {
+        background-color: #28364A;
+        overflow: hidden;
+        border-radius: 10px;
+        border: solid 1px #10B5DC;
+        position: relative;
+        padding-top: 100%; }
+        .page-wrapper main #ui-examples > div .post .thumbnail .content {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%; }
+        .page-wrapper main #ui-examples > div .post .thumbnail:active {
+          transform: rotateY(0deg); }
+      .page-wrapper main #ui-examples > div .post h3 {
+        margin: 0;
+        font-size: 0.9375em;
+        font-weight: 300;
+        color: #6D86AA;
+        padding: 10px 10px 0;
+        transition: color 0.3s ease; }
+  .page-wrapper main #search-results {
+    max-width: 600px;
+    width: 100%;
+    padding: 0 25px;
+    margin: 50px auto 0;
+    opacity: 0; }
+    .page-wrapper main #search-results h2 {
+      border-bottom: 1px solid rgba(109, 134, 170, 0.2);
+      font-size: 1em;
+      line-height: 180%;
+      padding-bottom: 5px;
+      margin-bottom: 25px; }
+      .page-wrapper main #search-results h2 span {
+        display: block;
+        font-size: 0.875em; }
+    .page-wrapper main #search-results > div .search-result {
+      border-radius: 10px;
+      padding: 10px 10px 10px 80px;
+      margin-bottom: 25px;
+      position: relative;
+      background-color: #28364A;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      cursor: pointer; }
+      .page-wrapper main #search-results > div .search-result:after {
+        content: "";
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        left: 10px;
+        top: 10px; }
+      .page-wrapper main #search-results > div .search-result.github:after {
+        background: url("./../media/icons-sprite.svg") 66% 9%/1000% 200% no-repeat; }
+      .page-wrapper main #search-results > div .search-result.youtube:after {
+        background: url("./../media/icons-sprite.svg") 88% 9%/1000% 200% no-repeat; }
+      .page-wrapper main #search-results > div .search-result h3 {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.125em; }
+  .page-wrapper footer {
+    padding: 50px 0 150px;
+    text-align: center;
+    font-size: 0.875em; }
+    .page-wrapper footer hr {
+      border-color: rgba(109, 134, 170, 0.2);
+      width: 50%;
+      margin: 100px auto; }
+    .page-wrapper footer .social-links {
+      margin-bottom: 20px; }
+      .page-wrapper footer .social-links a {
+        margin: 0 15px; }
+        .page-wrapper footer .social-links a.instagram {
+          background: url("./../media/icons-sprite.svg") 11% 0/1000% 200% no-repeat; }
+        .page-wrapper footer .social-links a.youtube {
+          background: url("./../media/icons-sprite.svg") 22% 0/1000% 200% no-repeat; }
+        .page-wrapper footer .social-links a.github {
+          background: url("./../media/icons-sprite.svg") 0 0/1000% 200% no-repeat; }
+    .page-wrapper footer p {
+      margin: 0; }
+      .page-wrapper footer p.by {
+        opacity: 0.5;
+        margin-top: 5px;
+        margin-bottom: 25px; }
+      .page-wrapper footer p .github-link {
+        color: #10B5DC; }
+    .page-wrapper footer a:not(.github-link) {
+      width: 45px;
+      height: 45px;
+      display: inline-block; }
+      .page-wrapper footer a:not(.github-link).email-link {
+        background: url("./../media/icons-sprite.svg") 55.5% 0/1000% 200% no-repeat; }
+
+#waiting-view {
+  background-color: #28364A;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  #waiting-view .loading {
+    position: relative;
+    width: 120px;
+    height: 30px;
+    display: flex; }
+    #waiting-view .loading:after {
+      content: "setting up content...";
+      animation: blink 1s ease infinite, finalize 1000s ease 4s forwards;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: #FFFFFF;
+      font-size: 0.75em;
+      white-space: nowrap; }
+@keyframes blink {
+  0%, 100% {
+    opacity: 0.5; }
+  50% {
+    opacity: 1; } }
+@keyframes finalize {
+  0% {
+    content: "finalizing..."; } }
+    #waiting-view .loading .completed:after {
+      content: "finalizing...";
+      animation: blink 1s ease infinite; }
+    #waiting-view .loading .completed span {
+      animation: none;
+      opacity: 1;
+      box-shadow: 0 0 7px #10B5DC; }
+    #waiting-view .loading span {
+      display: inline-block;
+      width: 25px;
+      margin-right: 5px;
+      border-radius: 5px;
+      background-color: #10B5DC;
+      opacity: 0.2;
+      transition: 0.3s ease; }
+      #waiting-view .loading span:nth-of-type(1) {
+        animation: load 1s ease 0s forwards; }
+      #waiting-view .loading span:nth-of-type(2) {
+        animation: load 1s ease 1s forwards; }
+      #waiting-view .loading span:nth-of-type(3) {
+        animation: load 1s ease 2s forwards; }
+      #waiting-view .loading span:nth-of-type(4) {
+        animation: load 1s ease 3s forwards; }
+      #waiting-view .loading span:nth-of-type(5) {
+        animation: load 1s ease 4s forwards;
+        margin-right: 0; }
+@keyframes load {
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 7px #10B5DC; } }
+#modal {
+  z-index: 10;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(40, 54, 74, 0.95); }
+  #modal:after, #modal:before {
+    display: none; }
+  #modal .close-modal {
+    position: absolute;
+    top: 50px;
+    right: 60px;
+    width: 45px;
+    height: 45px;
+    background: url("./../media/icons-sprite.svg") 44.5% 2%/1000% 200% no-repeat;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-out 0.5s forwards; }
+  #modal .modal-content {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out 0.5s forwards; }
+    #modal .modal-content .video-iFrame-container {
+      background: rgba(2, 2, 2, 0.5);
+      max-width: 960px;
+      width: calc(100vw - 50px);
+      margin-bottom: 25px;
+      box-shadow: 0 0 35px rgba(2, 2, 2, 0.3); }
+      #modal .modal-content .video-iFrame-container.github-preview {
+        height: 60vh; }
+    #modal .modal-content a {
+      display: inline-block;
+      height: 45px;
+      border-radius: 5px;
+      text-decoration: none;
+      padding: 14px 20px 14px 45px;
+      color: #FFFFFF;
+      margin-left: 25px;
+      font-style: italic;
+      position: relative;
+      line-height: 100%;
+      cursor: pointer; }
+      #modal .modal-content a:after {
+        content: "";
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        transform: translateY(-50%); }
+      #modal .modal-content a.github-link {
+        background-color: #6D86AA; }
+        #modal .modal-content a.github-link:after {
+          background: url("./../media/icons-sprite.svg") 67% 2%/1000% 200% no-repeat; }
+      #modal .modal-content a.youtube-link {
+        background-color: #DD0000; }
+        #modal .modal-content a.youtube-link:after {
+          background: url("./../media/icons-sprite.svg") 77.8% 2%/1000% 200% no-repeat; }
+
+/*# sourceMappingURL=index.css.map */

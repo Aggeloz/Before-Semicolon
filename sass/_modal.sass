@@ -1,0 +1,80 @@
+@import "colors"
+@import "mixins/response.ratio"
+
+#modal
+  z-index: 10
+  position: fixed
+  left: 0
+  top: 0
+  width: 100vw
+  height: 100vh
+  background: rgba($other-background, .95)
+
+  &:after, &:before
+    display: none
+
+
+  .close-modal
+    position: absolute
+    top: 50px
+    right: 60px
+    width: 45px
+    height: 45px
+    background: url("./../media/icons-sprite.svg") 44.5% 2%/1000% 200% no-repeat
+    opacity: 0
+    animation: fadeIn .3s ease-out .5s forwards
+
+    &.go-away
+      @extend .fade-out
+
+  .modal-content
+    opacity: 0
+    animation: fadeIn .5s ease-out .5s forwards
+    @extend .center-position
+
+    &.go-away
+      @extend .fade-out
+
+    .video-iFrame-container
+      background: rgba($black, .5)
+      max-width: 960px
+      width: calc(100vw - 50px)
+      margin-bottom: 25px
+      box-shadow: 0 0 35px rgba($black, .3)
+
+      &.github-preview
+        height: 60vh
+
+
+    a
+      display: inline-block
+      height: 45px
+      border-radius: 5px
+      text-decoration: none
+      padding: 14px 20px 14px 45px
+      color: $white
+      margin-left: 25px
+      font-style: italic
+      position: relative
+      line-height: 100%
+      cursor: pointer
+
+      &:after
+        content: ''
+        display: inline-block
+        width: 30px
+        height: 30px
+        position: absolute
+        top: 50%
+        left: 12px
+        transform: translateY(-50%)
+
+      &.github-link
+        background-color: $text-border-grey
+        &:after
+          background: url("./../media/icons-sprite.svg") 67% 2%/1000% 200% no-repeat
+
+      &.youtube-link
+        background-color: $youtube-red
+        &:after
+          background: url("./../media/icons-sprite.svg") 77.8% 2%/1000% 200% no-repeat

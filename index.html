@@ -2,63 +2,89 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport"
-	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="viewport" content="width=device-width">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Before Semicolon - Tips & Tricks</title>
-	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="normalize.css">
+	<link rel="stylesheet" href="sass/index.css">
+
+	<!-- youtube video api-->
+	<script>
+		var tag = document.createElement('script');
+
+		tag.src = "https://www.youtube.com/iframe_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+		function onYouTubeIframeAPIReady() {
+			if (window.setupSliders) {
+			  window.setupSliders();
+			} else {
+			  setTimeout(onYouTubeIframeAPIReady, 1000);
+			}
+		}
+	</script>
 </head>
 <body>
 
-	<h1>
-		<img src="before-semicolon-logo.png" alt="before semicolon logo">
-		<span>
-			<b>Before Semicolon </b>
-			<i>Tips & Tricks</i>
-		</span>
-	</h1>
+	<div class="page-wrapper">
+		<header>
+			<div class="desktop-limited">
+				<h1>Before Semicolon</h1>
+				<button type="button" class="mobile-only">menu</button>
+				<nav class="mobile-only">
+					<h2>also at:</h2>
+					<ul role="menu">
+						<li role="menuitem"><a href="">Instagram</a></li>
+						<li role="menuitem"><a href="">Youtube</a></li>
+						<li role="menuitem"><a href="">Github</a></li>
+					</ul>
+				</nav>
+				<form action="/" role="search" id="search-form">
+					<input type="search" placeholder="Search..." id="search" name="search" tabindex="1">
+					<button type="button">clear search</button>
+				</form>
+			</div>
+		</header>
+		<!-- header -->
+		<div id="video-slider"></div>
+		<!-- /#video-slider -->
+		<main class="desktop-limited">
+			<section id="ui-examples">
+				<h2>UI Examples</h2>
+			</section>
+		</main>
+		<!-- main -->
+		<footer class="desktop-limited">
+			<hr>
+			<div class="social-links">
+				<a href="https://www.instagram.com/b4_semicolon/" target="_blank" class="instagram">Instagram</a>
+				<a href="https://www.youtube.com/channel/UCrU33aw1k9BqTIq2yKXrmBw" target="_blank" class="youtube">Youtube</a>
+				<a href="https://github.com/ECorreia45/Before-Semicolon" target="_blank" class="github">Github</a>
+			</div>
+			<!-- /.social-links -->
+			<p>copyright &copy; before semicolon 2018. <span>all rights reserved</span></p>
+			<p class="by">view site code at <a href="https://github.com/ECorreia45/Before-Semicolon" class="github-link">github</a></p>
+			<a href="mailto:design@elsoncorreia.com" class="email-link">email</a>
+		</footer>
+		<!-- footer -->
+	</div>
+	<!-- /.page-wrapper -->
 
-	<dl>
-		<dt>Twitch loading animation mock</dt>
-		<dd>
-			This is a simple Twitch loading animation mock done in pure css
-			<a href="twitch-loading">view</a>
-		</dd>
-		<dt>Drop Down CSS Only!</dt>
-		<dd>
-			This drop-down is build on css only and registers toggle and selected item in the drop-down.
-			<a href="dropdown">view</a>
-		</dd>
-		<dt>Tooltip CSS Only!</dt>
-		<dd>
-			This is a tooltip example with very minimal html and simple css activated on hover and blur events.
-			<a href="tooltips">view</a>
-		</dd>
-		<dt>Search Field - search icon transition into a text cursor</dt>
-		<dd>
-			This is a clever usage of the search icon in a search field that transitions into a text cursor on
-			field focus.
-			<a href="searchField">view</a>
-		</dd>
-		<dt>Input label up and down transition</dt>
-		<dd>
-			This is a clever usage of field and label. The label here moves above the field and stays there
-			while the user interacts with the field.
-			<a href="inputLabelUp">view</a>
-		</dd>
-		<dt>Tabs indicator (example 1)</dt>
-		<dd>
-			These tabs take advantage of linear-gradient and play on rotation to give them the nice tab look and
-			appear as if they were shrinking or growing when active and inactive
-			<a href="tabs-indicator">view</a>
-		</dd>
-		<dt>Tabs indicator (example 2)</dt>
-		<dd>
-			These tabs example uses same style of the example 1 but the tab indicator moves in the x-axis when
-			tab is active while changing shape.
-			<a href="tabs-indicator2">view</a>
-		</dd>
-	</dl>
+	<div id="waiting-view">
+		<div class="loading">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+	 <!--/.waiting-view -->
+
+	<script src="data.js"></script>
+	<script src="index.js" type="module"></script>
+	<script src="src/index.js" nomodule></script>
 
 </body>
 </html>

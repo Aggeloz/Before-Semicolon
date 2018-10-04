@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Title</title>
 	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 	<div class="tabs-container">
-		<div class="tabs-wrapper">
-			<ul class="tabs">
-				<li class="tab active">Tab 1</li>
-				<li class="tab">Tab 2</li>
-				<li class="tab">Tab 3</li>
-			</ul>
-			<span class="tab-indicator"></span>
-		</div>
+		<ul class="tabs">
+			<li class="tab active">Tab 1</li>
+			<li class="tab">Tab 2</li>
+			<li class="tab">Tab 3</li>
+		</ul>
 		<div class="tabs-content-container">
 			<div class="tab-content active">
 				tab 1 content
@@ -32,29 +32,9 @@
 	<script>
 		const tabs = document.querySelectorAll('li.tab');
 		const tabsContent = document.querySelectorAll('.tab-content');
-		const tabIndicator = document.querySelector('.tab-indicator');
 
 		tabs.forEach((tab, tabIndex) => {
-		  tab.addEventListener('click', e => {
-            tabIndicator.style.left = `${e.target.offsetLeft}px`
-
-		    const isFirstTab = tabIndex === 0;
-		    const isLastTab = tabIndex === tabs.length - 1;
-
-		    if (isLastTab) {
-              tabIndicator.classList.add('last');
-		    } else if(!isFirstTab) {
-              tabIndicator.classList.add('center');
-		    }
-
-            if (isFirstTab || isLastTab) {
-              tabIndicator.classList.remove('center');
-            }
-
-            if (isFirstTab || !isLastTab) {
-              tabIndicator.classList.remove('last');
-            }
-
+		  tab.addEventListener('click', () => {
             tabs.forEach((tab, index) => {
               if (index === tabIndex ) {
                 tab.classList.add('active');
