@@ -7,7 +7,18 @@ header
   top: 0
   width: 100vw
   background-color: $site-background
+  transition: background-color .3s ease-in .5s
   z-index: 2
+
+  &.menu-active
+    background-color: transparent
+    transition: background-color 0s ease-out
+
+    form
+      opacity: 0
+      visibility: hidden
+      transition: opacity .3s ease
+
 
   > div
     height: 95px
@@ -15,8 +26,14 @@ header
     display: flex
     justify-content: space-between
 
-  @include media-query(1200px)
-    padding: 30px 25px
+    @include media-query(1200px)
+      padding: 30px 25px
+
+    @include media-query(770px)
+      display: block
+      padding: 25px 25px 10px
+      height: auto
+
 
   h1
     height: 35px
@@ -27,6 +44,92 @@ header
     background-size: auto 25px
     @extend .no-text
 
+    @include media-query(770px)
+      background: url("./../media/logo-text@2x.png") 0 center no-repeat
+      background-size: auto 20px
+      height: 30px
+      width: 160px
+
+
+  .menu-toggle
+    position: absolute
+    top: 15px
+    right: 15px
+    width: 30px
+    height: 30px
+    background: url("./../media/icons-sprite.svg") 33.8% 0/1000% 200% no-repeat content-box
+    border: 10px solid transparent
+    box-sizing: content-box
+    transition: background .2s ease-in-out
+    @extend .no-text
+
+    &.active
+      background: url("./../media/icons-sprite.svg") 44.5% 0/1000% 200% no-repeat content-box
+
+  nav
+    position: fixed
+    right: -100%
+    top: 50%
+    transform: translateY(-50%)
+    text-align: right
+    width: 40vw
+    visibility: hidden
+    transition: right 1.5s ease-out, visibility 0s ease 1.5s
+
+    &.mobile-only
+      display: block
+
+    &.active
+      visibility: visible
+      right: 25px
+      transition: right .5s ease-out
+
+    h2
+      @extend .no-text
+      margin: 0 0 5px
+      width: 100%
+      text-indent: 100%
+      height: 30px
+      background: url("./../media/also at@2x.png") 100% center no-repeat
+      background-size: auto 20px
+
+    ul
+      margin: 0
+      padding: 0
+      list-style: none
+
+      li
+        height: 30px
+        margin-bottom: 5vw
+        position: relative
+
+        &:after
+          content: ''
+          position: absolute
+          top: 0
+          right: 0
+          display: inline-block
+          width: 30px
+          height: 30px
+
+        &.instagram:after
+          background: url("./../media/icons-sprite.svg") 11.3% 0/1000% 200% no-repeat content-box
+
+        &.youtube:after
+          background: url("./../media/icons-sprite.svg") 22.1% 0/1000% 200% no-repeat content-box
+
+        &.github:after
+          background: url("./../media/icons-sprite.svg") 0% 0/1000% 200% no-repeat content-box
+
+        a
+          height: 100%
+          width: 100%
+          display: inline-block
+          padding-right: 35px
+          line-height: 170%
+          text-decoration: none
+          font-size: 1em
+          color: $text-border-grey
 
   form
     width: 365px
@@ -35,6 +138,14 @@ header
     background-color: $other-background
     overflow: hidden
     position: relative
+    opacity: 1
+
+    transition: opacity .3s ease .5s
+
+    @include media-query(770px)
+      width: 100%
+      border-radius: 5px
+      margin-top: 35px
 
     input
       width: 100%

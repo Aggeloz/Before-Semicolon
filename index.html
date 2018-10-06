@@ -27,35 +27,39 @@
 </head>
 <body>
 
-	<div class="page-wrapper">
-		<header>
-			<div class="desktop-limited">
-				<h1>Before Semicolon</h1>
-				<button type="button" class="mobile-only">menu</button>
-				<nav class="mobile-only">
-					<h2>also at:</h2>
-					<ul role="menu">
-						<li role="menuitem"><a href="">Instagram</a></li>
-						<li role="menuitem"><a href="">Youtube</a></li>
-						<li role="menuitem"><a href="">Github</a></li>
-					</ul>
-				</nav>
-				<form action="/" role="search" id="search-form">
-					<input type="search" placeholder="Search..." id="search" name="search" tabindex="1">
-					<button type="button">clear search</button>
-				</form>
-			</div>
-		</header>
-		<!-- header -->
+	<header>
+		<div class="desktop-limited">
+			<h1>Before Semicolon</h1>
+			<button type="button" class="mobile-only menu-toggle">menu</button>
+			<nav class="mobile-only">
+				<h2>also at:</h2>
+				<ul role="menu">
+					<li role="menuitem" class="instagram"><a href="">Instagram</a></li>
+					<li role="menuitem" class="youtube"><a href="">Youtube</a></li>
+					<li role="menuitem" class="github"><a href="">Github</a></li>
+				</ul>
+			</nav>
+			<form action="/" role="search" id="search-form">
+				<input type="search" placeholder="Search..." id="search" name="search" tabindex="1">
+				<button type="button">clear search</button>
+			</form>
+		</div>
+	</header>
+	<!-- header -->
+
+	<main>
 		<div id="video-slider"></div>
 		<!-- /#video-slider -->
-		<main class="desktop-limited">
+		<div class="main-content desktop-limited">
 			<section id="ui-examples">
 				<h2>UI Examples</h2>
 			</section>
-		</main>
-		<!-- main -->
-		<footer class="desktop-limited">
+		</div>
+	</main>
+	<!-- main -->
+
+	<footer>
+		<div class="desktop-limited">
 			<hr>
 			<div class="social-links">
 				<a href="https://www.instagram.com/b4_semicolon/" target="_blank" class="instagram">Instagram</a>
@@ -66,20 +70,19 @@
 			<p>copyright &copy; before semicolon 2018. <span>all rights reserved</span></p>
 			<p class="by">view site code at <a href="https://github.com/ECorreia45/Before-Semicolon" class="github-link">github</a></p>
 			<a href="mailto:design@elsoncorreia.com" class="email-link">email</a>
-		</footer>
-		<!-- footer -->
-	</div>
-	<!-- /.page-wrapper -->
-
-	<div id="waiting-view">
-		<div class="loading">
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
-			<span></span>
 		</div>
-	</div>
+	</footer>
+	<!-- footer -->
+
+	<!--<div id="waiting-view">-->
+		<!--<div class="loading">-->
+			<!--<span></span>-->
+			<!--<span></span>-->
+			<!--<span></span>-->
+			<!--<span></span>-->
+			<!--<span></span>-->
+		<!--</div>-->
+	<!--</div>-->
 	 <!--/.waiting-view -->
 
 	<script src="data.js"></script>

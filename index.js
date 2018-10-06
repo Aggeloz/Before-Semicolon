@@ -1,12 +1,12 @@
 // on document ready
 {
 	window.addEventListener('load', () => {
-		const waitingView = document.getElementById('waiting-view')
-		waitingView.classList.add('fade-out')
-		waitingView.classList.add('completed')
-		setTimeout(() => {
-			waitingView.remove()
-		}, 350)
+		// const waitingView = document.getElementById('waiting-view')
+		// waitingView.classList.add('hide');
+		// waitingView.classList.add('completed');
+		// setTimeout(() => {
+		// 	waitingView.remove()
+		// }, 1050)
 	}, false);
 	
 	window.requestAnimationFrame =
@@ -60,7 +60,6 @@ window.setupSliders = () => {
 	const players = []
 	
 	let allSlides = []
-	let slideSideMargins = 80
 	let nextButton = null
 	let prevButton = null
 	let slidesContainer = null
@@ -69,6 +68,7 @@ window.setupSliders = () => {
 	let centeredSlide = null
 	let isScrollingTimer = null
 	let centerSlideTimer = null
+	let centering = false
 	
 	// aid/utility functions
 	const pauseAllPlayers = (playerToSkip = null) => {
@@ -113,6 +113,8 @@ window.setupSliders = () => {
 	}
 	
 	const centerSlide = (slide, onDone = null) => {
+		if (centering ) {return;}
+		centering = true;
 		toggleNavButtonsAccordingToSlide(slide)
 		const {width: slideWidth} = slide.getBoundingClientRect()
 		const {width: containerWidth} = slidesContainer.getBoundingClientRect()
@@ -121,6 +123,7 @@ window.setupSliders = () => {
 		const scrollLeftTo = slide.offsetLeft - ((containerWidth - slideWidth) / 2) - 40
 		scrollSlidesContainer(scrollLeftTo, 400, () => {
 			centeredSlide = slide
+			centering = false
 			if (onDone) {
 				onDone()
 			}
@@ -173,29 +176,24 @@ window.setupSliders = () => {
 		const {left, width} = slide.getBoundingClientRect()
 		// start growing when the center of the slide comes in view
 		const slideOffsetLeft = left + (width / 2)
-		let location = null
+		let offsetLeft = null
 		
 		if (slideOffsetLeft > containerCenterPoint) {
-			location = Math.max(containerWidth - slideOffsetLeft, 0)
+			offsetLeft = Math.max(containerWidth - slideOffsetLeft, 0)
 		} else if (slideOffsetLeft <= 0) {
-			location = 0
+			offsetLeft = 0
 		} else {
-			location = Math.max(slideOffsetLeft, 0)
+			offsetLeft = Math.max(slideOffsetLeft, 0)
 		}
 		
-		// the max scale we want to add is 0.1 so we multiply location by 0.1
-		const locationPercentage = location * 0.1 / containerCenterPoint
+		// the max scale we want to add is 0.1 so we multiply offsetLeft by 0.1
+		const offsetLeftPercentage = offsetLeft * 0.1 / containerCenterPoint
 		
-		// multiplying locationPercentage by 800 will give margin less or equal to 80
-		// slideSideMargins may consty but will always mean max margin
-		const sideMargin = locationPercentage * (slideSideMargins * 10)
-		// multiplying locationPercentage by 10 will give opacity less or equal to 1
-		const opacity = locationPercentage * 10
+		// multiplying offsetLeftPercentage by 10 will give opacity less or equal to 1
+		const opacity = offsetLeftPercentage * 10
 		
-		slide.style.transform = 'scale(' + (1 + locationPercentage) + ')'
+		// slide.style.transform = 'scale(' + (1 + offsetLeftPercentage) + ')'
 		slide.style.opacity = Math.max(opacity, 0.25) // min opacity is 0.25
-		slide.style.marginLeft = Math.max(sideMargin, 25) + 'px' // min margin is 25
-		slide.style.marginRight = Math.max(sideMargin, 25) + 'px' // min margin is 25
 		slideTitle.style.opacity = opacity
 	}
 	
@@ -314,9 +312,9 @@ window.setupSliders = () => {
 		
 		slidesContainer.appendChild(docFragment)
 		// need this to set iFrame after all slides are appended on the real DOM
-		dataList.forEach(data => {
-			setYoutubeIFrame(data)
-		})
+		// dataList.forEach(data => {
+		// 	setYoutubeIFrame(data)
+		// })
 		allSlides = [...slidesContainer.children]
 		handleSlides()
 	}
@@ -382,6 +380,11 @@ const closeModal = e => {
 	modal.style.height = height + 'px'
 	modal.style.top = top + 'px'
 	modal.style.left = left + 'px';
+	
+	// this makes it so when it is almost fully shrunk it stacks below header level(z-index 2)
+	setTimeout(() => {
+		modal.style.zIndex = '1';
+	}, 300);
 	
 	setTimeout(() => {
 		modal.remove();
@@ -465,13 +468,18 @@ const previewMedia = (element, data) => {
 	elementClone.style.height = height + 'px'
 	elementClone.style.top = top + 'px'
 	elementClone.style.left = left + 'px'
-	elementClone.style.zIndex = '10';
+	elementClone.style.zIndex = '1';
 	elementClone.style.transition =
 		"top .5s ease-in-out, " +
 		"left .5s ease-in-out, " +
 		"height .5s ease-in-out, " +
 		"width .5s ease-in-out";
 	document.querySelector('body').appendChild(elementClone);
+	
+	// this makes it so when it is almost fully grown it stacks above header level(z-index 2)
+	setTimeout(() => {
+		elementClone.style.zIndex = '10';
+	}, 300);
 	
 	[...elementClone.children].forEach(child => {
 		child.classList.add('fade-out');
@@ -546,7 +554,7 @@ const previewMedia = (element, data) => {
 	const searchForm = document.getElementById('search-form')
 	const searchField = searchForm[0]
 	const clearSearchButton = searchForm[1]
-	const main = document.querySelector('main')
+	const mainContent = document.querySelector('.main-content')
 	const videoSlider = document.getElementById('video-slider')
 	const uiExamples = document.getElementById('ui-examples')
 	
@@ -564,7 +572,6 @@ const previewMedia = (element, data) => {
 				uiExamples.style.display = 'none'
 			}, 300)
 		} else {
-			console.log('-- hide')
 			searchResultsContainer.classList.add('fade-out')
 			setTimeout(() => {
 				videoSlider.style.display = ''
@@ -584,7 +591,7 @@ const previewMedia = (element, data) => {
 				'<b>' + resultsCount + '</b> results found for:<span>"' + searchTerm + '"</span>')
 			searchResultsContainer.appendChild(searchResultsContainerTitle)
 			searchResultsContainer.appendChild(document.createElement('DIV'))
-			main.appendChild(searchResultsContainer)
+			mainContent.appendChild(searchResultsContainer)
 		} else {
 			searchResultsContainerTitle.children[0].textContent = `${resultsCount}`
 			searchResultsContainerTitle.children[1].textContent = `"${searchTerm}"`
@@ -682,9 +689,64 @@ const previewMedia = (element, data) => {
 	
 	clearSearchButton.addEventListener('click', () => {
 		if (searchTerm) {
-			searchField.value = ''
-			toggleResults(false)
+			searchField.value = '';
+			clearSearchButton.classList.remove('clear');
+			toggleResults(false);
 		}
 	})
 	
+}
+
+// mobile menu setup
+{
+	const siteHeader = document.querySelector('header');
+	const siteTitle = document.querySelector('h1');
+	const nav = document.querySelector('nav');
+	const mobileMenuToggle = document.querySelector('button.menu-toggle');
+	const main = document.querySelector('main');
+	const footer = document.querySelector('footer');
+	
+	let animating = false
+	
+	const toggleHiddenMenu = e => {
+		const button = e.target;
+		
+		button.classList.toggle('active');
+		siteHeader.classList.toggle('menu-active');
+		nav.classList.toggle('active');
+		footer.classList.add('menu-active');
+		
+		if (main.classList.contains('shrink')) {
+			main.style.top = '0px';
+			main.style.left = '0px';
+			main.style.transform = 'scale(1)';
+			
+			setTimeout(() => {
+				main.classList.remove('shrink');
+				footer.classList.remove('menu-active');
+				main.removeAttribute('style');
+			}, 500);
+		} else {
+			main.style.position = 'fixed';
+			main.style.top = '0px';
+			main.style.left = '0px';
+			main.style.width = '100vw';
+			main.style.height = '100vh';
+			main.style.zIndex = '1';
+			
+			setTimeout(() => {
+				main.classList.add('shrink');
+				main.style.transform = 'scale(0.70)';
+				main.style.top = '4%';
+				main.style.left = '-35vw';
+			}, 0);
+		}
+	}
+	
+	mobileMenuToggle.addEventListener('click', e => {
+		window.requestAnimationFrame(() => {
+			toggleHiddenMenu(e);
+		});
+		
+	})
 }

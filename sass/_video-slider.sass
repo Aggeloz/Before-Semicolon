@@ -1,10 +1,14 @@
 @import "colors"
 @import "mixins/response.ratio"
+@import "mixins/media.query"
 
 #video-slider
   position: relative
-  margin: 30px auto 80px
+  margin: 30px auto 50px
   overflow: hidden // so scrollbar will not show
+
+  @include media-query(770px)
+    margin: 0 auto 80px
 
   .slides-container
     // no wrap will make sure slides-container will extend as far as all slides total width
@@ -13,34 +17,53 @@
     // padding top 40px since translating 10px
     // padding left and right is equal to 100 viewport width - with of the active slide divided by 2
     // this will make sure the left-most and right-most can still be centered when nothing comes after
-    padding: 40px calc((100vw - 1100px) / 2) 150px
+    padding: 40px calc((100vw - (1200px - 120px)) / 2) 100px
     // translate down 10px will hide scrollbars
     transform: translateY(10px)
+
+    @include media-query(1200px)
+      padding: 40px 80px 150px
+
+    @include media-query(770px)
+      padding: 10px 0 50px
 
     .slide
       display: inline-block
       background-color: $other-background
-      width: 960px
+      max-width: 960px
+      width: calc(100vw - 120px)
       border-radius: 10px
       box-shadow: 0 0 20px rgba($black, 0.3)
       position: relative
+      margin: 0 60px
 
-      &:first-of-type
-        margin-left: 0
-      &:last-of-type
-        margin-right: 0
+      @include media-query(1200px)
+        margin: 0 40px
+        width: calc(100% - 80px)
+
+      @include media-query(770px)
+        margin: 0 25px
+        width: calc(100% - 50px)
+        border-radius: 5px
 
       h2
         position: absolute
         top: calc(100% + 25px)
         left: 50%
         transform: translateX(-50%)
-        width: 60%
+        width: 95%
         white-space: normal
         text-align: center
         font-size: 1.2em
         font-weight: 300
         color: lighten($text-border-grey, 30%)
+
+        @include media-query(770px)
+          top: calc(100% + 15px)
+          font-size: 1em
+          white-space: nowrap
+          text-overflow: ellipsis
+          overflow: hidden
 
   .slider-nav-buttons
 
@@ -58,12 +81,19 @@
         height: 50px
         @extend .center-position
 
+        @include media-query(770px)
+          transform: translate(0, -50%)
+
       &.prev-slide
         left: 0
         &:after
           background: url("./../media/icons-sprite.svg") 0 100% / 1000% 200% no-repeat
+          @include media-query(770px)
+            left: 0
 
       &.next-slide
         right: 0
         &:after
           background: url("./../media/icons-sprite.svg") 10% 100% / 1000% 200% no-repeat
+          @include media-query(770px)
+            right: 0
