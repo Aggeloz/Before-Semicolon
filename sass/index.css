@@ -351,14 +351,16 @@ main {
           background: url("./../media/icons-sprite.svg") 0 100%/1000% 200% no-repeat; }
           @media screen and (max-width: 770px) {
             main #video-slider .slider-nav-buttons button.prev-slide:after {
-              left: 0; } }
+              left: 0;
+              background-position: -10px 100%; } }
       main #video-slider .slider-nav-buttons button.next-slide {
         right: 0; }
         main #video-slider .slider-nav-buttons button.next-slide:after {
           background: url("./../media/icons-sprite.svg") 10% 100%/1000% 200% no-repeat; }
           @media screen and (max-width: 770px) {
             main #video-slider .slider-nav-buttons button.next-slide:after {
-              right: 0; } }
+              right: 0;
+              background-position: 9% 100%; } }
   @media screen and (max-width: 1200px) {
     main .main-content #ui-examples {
       padding: 0 100px; } }
