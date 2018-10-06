@@ -17,7 +17,7 @@
     // padding top 40px since translating 10px
     // padding left and right is equal to 100 viewport width - with of the active slide divided by 2
     // this will make sure the left-most and right-most can still be centered when nothing comes after
-    padding: 40px calc((100vw - (1200px - 120px)) / 2) 100px
+    padding: 40px calc((100vw - (1200px - 120px)) / 2) 150px
     // translate down 10px will hide scrollbars
     transform: translateY(10px)
 
@@ -25,7 +25,7 @@
       padding: 40px 80px 150px
 
     @include media-query(770px)
-      padding: 10px 0 50px
+      padding: 30px 25px 100px
 
     .slide
       display: inline-block
@@ -51,7 +51,7 @@
         top: calc(100% + 25px)
         left: 50%
         transform: translateX(-50%)
-        width: 95%
+        width: 60%
         white-space: normal
         text-align: center
         font-size: 1.2em
@@ -64,6 +64,8 @@
           white-space: nowrap
           text-overflow: ellipsis
           overflow: hidden
+          width: 90%
+
 
   .slider-nav-buttons
 
@@ -90,6 +92,7 @@
           background: url("./../media/icons-sprite.svg") 0 100% / 1000% 200% no-repeat
           @include media-query(770px)
             left: 0
+            background-position: -10px 100%
 
       &.next-slide
         right: 0
@@ -97,3 +100,4 @@
           background: url("./../media/icons-sprite.svg") 10% 100% / 1000% 200% no-repeat
           @include media-query(770px)
             right: 0
+            background-position: 9% 100%

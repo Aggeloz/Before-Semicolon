@@ -6,7 +6,8 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: #28364A;
-  color: #6D86AA; }
+  color: #6D86AA;
+  scroll-snap-type: none; }
   body > * {
     width: 100%; }
 
@@ -255,7 +256,8 @@ header {
 main {
   background-color: #34445A;
   overflow: auto;
-  padding-top: 100px; }
+  padding-top: 100px;
+  min-height: 80%; }
   @media screen and (max-width: 770px) {
     main {
       padding-top: 130px;
@@ -286,14 +288,14 @@ main {
     main #video-slider .slides-container {
       white-space: nowrap;
       overflow: scroll;
-      padding: 40px calc((100vw - (1200px - 120px)) / 2) 100px;
+      padding: 40px calc((100vw - (1200px - 120px)) / 2) 150px;
       transform: translateY(10px); }
       @media screen and (max-width: 1200px) {
         main #video-slider .slides-container {
           padding: 40px 80px 150px; } }
       @media screen and (max-width: 770px) {
         main #video-slider .slides-container {
-          padding: 10px 0 50px; } }
+          padding: 30px 25px 100px; } }
       main #video-slider .slides-container .slide {
         display: inline-block;
         background-color: #28364A;
@@ -310,14 +312,14 @@ main {
         @media screen and (max-width: 770px) {
           main #video-slider .slides-container .slide {
             margin: 0 25px;
-            width: calc(100% - 50px);
+            width: calc(100% - 50p);
             border-radius: 5px; } }
         main #video-slider .slides-container .slide h2 {
           position: absolute;
           top: calc(100% + 25px);
           left: 50%;
           transform: translateX(-50%);
-          width: 95%;
+          width: 60%;
           white-space: normal;
           text-align: center;
           font-size: 1.2em;
@@ -329,7 +331,8 @@ main {
               font-size: 1em;
               white-space: nowrap;
               text-overflow: ellipsis;
-              overflow: hidden; } }
+              overflow: hidden;
+              width: 90%; } }
     main #video-slider .slider-nav-buttons button {
       position: absolute;
       width: 100px;
@@ -349,14 +352,16 @@ main {
           background: url("./../media/icons-sprite.svg") 0 100%/1000% 200% no-repeat; }
           @media screen and (max-width: 770px) {
             main #video-slider .slider-nav-buttons button.prev-slide:after {
-              left: 0; } }
+              left: 0;
+              background-position: -10px 100%; } }
       main #video-slider .slider-nav-buttons button.next-slide {
         right: 0; }
         main #video-slider .slider-nav-buttons button.next-slide:after {
           background: url("./../media/icons-sprite.svg") 10% 100%/1000% 200% no-repeat; }
           @media screen and (max-width: 770px) {
             main #video-slider .slider-nav-buttons button.next-slide:after {
-              right: 0; } }
+              right: 0;
+              background-position: 9% 100%; } }
   @media screen and (max-width: 1200px) {
     main .main-content #ui-examples {
       padding: 0 100px; } }
@@ -540,7 +545,14 @@ footer {
   align-items: center; }
   #waiting-view.hide {
     opacity: 1;
-    animation: fadeOut 1s ease-out forwards; }
+    animation: fadeOut 1s ease-out 1s forwards; }
+  #waiting-view.completed .loading:after {
+    content: "finalizing...";
+    animation: blink 1s ease infinite; }
+  #waiting-view.completed .loading span {
+    animation: none;
+    opacity: 1;
+    box-shadow: 0 0 7px #10B5DC; }
   #waiting-view .loading {
     position: relative;
     width: 120px;
@@ -565,13 +577,6 @@ footer {
 @keyframes finalize {
   0% {
     content: "finalizing..."; } }
-    #waiting-view .loading .completed:after {
-      content: "finalizing...";
-      animation: blink 1s ease infinite; }
-    #waiting-view .loading .completed span {
-      animation: none;
-      opacity: 1;
-      box-shadow: 0 0 7px #10B5DC; }
     #waiting-view .loading span {
       display: inline-block;
       width: 25px;

@@ -5,12 +5,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 // on document ready
 {
 	window.addEventListener('load', function () {
-		// const waitingView = document.getElementById('waiting-view')
-		// waitingView.classList.add('hide');
-		// waitingView.classList.add('completed');
-		// setTimeout(() => {
-		// 	waitingView.remove()
-		// }, 1050)
+		var waitingView = document.getElementById('waiting-view');
+		waitingView.classList.add('completed');
+		waitingView.classList.add('hide');
+		setTimeout(function () {
+			waitingView.remove();
+		}, 2050);
 	}, false);
 
 	window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (f) {
@@ -80,7 +80,6 @@ window.setupSliders = function () {
 	var centeredSlide = null;
 	var isScrollingTimer = null;
 	var centerSlideTimer = null;
-	var centering = false;
 
 	// aid/utility functions
 	var pauseAllPlayers = function pauseAllPlayers() {
@@ -131,25 +130,15 @@ window.setupSliders = function () {
 	var centerSlide = function centerSlide(slide) {
 		var onDone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
-		if (centering) {
-			return;
-		}
-		centering = true;
 		toggleNavButtonsAccordingToSlide(slide);
-
-		var _slide$getBoundingCli = slide.getBoundingClientRect(),
-		    slideWidth = _slide$getBoundingCli.width;
 
 		var _slidesContainer$getB = slidesContainer.getBoundingClientRect(),
 		    containerWidth = _slidesContainer$getB.width;
 
-		// center slide has 80px left and right we just want half of it
+		var scrollLeftTo = slide.offsetLeft - (containerWidth - slide.offsetWidth) / 2;
 
-
-		var scrollLeftTo = slide.offsetLeft - (containerWidth - slideWidth) / 2 - 40;
 		scrollSlidesContainer(scrollLeftTo, 400, function () {
 			centeredSlide = slide;
-			centering = false;
 			if (onDone) {
 				onDone();
 			}
@@ -161,9 +150,9 @@ window.setupSliders = function () {
 	};
 
 	var isSlideInView = function isSlideInView(slide) {
-		var _slide$getBoundingCli2 = slide.getBoundingClientRect(),
-		    slideLeftOffset = _slide$getBoundingCli2.left,
-		    slideWidth = _slide$getBoundingCli2.width;
+		var _slide$getBoundingCli = slide.getBoundingClientRect(),
+		    slideLeftOffset = _slide$getBoundingCli.left,
+		    slideWidth = _slide$getBoundingCli.width;
 
 		return (slideLeftOffset > 0 || slideLeftOffset + slideWidth > 0) && isSlideAppearingOnTheLeft(slideLeftOffset);
 	};
@@ -190,9 +179,9 @@ window.setupSliders = function () {
 		var slidesDistanceToCenter = [];
 
 		slidesInView.forEach(function (slide, index) {
-			var _slide$getBoundingCli3 = slide.getBoundingClientRect(),
-			    width = _slide$getBoundingCli3.width,
-			    left = _slide$getBoundingCli3.left;
+			var _slide$getBoundingCli2 = slide.getBoundingClientRect(),
+			    width = _slide$getBoundingCli2.width,
+			    left = _slide$getBoundingCli2.left;
 
 			slidesDistanceToCenter[index] = Math.abs(slidesContainerWidth / 2 - (left + width / 2));
 		});
@@ -206,9 +195,9 @@ window.setupSliders = function () {
 	var animateSlide = function animateSlide(slide, containerCenterPoint, containerWidth) {
 		var slideTitle = slide.querySelector('h2');
 
-		var _slide$getBoundingCli4 = slide.getBoundingClientRect(),
-		    left = _slide$getBoundingCli4.left,
-		    width = _slide$getBoundingCli4.width;
+		var _slide$getBoundingCli3 = slide.getBoundingClientRect(),
+		    left = _slide$getBoundingCli3.left,
+		    width = _slide$getBoundingCli3.width;
 		// start growing when the center of the slide comes in view
 
 
@@ -229,7 +218,7 @@ window.setupSliders = function () {
 		// multiplying offsetLeftPercentage by 10 will give opacity less or equal to 1
 		var opacity = offsetLeftPercentage * 10;
 
-		// slide.style.transform = 'scale(' + (1 + offsetLeftPercentage) + ')'
+		slide.style.transform = 'scale(' + (1 + offsetLeftPercentage) + ')';
 		slide.style.opacity = Math.max(opacity, 0.25); // min opacity is 0.25
 		slideTitle.style.opacity = opacity;
 	};
@@ -247,29 +236,23 @@ window.setupSliders = function () {
 		});
 	};
 
-	var handleContainerScroll = function handleContainerScroll() {
-		centeredSlide = null;
-		window.clearTimeout(isScrollingTimer);
-		window.clearTimeout(centerSlideTimer);
+	var whenDoneScrolling = function whenDoneScrolling() {
+		if (currentPlayerPlaying) {
+			var playingSlide = currentPlayerPlaying.a.parentNode.parentNode;
 
-		isScrollingTimer = setTimeout(function () {
-			if (currentPlayerPlaying) {
-				var playingSlide = currentPlayerPlaying.a.parentNode.parentNode;
-
-				if (currentPlayerPlaying.getPlayerState() === PLAYING) {
-					centerSlideTimer = setTimeout(function () {
-						if (isSlideInView(playingSlide)) {
-							centerSlide(playingSlide);
-						} else {
-							currentPlayerPlaying.pauseVideo();
-							centerClosestSlide();
-						}
-					}, 1000);
-				}
-			} else {
-				centerClosestSlide();
+			if (currentPlayerPlaying.getPlayerState() === PLAYING) {
+				centerSlideTimer = setTimeout(function () {
+					if (isSlideInView(playingSlide)) {
+						centerSlide(playingSlide);
+					} else {
+						currentPlayerPlaying.pauseVideo();
+						centerClosestSlide();
+					}
+				}, 1000);
 			}
-		}, 66);
+		} else {
+			centerClosestSlide();
+		}
 
 		function centerClosestSlide() {
 			centerSlideTimer = setTimeout(function () {
@@ -279,8 +262,16 @@ window.setupSliders = function () {
 				}
 			}, 500);
 		}
+	};
 
+	var handleContainerScroll = function handleContainerScroll() {
 		handleSlides();
+		centeredSlide = null;
+
+		window.clearTimeout(isScrollingTimer);
+		window.clearTimeout(centerSlideTimer);
+
+		isScrollingTimer = setTimeout(whenDoneScrolling, 100);
 	};
 
 	var navigateSlidesWithButton = function navigateSlidesWithButton(e) {
@@ -347,12 +338,13 @@ window.setupSliders = function () {
 		});
 
 		slidesContainer.appendChild(docFragment);
-		// need this to set iFrame after all slides are appended on the real DOM
-		// dataList.forEach(data => {
-		// 	setYoutubeIFrame(data)
-		// })
 		allSlides = [].concat(_toConsumableArray(slidesContainer.children));
 		handleSlides();
+		centerSlide(allSlides[0]);
+		// need this to set iFrame after all slides are appended on the real DOM
+		dataList.forEach(function (data) {
+			setYoutubeIFrame(data);
+		});
 	};
 
 	var init = function init(dataList) {
@@ -388,7 +380,9 @@ window.setupSliders = function () {
 		populateSlides(dataList, slidesContainer);
 	};
 
-	window.addEventListener('resize', handleSlides);
+	window.addEventListener('resize', function () {
+		handleSlides();
+	});
 
 	if (youtubePosts.length) {
 		init(youtubePosts);
@@ -515,7 +509,7 @@ var previewMedia = function previewMedia(element, data) {
 	elementClone.style.top = top + 'px';
 	elementClone.style.left = left + 'px';
 	elementClone.style.zIndex = '1';
-	elementClone.style.transition = "top .5s ease-in-out, " + "left .5s ease-in-out, " + "height .5s ease-in-out, " + "width .5s ease-in-out";
+	elementClone.style.transition = 'top .5s ease-in-out, ' + 'left .5s ease-in-out, ' + 'height .5s ease-in-out, ' + 'width .5s ease-in-out';
 	document.querySelector('body').appendChild(elementClone);
 
 	// this makes it so when it is almost fully grown it stacks above header level(z-index 2)
@@ -754,10 +748,8 @@ var previewMedia = function previewMedia(element, data) {
 
 	var animating = false;
 
-	var toggleHiddenMenu = function toggleHiddenMenu(e) {
-		var button = e.target;
-
-		button.classList.toggle('active');
+	var toggleHiddenMenu = function toggleHiddenMenu() {
+		mobileMenuToggle.classList.toggle('active');
 		siteHeader.classList.toggle('menu-active');
 		nav.classList.toggle('active');
 		footer.classList.add('menu-active');
@@ -766,6 +758,7 @@ var previewMedia = function previewMedia(element, data) {
 			main.style.top = '0px';
 			main.style.left = '0px';
 			main.style.transform = 'scale(1)';
+			main.onclick = null;
 
 			setTimeout(function () {
 				main.classList.remove('shrink');
@@ -788,10 +781,14 @@ var previewMedia = function previewMedia(element, data) {
 		}
 	};
 
-	mobileMenuToggle.addEventListener('click', function (e) {
-		window.requestAnimationFrame(function () {
-			toggleHiddenMenu(e);
-		});
+	mobileMenuToggle.addEventListener('click', function () {
+		if (!main.onclick) {
+			main.onclick = function () {
+				window.requestAnimationFrame(toggleHiddenMenu);
+			};
+		}
+
+		window.requestAnimationFrame(toggleHiddenMenu);
 	});
 }
 //# sourceMappingURL=index.js.map
