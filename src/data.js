@@ -181,4 +181,7 @@ var posts = [{
 posts.forEach(function (post, index) {
 	post.id = index + 1; // avoid id of zero
 });
+
+window.posts = posts;
+window.POST_TYPES = POST_TYPES;
 //# sourceMappingURL=data.js.map
