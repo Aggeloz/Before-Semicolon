@@ -1,5 +1,6 @@
 @import "colors"
 @import "mixins/response.ratio"
+@import "mixins/media.query"
 
 #modal
   z-index: 10
@@ -24,6 +25,17 @@
     opacity: 0
     animation: fadeIn .3s ease-out .5s forwards
 
+    @include media-query(1200px)
+      top: 25px
+      right: 25px
+
+    @include media-query(770px)
+      top: auto
+      bottom: 45px
+      right: auto
+      left: 50%
+      transform: translateX(-50%)
+
     &.go-away
       @extend .fade-out
 
@@ -31,6 +43,9 @@
     opacity: 0
     animation: fadeIn .5s ease-out .5s forwards
     @extend .center-position
+
+    @include media-query(770px)
+      transform: translate(-50%, -55%)
 
     &.go-away
       @extend .fade-out

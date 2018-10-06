@@ -1,15 +1,25 @@
 @import "colors"
 @import "mixins/calc"
+@import "mixins/media.query"
 
 footer
   padding: 50px 0 150px
   text-align: center
   font-size: calc-em(14px)
 
+  @include media-query(770px)
+    padding: 150px 0 50px
+
+  @include media-query(425px)
+    font-size: calc-em(12px)
+
   hr
     border-color: rgba($text-border-grey, .2)
     width: 50%
     margin: 100px auto
+
+    @include media-query(770px)
+      display: none
 
   .social-links
     margin-bottom: 20px
@@ -41,6 +51,11 @@ footer
     height: 45px
     display: inline-block
     @extend .no-text
+
+    @include media-query(425px)
+      width: 40px
+      height: 40px
+
 
     &.email-link
       background: url("./../media/icons-sprite.svg") 55.5% 0 / 1000% 200% no-repeat

@@ -60,7 +60,6 @@ window.setupSliders = () => {
 	const players = []
 	
 	let allSlides = []
-	let slideSideMargins = 80
 	let nextButton = null
 	let prevButton = null
 	let slidesContainer = null
@@ -69,6 +68,7 @@ window.setupSliders = () => {
 	let centeredSlide = null
 	let isScrollingTimer = null
 	let centerSlideTimer = null
+	let centering = false
 	
 	// aid/utility functions
 	const pauseAllPlayers = (playerToSkip = null) => {
@@ -113,6 +113,8 @@ window.setupSliders = () => {
 	}
 	
 	const centerSlide = (slide, onDone = null) => {
+		if (centering ) {return;}
+		centering = true;
 		toggleNavButtonsAccordingToSlide(slide)
 		const {width: slideWidth} = slide.getBoundingClientRect()
 		const {width: containerWidth} = slidesContainer.getBoundingClientRect()
@@ -121,6 +123,7 @@ window.setupSliders = () => {
 		const scrollLeftTo = slide.offsetLeft - ((containerWidth - slideWidth) / 2) - 40
 		scrollSlidesContainer(scrollLeftTo, 400, () => {
 			centeredSlide = slide
+			centering = false
 			if (onDone) {
 				onDone()
 			}
@@ -173,29 +176,24 @@ window.setupSliders = () => {
 		const {left, width} = slide.getBoundingClientRect()
 		// start growing when the center of the slide comes in view
 		const slideOffsetLeft = left + (width / 2)
-		let location = null
+		let offsetLeft = null
 		
 		if (slideOffsetLeft > containerCenterPoint) {
-			location = Math.max(containerWidth - slideOffsetLeft, 0)
+			offsetLeft = Math.max(containerWidth - slideOffsetLeft, 0)
 		} else if (slideOffsetLeft <= 0) {
-			location = 0
+			offsetLeft = 0
 		} else {
-			location = Math.max(slideOffsetLeft, 0)
+			offsetLeft = Math.max(slideOffsetLeft, 0)
 		}
 		
-		// the max scale we want to add is 0.1 so we multiply location by 0.1
-		const locationPercentage = location * 0.1 / containerCenterPoint
+		// the max scale we want to add is 0.1 so we multiply offsetLeft by 0.1
+		const offsetLeftPercentage = offsetLeft * 0.1 / containerCenterPoint
 		
-		// multiplying locationPercentage by 800 will give margin less or equal to 80
-		// slideSideMargins may consty but will always mean max margin
-		const sideMargin = locationPercentage * (slideSideMargins * 10)
-		// multiplying locationPercentage by 10 will give opacity less or equal to 1
-		const opacity = locationPercentage * 10
+		// multiplying offsetLeftPercentage by 10 will give opacity less or equal to 1
+		const opacity = offsetLeftPercentage * 10
 		
-		slide.style.transform = 'scale(' + (1 + locationPercentage) + ')'
+		// slide.style.transform = 'scale(' + (1 + offsetLeftPercentage) + ')'
 		slide.style.opacity = Math.max(opacity, 0.25) // min opacity is 0.25
-		slide.style.marginLeft = Math.max(sideMargin, 25) + 'px' // min margin is 25
-		slide.style.marginRight = Math.max(sideMargin, 25) + 'px' // min margin is 25
 		slideTitle.style.opacity = opacity
 	}
 	
@@ -314,9 +312,9 @@ window.setupSliders = () => {
 		
 		slidesContainer.appendChild(docFragment)
 		// need this to set iFrame after all slides are appended on the real DOM
-		dataList.forEach(data => {
-			setYoutubeIFrame(data)
-		})
+		// dataList.forEach(data => {
+		// 	setYoutubeIFrame(data)
+		// })
 		allSlides = [...slidesContainer.children]
 		handleSlides()
 	}

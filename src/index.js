@@ -72,7 +72,6 @@ window.setupSliders = function () {
 	var players = [];
 
 	var allSlides = [];
-	var slideSideMargins = 80;
 	var nextButton = null;
 	var prevButton = null;
 	var slidesContainer = null;
@@ -81,6 +80,7 @@ window.setupSliders = function () {
 	var centeredSlide = null;
 	var isScrollingTimer = null;
 	var centerSlideTimer = null;
+	var centering = false;
 
 	// aid/utility functions
 	var pauseAllPlayers = function pauseAllPlayers() {
@@ -131,6 +131,10 @@ window.setupSliders = function () {
 	var centerSlide = function centerSlide(slide) {
 		var onDone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
+		if (centering) {
+			return;
+		}
+		centering = true;
 		toggleNavButtonsAccordingToSlide(slide);
 
 		var _slide$getBoundingCli = slide.getBoundingClientRect(),
@@ -145,6 +149,7 @@ window.setupSliders = function () {
 		var scrollLeftTo = slide.offsetLeft - (containerWidth - slideWidth) / 2 - 40;
 		scrollSlidesContainer(scrollLeftTo, 400, function () {
 			centeredSlide = slide;
+			centering = false;
 			if (onDone) {
 				onDone();
 			}
@@ -208,29 +213,24 @@ window.setupSliders = function () {
 
 
 		var slideOffsetLeft = left + width / 2;
-		var location = null;
+		var offsetLeft = null;
 
 		if (slideOffsetLeft > containerCenterPoint) {
-			location = Math.max(containerWidth - slideOffsetLeft, 0);
+			offsetLeft = Math.max(containerWidth - slideOffsetLeft, 0);
 		} else if (slideOffsetLeft <= 0) {
-			location = 0;
+			offsetLeft = 0;
 		} else {
-			location = Math.max(slideOffsetLeft, 0);
+			offsetLeft = Math.max(slideOffsetLeft, 0);
 		}
 
-		// the max scale we want to add is 0.1 so we multiply location by 0.1
-		var locationPercentage = location * 0.1 / containerCenterPoint;
+		// the max scale we want to add is 0.1 so we multiply offsetLeft by 0.1
+		var offsetLeftPercentage = offsetLeft * 0.1 / containerCenterPoint;
 
-		// multiplying locationPercentage by 800 will give margin less or equal to 80
-		// slideSideMargins may consty but will always mean max margin
-		var sideMargin = locationPercentage * (slideSideMargins * 10);
-		// multiplying locationPercentage by 10 will give opacity less or equal to 1
-		var opacity = locationPercentage * 10;
+		// multiplying offsetLeftPercentage by 10 will give opacity less or equal to 1
+		var opacity = offsetLeftPercentage * 10;
 
-		slide.style.transform = 'scale(' + (1 + locationPercentage) + ')';
+		// slide.style.transform = 'scale(' + (1 + offsetLeftPercentage) + ')'
 		slide.style.opacity = Math.max(opacity, 0.25); // min opacity is 0.25
-		slide.style.marginLeft = Math.max(sideMargin, 25) + 'px'; // min margin is 25
-		slide.style.marginRight = Math.max(sideMargin, 25) + 'px'; // min margin is 25
 		slideTitle.style.opacity = opacity;
 	};
 
@@ -348,9 +348,9 @@ window.setupSliders = function () {
 
 		slidesContainer.appendChild(docFragment);
 		// need this to set iFrame after all slides are appended on the real DOM
-		dataList.forEach(function (data) {
-			setYoutubeIFrame(data);
-		});
+		// dataList.forEach(data => {
+		// 	setYoutubeIFrame(data)
+		// })
 		allSlides = [].concat(_toConsumableArray(slidesContainer.children));
 		handleSlides();
 	};

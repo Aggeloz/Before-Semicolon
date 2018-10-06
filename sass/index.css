@@ -128,6 +128,9 @@ input {
   height: 100vh;
   overflow: auto;
   padding-top: 100px; }
+  @media screen and (max-width: 770px) {
+    .page-wrapper {
+      padding-top: 130px; } }
   .page-wrapper header {
     position: fixed;
     left: 0;
@@ -207,33 +210,56 @@ input {
     position: relative;
     margin: 30px auto 80px;
     overflow: hidden; }
+    @media screen and (max-width: 770px) {
+      .page-wrapper #video-slider {
+        margin: 0 auto 80px; } }
     .page-wrapper #video-slider .slides-container {
       white-space: nowrap;
       overflow: scroll;
-      padding: 40px calc((100vw - 1100px) / 2) 150px;
+      padding: 40px calc((100vw - (1200px - 120px)) / 2) 150px;
       transform: translateY(10px); }
+      @media screen and (max-width: 1200px) {
+        .page-wrapper #video-slider .slides-container {
+          padding: 40px 80px 150px; } }
+      @media screen and (max-width: 770px) {
+        .page-wrapper #video-slider .slides-container {
+          padding: 10px 0 50px; } }
       .page-wrapper #video-slider .slides-container .slide {
         display: inline-block;
         background-color: #28364A;
-        width: 960px;
+        max-width: 960px;
+        width: calc(100vw - 120px);
         border-radius: 10px;
         box-shadow: 0 0 20px rgba(2, 2, 2, 0.3);
-        position: relative; }
-        .page-wrapper #video-slider .slides-container .slide:first-of-type {
-          margin-left: 0; }
-        .page-wrapper #video-slider .slides-container .slide:last-of-type {
-          margin-right: 0; }
+        position: relative;
+        margin: 0 60px; }
+        @media screen and (max-width: 1200px) {
+          .page-wrapper #video-slider .slides-container .slide {
+            margin: 0 40px;
+            width: calc(100% - 80px); } }
+        @media screen and (max-width: 770px) {
+          .page-wrapper #video-slider .slides-container .slide {
+            margin: 0 25px;
+            width: calc(100% - 50px);
+            border-radius: 5px; } }
         .page-wrapper #video-slider .slides-container .slide h2 {
           position: absolute;
           top: calc(100% + 25px);
           left: 50%;
           transform: translateX(-50%);
-          width: 60%;
+          width: 95%;
           white-space: normal;
           text-align: center;
           font-size: 1.2em;
           font-weight: 300;
           color: #ced6e2; }
+          @media screen and (max-width: 770px) {
+            .page-wrapper #video-slider .slides-container .slide h2 {
+              top: calc(100% + 15px);
+              font-size: 1em;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden; } }
     .page-wrapper #video-slider .slider-nav-buttons button {
       position: absolute;
       width: 100px;
@@ -244,14 +270,32 @@ input {
         display: inline-block;
         width: 50px;
         height: 50px; }
+        @media screen and (max-width: 770px) {
+          .page-wrapper #video-slider .slider-nav-buttons button:after {
+            transform: translate(0, -50%); } }
       .page-wrapper #video-slider .slider-nav-buttons button.prev-slide {
         left: 0; }
         .page-wrapper #video-slider .slider-nav-buttons button.prev-slide:after {
           background: url("./../media/icons-sprite.svg") 0 100%/1000% 200% no-repeat; }
+          @media screen and (max-width: 770px) {
+            .page-wrapper #video-slider .slider-nav-buttons button.prev-slide:after {
+              left: 0; } }
       .page-wrapper #video-slider .slider-nav-buttons button.next-slide {
         right: 0; }
         .page-wrapper #video-slider .slider-nav-buttons button.next-slide:after {
           background: url("./../media/icons-sprite.svg") 10% 100%/1000% 200% no-repeat; }
+          @media screen and (max-width: 770px) {
+            .page-wrapper #video-slider .slider-nav-buttons button.next-slide:after {
+              right: 0; } }
+  @media screen and (max-width: 1200px) {
+    .page-wrapper main #ui-examples {
+      padding: 0 100px; } }
+  @media screen and (max-width: 770px) {
+    .page-wrapper main #ui-examples {
+      padding: 0 50px; } }
+  @media screen and (max-width: 600px) {
+    .page-wrapper main #ui-examples {
+      padding: 0 15px; } }
   .page-wrapper main #ui-examples h2 {
     font-size: 1em;
     color: #6D86AA;
@@ -262,10 +306,20 @@ input {
     display: flex;
     flex-wrap: wrap;
     margin: -15px; }
+    @media screen and (max-width: 600px) {
+      .page-wrapper main #ui-examples > div {
+        margin: 0; } }
     .page-wrapper main #ui-examples > div .post {
       flex: 0 0 calc(100% / 3 - 30px);
       margin: 15px;
       cursor: pointer; }
+      @media screen and (max-width: 1000px) {
+        .page-wrapper main #ui-examples > div .post {
+          flex: 0 0 calc(100% / 2 - 30px); } }
+      @media screen and (max-width: 600px) {
+        .page-wrapper main #ui-examples > div .post {
+          flex: 0 0 calc(100% - 30px);
+          margin: 15px; } }
       .page-wrapper main #ui-examples > div .post:hover h3 {
         color: #FFFFFF; }
       .page-wrapper main #ui-examples > div .post .thumbnail {
@@ -335,10 +389,19 @@ input {
     padding: 50px 0 150px;
     text-align: center;
     font-size: 0.875em; }
+    @media screen and (max-width: 770px) {
+      .page-wrapper footer {
+        padding: 150px 0 50px; } }
+    @media screen and (max-width: 425px) {
+      .page-wrapper footer {
+        font-size: 0.75em; } }
     .page-wrapper footer hr {
       border-color: rgba(109, 134, 170, 0.2);
       width: 50%;
       margin: 100px auto; }
+      @media screen and (max-width: 770px) {
+        .page-wrapper footer hr {
+          display: none; } }
     .page-wrapper footer .social-links {
       margin-bottom: 20px; }
       .page-wrapper footer .social-links a {
@@ -361,6 +424,10 @@ input {
       width: 45px;
       height: 45px;
       display: inline-block; }
+      @media screen and (max-width: 425px) {
+        .page-wrapper footer a:not(.github-link) {
+          width: 40px;
+          height: 40px; } }
       .page-wrapper footer a:not(.github-link).email-link {
         background: url("./../media/icons-sprite.svg") 55.5% 0/1000% 200% no-repeat; }
 
@@ -451,9 +518,23 @@ input {
     background: url("./../media/icons-sprite.svg") 44.5% 2%/1000% 200% no-repeat;
     opacity: 0;
     animation: fadeIn 0.3s ease-out 0.5s forwards; }
+    @media screen and (max-width: 1200px) {
+      #modal .close-modal {
+        top: 25px;
+        right: 25px; } }
+    @media screen and (max-width: 770px) {
+      #modal .close-modal {
+        top: auto;
+        bottom: 45px;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%); } }
   #modal .modal-content {
     opacity: 0;
     animation: fadeIn 0.5s ease-out 0.5s forwards; }
+    @media screen and (max-width: 770px) {
+      #modal .modal-content {
+        transform: translate(-50%, -55%); } }
     #modal .modal-content .video-iFrame-container {
       background: rgba(2, 2, 2, 0.5);
       max-width: 960px;

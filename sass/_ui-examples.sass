@@ -1,8 +1,18 @@
 @import "colors"
 @import "mixins/response.ratio"
+@import "mixins/media.query"
 @import "mixins/calc"
 
 #ui-examples
+
+  @include media-query(1200px)
+    padding: 0 100px
+
+  @include media-query(770px)
+    padding: 0 50px
+
+  @include media-query(600px)
+    padding: 0 15px
 
   h2
     font-size: 1em
@@ -16,12 +26,22 @@
     flex-wrap: wrap
     margin: -15px
 
+    @include media-query(600px)
+      margin: 0
+
     .post
       // 100% divided by 3 since we want 3 in a row and minus 30px for the gap in between card
       flex: 0 0 calc(100% / 3 - 30px)
       // 15px left and 15px right is equal 30px which will form the gap in between cards
       margin: 15px
       cursor: pointer
+
+      @include media-query(1000px)
+        flex: 0 0 calc(100% / 2 - 30px)
+
+      @include media-query(600px)
+        flex: 0 0 calc(100% - 30px)
+        margin: 15px
 
       &:hover h3
         color: $white
