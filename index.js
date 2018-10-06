@@ -1,3 +1,4 @@
+
 // on document ready
 {
 	window.addEventListener('load', () => {
