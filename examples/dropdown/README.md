@@ -1,5 +1,5 @@
-# DropDown CSS Only!
+# Button process states reaction
 
-This drop-down is build on css only and registers toggle and selected item in the drop-down.
+Simple demonstration of a button reacting to different response from a process on click
 
-[play with it](https://ecorreia45.github.io/Before-Semicolon/examples/dropdown/)
+[play with it](https://ecorreia45.github.io/Before-Semicolon/examples/buttonProcessing/)

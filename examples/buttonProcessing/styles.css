@@ -1,0 +1,100 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fff;
+}
+
+button {
+    width: 95px;
+    height: 30px;
+    background-color: #2a77ac;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 3px;
+    letter-spacing: 2px;
+    line-height: 100%;
+    cursor: pointer;
+    display: inline-block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    border: none;
+    white-space: nowrap;
+    transition:
+        background-color 1s ease-out,
+        width .5s ease-in-out,
+        border-radius .5s ease-in-out;
+}
+
+button.completed {
+    cursor: not-allowed;
+    background-color: #36ac57;
+}
+
+button.failed {
+    width: 120px;
+    background-color: #ac2009;
+}
+
+button.processing {
+    position: relative;
+    width: 60px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: not-allowed;
+}
+
+button.processing b, button.processing:before, button.processing:after {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: fade-in .5s ease-out 2s forwards;
+}
+
+button.processing b {
+    overflow: hidden;
+    text-indent: 200%;
+    animation: blink-and-grow 1.6s ease-in-out .4s infinite;
+    left: 50%;
+}
+
+button.processing:before, button.processing:after {
+    content: '';
+}
+
+button.processing:before {
+    left: calc(50% - 15px);
+    animation: blink-and-grow 1.6s ease-in-out infinite;
+}
+
+button.processing:after {
+    left: calc(50% + 15px);
+    animation: blink-and-grow 1.6s ease-in-out .8s infinite;
+}
+
+@keyframes fade-in {
+    100% {
+        opacity: 1
+    }
+}
+
+@keyframes blink-and-grow {
+    0%, 100% {
+        opacity: .3;
+    }
+    33% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+

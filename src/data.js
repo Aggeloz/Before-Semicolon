@@ -6,6 +6,15 @@ var POST_TYPES = {
 };
 
 var posts = [{
+	videoId: null,
+	title: "Button process states reaction",
+	thumbnailPath: "./media/thumbnails/buttonProcessing.gif",
+	url: "https://ecorreia45.github.io/Before-Semicolon/examples/buttonProcessing/",
+	description: "Simple demonstration of a button reacting to different response from a process on click",
+	type: POST_TYPES.GITHUB,
+	youtubeVideoURL: null,
+	githubCodeURL: "https://github.com/ECorreia45/Before-Semicolon/tree/master/examples/buttonProcessing"
+}, {
 	videoId: "XnndhSaszuY",
 	title: "Search Field (animate search icon into text cursor) - UI [How To]",
 	thumbnailPath: "",
