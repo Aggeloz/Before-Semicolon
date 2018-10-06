@@ -15,6 +15,7 @@ body
   width: 100vw
   background-color: $other-background
   color: $text-border-grey
+  scroll-snap-type: none
 
   > *
     width: 100%
@@ -143,6 +144,7 @@ main
   background-color: $site-background
   overflow: auto
   padding-top: 100px
+  min-height: 80%
 
   @include media-query(770px)
     padding-top: 130px

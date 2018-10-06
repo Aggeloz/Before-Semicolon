@@ -5,12 +5,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 // on document ready
 {
 	window.addEventListener('load', function () {
-		// const waitingView = document.getElementById('waiting-view')
-		// waitingView.classList.add('hide');
-		// waitingView.classList.add('completed');
-		// setTimeout(() => {
-		// 	waitingView.remove()
-		// }, 1050)
+		var waitingView = document.getElementById('waiting-view');
+		waitingView.classList.add('completed');
+		waitingView.classList.add('hide');
+		setTimeout(function () {
+			waitingView.remove();
+		}, 2050);
 	}, false);
 
 	window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (f) {
@@ -754,10 +754,8 @@ var previewMedia = function previewMedia(element, data) {
 
 	var animating = false;
 
-	var toggleHiddenMenu = function toggleHiddenMenu(e) {
-		var button = e.target;
-
-		button.classList.toggle('active');
+	var toggleHiddenMenu = function toggleHiddenMenu() {
+		mobileMenuToggle.classList.toggle('active');
 		siteHeader.classList.toggle('menu-active');
 		nav.classList.toggle('active');
 		footer.classList.add('menu-active');
@@ -766,6 +764,7 @@ var previewMedia = function previewMedia(element, data) {
 			main.style.top = '0px';
 			main.style.left = '0px';
 			main.style.transform = 'scale(1)';
+			main.onclick = null;
 
 			setTimeout(function () {
 				main.classList.remove('shrink');
@@ -788,10 +787,14 @@ var previewMedia = function previewMedia(element, data) {
 		}
 	};
 
-	mobileMenuToggle.addEventListener('click', function (e) {
-		window.requestAnimationFrame(function () {
-			toggleHiddenMenu(e);
-		});
+	mobileMenuToggle.addEventListener('click', function () {
+		if (!main.onclick) {
+			main.onclick = function () {
+				window.requestAnimationFrame(toggleHiddenMenu);
+			};
+		}
+
+		window.requestAnimationFrame(toggleHiddenMenu);
 	});
 }
 //# sourceMappingURL=index.js.map

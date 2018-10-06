@@ -2,12 +2,12 @@
 // on document ready
 {
 	window.addEventListener('load', () => {
-		// const waitingView = document.getElementById('waiting-view')
-		// waitingView.classList.add('hide');
-		// waitingView.classList.add('completed');
-		// setTimeout(() => {
-		// 	waitingView.remove()
-		// }, 1050)
+		const waitingView = document.getElementById('waiting-view')
+		waitingView.classList.add('completed');
+		waitingView.classList.add('hide');
+		setTimeout(() => {
+			waitingView.remove();
+		}, 2050)
 	}, false);
 	
 	window.requestAnimationFrame =
@@ -707,12 +707,10 @@ const previewMedia = (element, data) => {
 	const main = document.querySelector('main');
 	const footer = document.querySelector('footer');
 	
-	let animating = false
+	let animating = false;
 	
-	const toggleHiddenMenu = e => {
-		const button = e.target;
-		
-		button.classList.toggle('active');
+	const toggleHiddenMenu = () => {
+		mobileMenuToggle.classList.toggle('active');
 		siteHeader.classList.toggle('menu-active');
 		nav.classList.toggle('active');
 		footer.classList.add('menu-active');
@@ -721,6 +719,7 @@ const previewMedia = (element, data) => {
 			main.style.top = '0px';
 			main.style.left = '0px';
 			main.style.transform = 'scale(1)';
+			main.onclick = null;
 			
 			setTimeout(() => {
 				main.classList.remove('shrink');
@@ -741,12 +740,15 @@ const previewMedia = (element, data) => {
 				main.style.left = '-35vw';
 			}, 0);
 		}
-	}
+	};
 	
-	mobileMenuToggle.addEventListener('click', e => {
-		window.requestAnimationFrame(() => {
-			toggleHiddenMenu(e);
-		});
+	mobileMenuToggle.addEventListener('click', () => {
+		if (!main.onclick ) {
+			main.onclick = () => {
+				window.requestAnimationFrame(toggleHiddenMenu);
+			}
+		}
 		
-	})
+		window.requestAnimationFrame(toggleHiddenMenu);
+	});
 }

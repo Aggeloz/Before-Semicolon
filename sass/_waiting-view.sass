@@ -1,3 +1,5 @@
+@import "./colors"
+
 #waiting-view
   background-color: $other-background
   position: fixed
@@ -12,7 +14,16 @@
 
   &.hide
     opacity: 1
-    animation: fadeOut 1s ease-out forwards
+    animation: fadeOut 1s ease-out 1s forwards
+
+  &.completed .loading
+    &:after
+      content: 'finalizing...'
+      animation: blink 1s ease infinite
+    span
+      animation: none
+      opacity: 1
+      box-shadow: 0 0 7px $logo-blue
 
   .loading
     position: relative
@@ -42,14 +53,7 @@
         0%
           content: 'finalizing...'
 
-    .completed
-      &:after
-        content: 'finalizing...'
-        animation: blink 1s ease infinite
-      span
-        animation: none
-        opacity: 1
-        box-shadow: 0 0 7px $logo-blue
+
 
     span
       display: inline-block
