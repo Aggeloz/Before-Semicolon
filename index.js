@@ -738,7 +738,6 @@ const previewMedia = (element, data) => {
 			setTimeout(() => {
 				main.classList.add('shrink');
 				main.style.transform = 'scale(0.70)';
-				main.style.top = '4%';
 				main.style.left = '-35vw';
 			}, 0);
 		}

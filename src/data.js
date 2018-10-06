@@ -121,7 +121,7 @@ var posts = [{
 	description: "This is a simple Twitch loading animation mock-up done in pure css.",
 	type: POST_TYPES.GITHUB,
 	youtubeVideoURL: null,
-	githubCodeURL: "https://ecorreia45.github.io/Before-Semicolon/examples/twitchLoading/"
+	githubCodeURL: "https://github.com/ECorreia45/Before-Semicolon/tree/master/examples/twitchLoading"
 }, {
 	videoId: null,
 	title: "Search Field - Icon into text cursor",
@@ -130,7 +130,7 @@ var posts = [{
 	description: "This is a clever usage of the search icon in a search field that transitions into a text cursor on field focus.",
 	type: POST_TYPES.GITHUB,
 	youtubeVideoURL: "https://youtu.be/XnndhSaszuY",
-	githubCodeURL: "https://ecorreia45.github.io/Before-Semicolon/examples/searchField/"
+	githubCodeURL: "https://github.com/ECorreia45/Before-Semicolon/tree/master/examples/searchField"
 }, {
 	videoId: null,
 	title: "Tabs indicator (example 1)",
@@ -139,7 +139,7 @@ var posts = [{
 	description: "These tabs take advantage of linear-gradient and play on rotation to give them the nice tab look and appear as if they were shrinking or growing when active and inactive.",
 	type: POST_TYPES.GITHUB,
 	youtubeVideoURL: null,
-	githubCodeURL: "https://ecorreia45.github.io/Before-Semicolon/examples/tabsIndicator/"
+	githubCodeURL: "https://github.com/ECorreia45/Before-Semicolon/tree/master/examples/tabsIndicator"
 }, {
 	videoId: null,
 	title: "Tabs indicator (example 2)",
@@ -148,7 +148,7 @@ var posts = [{
 	description: "These tabs example uses same style of the example 1 but the tab indicator moves in the x-axis when tab is active while changing shape.",
 	type: POST_TYPES.GITHUB,
 	youtubeVideoURL: null,
-	githubCodeURL: "https://ecorreia45.github.io/Before-Semicolon/examples/tabsIndicator2/"
+	githubCodeURL: "https://github.com/ECorreia45/Before-Semicolon/tree/master/examples/tabsIndicator2"
 }, {
 	videoId: null,
 	title: "Input label float",
@@ -157,7 +157,7 @@ var posts = [{
 	description: "This is a clever usage of field and label. The label here moves above the field and stays there while the user interacts with the field.",
 	type: POST_TYPES.GITHUB,
 	youtubeVideoURL: null,
-	githubCodeURL: "https://ecorreia45.github.io/Before-Semicolon/examples/inputLabelUp/"
+	githubCodeURL: "https://github.com/ECorreia45/Before-Semicolon/tree/master/examples/inputLabelUp"
 }, {
 	videoId: null,
 	title: "DropDown CSS Only!",
@@ -166,7 +166,7 @@ var posts = [{
 	description: "This drop-down is build on css only and registers toggle and selected item in the drop-down.",
 	type: POST_TYPES.GITHUB,
 	youtubeVideoURL: null,
-	githubCodeURL: "https://ecorreia45.github.io/Before-Semicolon/examples/dropdown/"
+	githubCodeURL: "https://github.com/ECorreia45/Before-Semicolon/tree/master/examples/dropdown"
 }, {
 	videoId: null,
 	title: "Tooltip CSS Only!",
@@ -175,7 +175,7 @@ var posts = [{
 	description: "This is a tooltip example with very minimal html and simple css activated on hover and blur events.",
 	type: POST_TYPES.GITHUB,
 	youtubeVideoURL: null,
-	githubCodeURL: "https://ecorreia45.github.io/Before-Semicolon/examples/tooltips/"
+	githubCodeURL: "https://github.com/ECorreia45/Before-Semicolon/tree/master/examples/tooltips"
 }];
 
 posts.forEach(function (post, index) {

@@ -2,4 +2,4 @@
 
 This is a clever usage of the search icon in a search field that transitions into a text cursor on field focus.
 
-[play with it](https://ecorreia45.github.io/Before-Semicolon/searchField/)
+[play with it](https://ecorreia45.github.io/Before-Semicolon/examples/searchField/)
