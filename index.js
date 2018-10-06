@@ -554,7 +554,7 @@ const previewMedia = (element, data) => {
 	const searchForm = document.getElementById('search-form')
 	const searchField = searchForm[0]
 	const clearSearchButton = searchForm[1]
-	const main = document.querySelector('main')
+	const mainContent = document.querySelector('.main-content')
 	const videoSlider = document.getElementById('video-slider')
 	const uiExamples = document.getElementById('ui-examples')
 	
@@ -572,7 +572,6 @@ const previewMedia = (element, data) => {
 				uiExamples.style.display = 'none'
 			}, 300)
 		} else {
-			console.log('-- hide')
 			searchResultsContainer.classList.add('fade-out')
 			setTimeout(() => {
 				videoSlider.style.display = ''
@@ -592,7 +591,7 @@ const previewMedia = (element, data) => {
 				'<b>' + resultsCount + '</b> results found for:<span>"' + searchTerm + '"</span>')
 			searchResultsContainer.appendChild(searchResultsContainerTitle)
 			searchResultsContainer.appendChild(document.createElement('DIV'))
-			main.appendChild(searchResultsContainer)
+			mainContent.appendChild(searchResultsContainer)
 		} else {
 			searchResultsContainerTitle.children[0].textContent = `${resultsCount}`
 			searchResultsContainerTitle.children[1].textContent = `"${searchTerm}"`
@@ -690,9 +689,64 @@ const previewMedia = (element, data) => {
 	
 	clearSearchButton.addEventListener('click', () => {
 		if (searchTerm) {
-			searchField.value = ''
-			toggleResults(false)
+			searchField.value = '';
+			clearSearchButton.classList.remove('clear');
+			toggleResults(false);
 		}
 	})
 	
+}
+
+// mobile menu setup
+{
+	const siteHeader = document.querySelector('header');
+	const siteTitle = document.querySelector('h1');
+	const nav = document.querySelector('nav');
+	const mobileMenuToggle = document.querySelector('button.menu-toggle');
+	const main = document.querySelector('main');
+	const footer = document.querySelector('footer');
+	
+	let animating = false
+	
+	const toggleHiddenMenu = e => {
+		const button = e.target;
+		
+		button.classList.toggle('active');
+		siteHeader.classList.toggle('menu-active');
+		nav.classList.toggle('active');
+		footer.classList.add('menu-active');
+		
+		if (main.classList.contains('shrink')) {
+			main.style.top = '0px';
+			main.style.left = '0px';
+			main.style.transform = 'scale(1)';
+			
+			setTimeout(() => {
+				main.classList.remove('shrink');
+				footer.classList.remove('menu-active');
+				main.removeAttribute('style');
+			}, 500);
+		} else {
+			main.style.position = 'fixed';
+			main.style.top = '0px';
+			main.style.left = '0px';
+			main.style.width = '100vw';
+			main.style.height = '100vh';
+			main.style.zIndex = '1';
+			
+			setTimeout(() => {
+				main.classList.add('shrink');
+				main.style.transform = 'scale(0.70)';
+				main.style.top = '4%';
+				main.style.left = '-35vw';
+			}, 0);
+		}
+	}
+	
+	mobileMenuToggle.addEventListener('click', e => {
+		window.requestAnimationFrame(() => {
+			toggleHiddenMenu(e);
+		});
+		
+	})
 }

@@ -4,7 +4,7 @@
 
 #video-slider
   position: relative
-  margin: 30px auto 80px
+  margin: 30px auto 50px
   overflow: hidden // so scrollbar will not show
 
   @include media-query(770px)
@@ -17,7 +17,7 @@
     // padding top 40px since translating 10px
     // padding left and right is equal to 100 viewport width - with of the active slide divided by 2
     // this will make sure the left-most and right-most can still be centered when nothing comes after
-    padding: 40px calc((100vw - (1200px - 120px)) / 2) 150px
+    padding: 40px calc((100vw - (1200px - 120px)) / 2) 100px
     // translate down 10px will hide scrollbars
     transform: translateY(10px)
 
