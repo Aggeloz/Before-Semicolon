@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Button processing</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+	<button type="button">
+		<b>Save</b>
+	</button>
+
+	<script>
+
+			const button = document.querySelector('button');
+
+			// when user clicks the button we want to call doSomething with a callback func
+			// we want to add different class and label according to response
+			button.addEventListener('click', () => {
+				button.setAttribute('disabled', '');
+				button.classList.add('processing');
+				button.classList.remove('failed');
+
+				doSomething((response, error) => {
+					button.classList.remove('processing');
+					let label = 'done';
+					let className = 'completed';
+
+					if (error) {
+					  // remove disabled attr to allow a retry click
+					  // and change label and class to communicate an error
+					  button.removeAttribute('disabled');
+					  label = 'try again';
+					  className = 'failed';
+					}
+
+					button.classList.add(className);
+					button.innerHTML = '<b>'+label+'</b>';
+				});
+			});
+
+			let mockFailedProcess = true; // to pretend the process failed
+			function doSomething (callback) {
+				// this function is simulating a process that might take some time
+			    // using setTimeout to mock a time it might take and
+			    // mockFailedProcess to respond with an error or success
+				if (mockFailedProcess) {
+				  mockFailedProcess = false;
+				  setTimeout(() => {
+					callback(null, 'error message');
+				  }, 3000);
+				} else {
+				  setTimeout(() => {
+				    callback('success response');
+				  }, 3000);
+				}
+			}
+
+	</script>
+
+</body>
+</html>
