@@ -284,7 +284,7 @@ main {
     overflow: hidden; }
     @media screen and (max-width: 770px) {
       main #video-slider {
-        margin: 0 auto 80px; } }
+        margin: 0 auto 50px; } }
     main #video-slider .slides-container {
       white-space: nowrap;
       overflow: scroll;
@@ -312,7 +312,7 @@ main {
         @media screen and (max-width: 770px) {
           main #video-slider .slides-container .slide {
             margin: 0 25px;
-            width: calc(100% - 50p);
+            width: calc(100% - 50px);
             border-radius: 5px; } }
         main #video-slider .slides-container .slide h2 {
           position: absolute;
