@@ -7,6 +7,15 @@ var POST_TYPES = {
 
 var posts = [{
 	videoId: null,
+	title: "Toggle switch",
+	thumbnailPath: "./media/thumbnails/toggleSwitch.gif",
+	url: "https://ecorreia45.github.io/Before-Semicolon/examples/toggleSwitch/",
+	description: "Simple toggle switch with some cool toggle animation",
+	type: POST_TYPES.GITHUB,
+	youtubeVideoURL: null,
+	githubCodeURL: "https://github.com/ECorreia45/Before-Semicolon/tree/master/examples/toggleSwitch"
+}, {
+	videoId: null,
 	title: "Button process states reaction",
 	thumbnailPath: "./media/thumbnails/buttonProcessing.gif",
 	url: "https://ecorreia45.github.io/Before-Semicolon/examples/buttonProcessing/",
