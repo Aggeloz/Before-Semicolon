@@ -610,6 +610,9 @@ footer {
   background: rgba(40, 54, 74, 0.95); }
   #modal:after, #modal:before {
     display: none; }
+  #modal.go-away {
+    opacity: 0.2;
+    transition: opacity 0.3s ease-out; }
   #modal .close-modal {
     position: absolute;
     top: 50px;

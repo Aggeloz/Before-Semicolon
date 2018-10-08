@@ -371,6 +371,7 @@ const closeModal = e => {
 	[closeButton, modalContent].forEach(el => {
 		el.classList.add('go-away');
 		setTimeout(() => {
+			modal.classList.add('go-away');
 			el.remove();
 		}, 300);
 	});
@@ -379,11 +380,6 @@ const closeModal = e => {
 	modal.style.height = height + 'px';
 	modal.style.top = top + 'px';
 	modal.style.left = left + 'px';
-	
-	// this makes it so when it is almost fully shrunk it stacks below header level(z-index 2)
-	setTimeout(() => {
-		modal.style.zIndex = '1';
-	}, 300);
 	
 	setTimeout(() => {
 		modal.remove();
@@ -467,18 +463,13 @@ const previewMedia = (element, data) => {
 	elementClone.style.height = height + 'px';
 	elementClone.style.top = top + 'px';
 	elementClone.style.left = left + 'px';
-	elementClone.style.zIndex = '1';
+	elementClone.style.zIndex = '10';
 	elementClone.style.transition =
 		'top .5s ease-in-out, ' +
 		'left .5s ease-in-out, ' +
 		'height .5s ease-in-out, ' +
 		'width .5s ease-in-out';
 	document.querySelector('body').appendChild(elementClone);
-	
-	// this makes it so when it is almost fully grown it stacks above header level(z-index 2)
-	setTimeout(() => {
-		elementClone.style.zIndex = '10';
-	}, 300);
 	
 	[...elementClone.children].forEach(child => {
 		child.classList.add('fade-out');
