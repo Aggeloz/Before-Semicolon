@@ -442,6 +442,9 @@ var getModalContent = function getModalContent(data) {
 	var videoIFrameContainer = document.createElement('DIV');
 	videoIFrameContainer.className = 'video-iFrame-container ' + (data.type === POST_TYPES.GITHUB ? 'github-preview' : '');
 
+	var title = document.createElement('H2');
+	title.textContent = data.title + ' ' + (data.type === POST_TYPES.GITHUB ? ' (interactable)' : '');
+
 	if (data.type === POST_TYPES.YOUTUBE) {
 		var modalYoutubeIFrame = document.createElement('DIV');
 		modalYoutubeIFrame.className = 'content';
@@ -451,14 +454,12 @@ var getModalContent = function getModalContent(data) {
 
 	if (data.type === POST_TYPES.GITHUB) {
 		var modalGithubIFrame = document.createElement('IFRAME');
-		var title = document.createElement('H2');
 		modalGithubIFrame.className = 'content';
 		modalGithubIFrame.src = data.url;
 		videoIFrameContainer.appendChild(modalGithubIFrame);
-		title.textContent = data.title + " (play with it)";
-		modalContent.appendChild(title);
 	}
 
+	modalContent.appendChild(title);
 	modalContent.appendChild(videoIFrameContainer);
 
 	if (data.githubCodeURL) {

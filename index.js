@@ -406,6 +406,9 @@ const getModalContent = data => {
 	const videoIFrameContainer = document.createElement('DIV');
 	videoIFrameContainer.className = `video-iFrame-container ${data.type === POST_TYPES.GITHUB ? 'github-preview': ''}`;
 	
+	const title = document.createElement('H2');
+	title.textContent = `${data.title} ${data.type === POST_TYPES.GITHUB ? ' (interactable)' : ''}`;
+	
 	if (data.type === POST_TYPES.YOUTUBE) {
 		const modalYoutubeIFrame = document.createElement('DIV');
 		modalYoutubeIFrame.className = 'content';
@@ -415,14 +418,12 @@ const getModalContent = data => {
 	
 	if (data.type === POST_TYPES.GITHUB) {
 		const modalGithubIFrame = document.createElement('IFRAME');
-		const title = document.createElement('H2');
 		modalGithubIFrame.className = 'content';
 		modalGithubIFrame.src = data.url;
 		videoIFrameContainer.appendChild(modalGithubIFrame);
-		title.textContent = data.title + " (play with it)";
-		modalContent.appendChild(title);
 	}
 	
+	modalContent.appendChild(title);
 	modalContent.appendChild(videoIFrameContainer);
 	
 	if (data.githubCodeURL) {
