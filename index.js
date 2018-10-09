@@ -605,7 +605,11 @@ const previewMedia = (element, data) => {
 		const title = document.createElement('H3');
 		title.textContent = post.title;
 		
+		const description = document.createElement('P');
+		description.textContent = post.description;
+		
 		resultPost.appendChild(title);
+		resultPost.appendChild(description);
 		
 		return resultPost;
 	};

@@ -442,6 +442,7 @@ main {
       background-color: #28364A;
       min-height: 60px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       cursor: pointer; }
       main .main-content #search-results > div .search-result:after {
@@ -457,6 +458,7 @@ main {
       main .main-content #search-results > div .search-result.youtube:after {
         background: url("./../media/icons-sprite.svg") 88% 9%/1000% 200% no-repeat; }
       main .main-content #search-results > div .search-result h3 {
+        width: 100%;
         margin: 0;
         color: rgba(255, 255, 255, 0.8);
         font-size: 1.125em; }
