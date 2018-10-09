@@ -5,6 +5,36 @@ const POST_TYPES = {
 
 const posts = [
 	{
+		videoId: "o3DdT94Gc2A",
+		title: "Select element siblings in plain/vanilla javascript [How To]",
+		thumbnailPath: "",
+		url: "https://youtu.be/o3DdT94Gc2A",
+		description: "Learn how to select element siblings without jQuery. Learn vanilla javascript equivalent of jQuery next(), prev(), nextUntil(), prevUntil() and siblings().",
+		type: POST_TYPES.YOUTUBE,
+		youtubeVideoURL: "https://youtu.be/o3DdT94Gc2A",
+		githubCodeURL: null
+	},
+	{
+		videoId: "CVhf9jIh",
+		title: "Select element parents in plain/vanilla javascript [How To]",
+		thumbnailPath: "",
+		url: "https://youtu.be/CVhf9jIh-CQ",
+		description: "Learn how to select elements parents in vanilla js. This video show vanilla javascript version of jQuery methods parent(), parents() and parentsUntil()",
+		type: POST_TYPES.YOUTUBE,
+		youtubeVideoURL: "https://youtu.be/CVhf9jIh-CQ",
+		githubCodeURL: null
+	},
+	{
+		videoId: "3d3gA1Sy2Yg",
+		title: "Select element children in plain/vanilla javascript [How To]",
+		thumbnailPath: "",
+		url: "https://youtu.be/3d3gA1Sy2Yg",
+		description: "Learn how to select child elements and check if an element is child of another.",
+		type: POST_TYPES.YOUTUBE,
+		youtubeVideoURL: "https://youtu.be/3d3gA1Sy2Yg",
+		githubCodeURL: null
+	},
+	{
 		videoId: null,
 		title: "Toggle switch",
 		thumbnailPath: "./media/thumbnails/toggleSwitch.gif",
@@ -36,7 +66,7 @@ const posts = [
 	},
 	{
 		videoId: "o9M9GvwOSCk",
-		title: "How to Query/Select DOM Element with vanilla javascript - (You Don't Need jQuery)",
+		title: "Select DOM element with plain/vanilla javascript [How To]",
 		thumbnailPath: "",
 		url: "https://youtu.be/o9M9GvwOSCk",
 		description: "Learn how to query any dom element without needing the awesome jQuery DOM traversing tools.",
