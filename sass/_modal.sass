@@ -43,6 +43,7 @@
     &.go-away
       @extend .fade-out
 
+
   .modal-content
     opacity: 0
     animation: fadeIn .5s ease-out .5s forwards
@@ -54,7 +55,16 @@
     &.go-away
       @extend .fade-out
 
+    h2
+      margin: 0
+      padding: 15px 20px 30px
+      border-top-left-radius: 10px
+      border-top-right-radius: 10px
+      background-color: $site-background
+      color: $white
+
     .video-iFrame-container
+      margin-top: -10px
       background: rgba($black, .5)
       max-width: 960px
       width: calc(100vw - 50px)

@@ -415,9 +415,12 @@ const getModalContent = data => {
 	
 	if (data.type === POST_TYPES.GITHUB) {
 		const modalGithubIFrame = document.createElement('IFRAME');
+		const title = document.createElement('H2');
 		modalGithubIFrame.className = 'content';
 		modalGithubIFrame.src = data.url;
 		videoIFrameContainer.appendChild(modalGithubIFrame);
+		title.textContent = data.title + " (play with it)";
+		modalContent.appendChild(title);
 	}
 	
 	modalContent.appendChild(videoIFrameContainer);
