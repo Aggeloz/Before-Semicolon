@@ -285,6 +285,37 @@ main {
     @media screen and (max-width: 770px) {
       main #video-slider {
         margin: 0 auto 50px; } }
+    @media screen and (max-width: 1200px) {
+      main #video-slider .subscription {
+        padding: 0 25px; } }
+    @media screen and (max-width: 770px) {
+      main #video-slider .subscription {
+        margin-top: 20px; } }
+    @media screen and (max-width: 425px) {
+      main #video-slider .subscription {
+        transform: scale(0.9);
+        transform-origin: left; } }
+    main #video-slider .subscription .subscribe-btn {
+      opacity: 0.5;
+      background: #900;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 0.75em;
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: 700;
+      transition: opacity 0.3s ease-in-out; }
+      @media screen and (max-width: 770px) {
+        main #video-slider .subscription .subscribe-btn {
+          opacity: 1; } }
+      main #video-slider .subscription .subscribe-btn:hover {
+        opacity: 1; }
+      main #video-slider .subscription .subscribe-btn > div {
+        margin-left: 10px !important;
+        border: 1px solid #900 !important;
+        border-radius: 3px !important; }
     main #video-slider .slides-container {
       white-space: nowrap;
       overflow: scroll;
@@ -328,7 +359,7 @@ main {
           @media screen and (max-width: 770px) {
             main #video-slider .slides-container .slide h2 {
               top: calc(100% + 15px);
-              font-size: 1em;
+              font-size: 0.9em;
               white-space: nowrap;
               text-overflow: ellipsis;
               overflow: hidden;
