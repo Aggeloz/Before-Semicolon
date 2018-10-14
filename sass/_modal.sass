@@ -63,6 +63,14 @@
       background-color: $site-background
       color: $white
 
+      @include media-query(770px)
+        font-size: .9em
+        padding: 10px 15px 20px
+        text-overflow: ellipsis
+        overflow: hidden
+        white-space: nowrap
+        width: calc(100vw - 50px)
+
     .video-iFrame-container
       margin-top: -10px
       background: rgba($black, .5)

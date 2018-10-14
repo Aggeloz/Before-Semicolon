@@ -1,0 +1,38 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    background-color: #333;
+}
+
+.post{
+    width: 380px;
+    height: 140px;
+    background:
+        /* the shine needed for animation.
+            colors: transparent and the color of the container background @ 50% opacity */
+        linear-gradient(90deg, transparent, rgba(51,51,51,0.5) , transparent) -100% 0/140px 200% no-repeat,
+        /* Shapes that simulates post content (image, paragraph1, paragraph2, date),
+            linear-gradient(...) position/size repeat */
+        linear-gradient(90deg, #f2f2f2, #f2f2f2) 20px 20px/100px 100px no-repeat,
+        linear-gradient(90deg, #f2f2f2, #f2f2f2) 140px 35px/55% 15px no-repeat,
+        linear-gradient(90deg, #f2f2f2, #f2f2f2) 140px 60px/40% 15px no-repeat,
+        linear-gradient(90deg, #f2f2f2, #f2f2f2) 140px 75%/50px 8px no-repeat;
+    animation: shine 1.2s ease-in-out infinite;
+}
+
+@keyframes shine {
+    100%{
+        background-position:
+                /* position of the gradient to animate to*/
+                150% 0,
+                /* all others position remain the same*/
+                20px 20px,
+                140px 35px,
+                140px 60px,
+                140px 75%;
+    }
+}
+

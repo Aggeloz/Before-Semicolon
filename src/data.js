@@ -6,6 +6,15 @@ var POST_TYPES = {
 };
 
 var posts = [{
+	videoId: null,
+	title: "Skeleton loading state",
+	thumbnailPath: "./media/thumbnails/skeletonLoad.gif",
+	url: "https://ecorreia45.github.io/Before-Semicolon/examples/skeletonLoad/",
+	description: "This is a simple skeleton loading state example of a simple post",
+	type: POST_TYPES.GITHUB,
+	youtubeVideoURL: null,
+	githubCodeURL: "https://github.com/ECorreia45/Before-Semicolon/tree/master/examples/skeletonLoad"
+}, {
 	videoId: "o3DdT94Gc2A",
 	title: "Select element siblings in plain/vanilla javascript [How To]",
 	thumbnailPath: "",
