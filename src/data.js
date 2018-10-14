@@ -24,7 +24,7 @@ var posts = [{
 	youtubeVideoURL: "https://youtu.be/o3DdT94Gc2A",
 	githubCodeURL: null
 }, {
-	videoId: "CVhf9jIh",
+	videoId: "CVhf9jIh-CQ",
 	title: "Select element parents in plain/vanilla javascript [How To]",
 	thumbnailPath: "",
 	url: "https://youtu.be/CVhf9jIh-CQ",
