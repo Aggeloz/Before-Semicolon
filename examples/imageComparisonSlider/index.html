@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Image Comparison Slider</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+	<div class="img-compare-slider">
+		<img src="before.jpg" alt="">
+		<img src="after.jpg" alt="">
+	</div>
+
+	<script>
+		const imgCompareSliders = document.querySelectorAll('.img-compare-slider');
+
+        imgCompareSliders.forEach(slider => {
+          const div = document.createElement('DIV');
+          const img = slider.querySelector('img'); // selects the first one
+          const rangeInput = document.createElement('INPUT');
+
+          div.appendChild(img);
+
+          rangeInput.type = 'range';
+          rangeInput.oninput = () => {
+            div.style.width = rangeInput.value + '%';
+          };
+
+          slider.insertAdjacentElement('afterbegin', div); // prepend child
+          slider.appendChild(rangeInput);
+        })
+
+	</script>
+</body>
+</html>
